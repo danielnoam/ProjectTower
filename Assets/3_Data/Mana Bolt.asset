@@ -10,12 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e54bd609f87a481e9283e152da17280f, type: 3}
-  m_Name: Spell
+  m_Name: Mana Bolt
   m_EditorClassIdentifier: Assembly-CSharp::SOSpell
   label: Mana Bolt
   description: A very basic spell
   icon: {fileID: 0}
+  castType: 1
   manaCost: 5
-  castTime: 1
-  castType: 0
-  castTargetType: 1
+  channelRate: 0.3
+  chargeTime: 1
+  targetingType: 1
+  deliveryMethod: 1
+  projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
+  projectileSpeed: 20
+  effects:
+  - rid: 1991720444288827504
+  references:
+    version: 2
+    RefIds:
+    - rid: 1991720444288827504
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 5

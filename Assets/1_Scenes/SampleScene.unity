@@ -495,13 +495,16 @@ GameObject:
   m_Component:
   - component: {fileID: 229965591}
   - component: {fileID: 229965594}
+  - component: {fileID: 229965603}
   - component: {fileID: 229965593}
   - component: {fileID: 229965596}
   - component: {fileID: 229965595}
   - component: {fileID: 229965598}
-  - component: {fileID: 229965600}
   - component: {fileID: 229965597}
   - component: {fileID: 229965599}
+  - component: {fileID: 229965601}
+  - component: {fileID: 229965600}
+  - component: {fileID: 229965602}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -544,8 +547,10 @@ MonoBehaviour:
   fpcCamera: {fileID: 229965599}
   fpcInput: {fileID: 229965596}
   fpcRigidBodyPush: {fileID: 229965595}
+  fpcHealth: {fileID: 229965601}
+  fpcCaster: {fileID: 229965600}
   characterController: {fileID: 229965594}
-  controllerRumbleSource: {fileID: 0}
+  controllerRumbleSource: {fileID: 229965603}
 --- !u!143 &229965594
 CharacterController:
   m_ObjectHideFlags: 0
@@ -733,13 +738,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9504067622d1404b9205dfda6003635d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FPCCast
+  maxTargetRange: 50
+  fpcManager: {fileID: 229965593}
+  spellCaster: {fileID: 229965602}
+  currentSpell: {fileID: 11400000, guid: cb3abedc37965aa4b93e67c4a849ecaa, type: 2}
+  isCasting: 0
+  castingTime: 0
+--- !u!114 &229965601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229965590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5f8bea2a50443f831947dd687621af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  maxHealth: 100
+  currentHealth: 0
+--- !u!114 &229965602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229965590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340646b3a1944b10be0e786c6586e3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellCaster
   maxMana: 100
   manaRegenPerSecond: 5
   cooldownBeforeRegen: 2
-  fpcManager: {fileID: 229965593}
-  currentSpell: {fileID: 11400000, guid: 88af3b9b4cb09654ea5e3c2d05df769d, type: 2}
   currentMana: 0
   regenCooldownTimer: 0
+--- !u!114 &229965603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229965590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcae686dfb6f4e95ab416ccb595ef855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::DNExtensions.ControllerRumbleSystem.ControllerRumbleSource
+  is3DSource: 0
+  maxRumbleDistance: 1
+  minRumbleDistance: 10
+  distanceFalloffCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &303152584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1137,7 @@ GameObject:
   - component: {fileID: 406244209}
   - component: {fileID: 406244211}
   - component: {fileID: 406244210}
+  - component: {fileID: 406244212}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -1131,6 +1206,27 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &406244212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406244208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dffa83163bd4a041ab121b85dd1ac55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::DNExtensions.ControllerRumbleSystem.ControllerRumbleListener
+  playerInput: {fileID: 406244211}
+  lowFrequencyRange:
+    minValue: 0
+    maxValue: 1
+  highFrequencyRange:
+    minValue: 0
+    maxValue: 1
+  fakeGamepad: 0
+  drawInformation: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

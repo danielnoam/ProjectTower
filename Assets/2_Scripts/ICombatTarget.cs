@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface ISpellTarget
+public interface ICombatTarget
 {
     void TakeDamage(float damage);
     void Heal(float amount);

@@ -1,77 +1,96 @@
 using System;
+using DNExtensions;
 using UnityEngine;
+
+
+public enum TargetingType { Self, Other }
+public enum DeliveryMethod { Instant, Projectile }
+public enum CastType { Instant, Channeled, Charged }
 
 
 [CreateAssetMenu(fileName = "Spell", menuName = "ScriptableObjects/Spell", order = 1)]
 public class SOSpell : ScriptableObject
 {
+    [Header("Spell Info")]
     public string label = "New Spell";
     [TextArea] public string description = "Spell Description";
     public Sprite icon;
-    public float manaCost = 5f;
+    
+    [Header("Casting")]
     public CastType castType = CastType.Instant;
-    public float castTime = 1f;
+    public float manaCost = 5f;
+    [ShowIf("castType", CastType.Channeled)] public float channelRate = 0.3f;
+    [ShowIf("castType", CastType.Charged)] public float chargeTime = 1f;
+    
+    [Header("Targeting")]
     public TargetingType targetingType = TargetingType.Other;
-    public DeliveryMethod deliveryMethod = DeliveryMethod.Hitscan;
-
-    public SpellEffect[] effects = Array.Empty<SpellEffect>();
+    public DeliveryMethod deliveryMethod = DeliveryMethod.Instant;
+    [ShowIf("deliveryMethod", DeliveryMethod.Projectile)] public Projectile projectilePrefab;
+    [ShowIf("deliveryMethod", DeliveryMethod.Projectile)] public float projectileSpeed = 20f;
     
-    public Projectile projectilePrefab;
+    [Header("Effects")]
+    [SerializeReference] public SpellEffect[] effects = Array.Empty<SpellEffect>();
     
-    
-    public enum TargetingType { Self, Other }
-    public enum DeliveryMethod { Hitscan, Projectile }
-    public enum CastType { Instant, Channeled, Charged }
 
     
-    public void Cast(ISpellTarget caster, ISpellTarget target)
+
+    
+    public void Cast(ICombatTarget source, ICombatTarget target)
     {
-        ISpellTarget resolvedTarget = ResolveTarget(caster, target);
-        if (resolvedTarget == null) return;
+        ICombatTarget resolvedTarget = ResolveTarget(source, target);
         
         switch (deliveryMethod)
         {
-            case DeliveryMethod.Hitscan:
-                ApplyEffects(caster, resolvedTarget);
+            case DeliveryMethod.Instant:
+                if (resolvedTarget != null)
+                {
+                    ApplyEffects(source, resolvedTarget);
+                }
                 break;
-            
+                
             case DeliveryMethod.Projectile:
-                SpawnProjectile(caster, resolvedTarget);
+                SpawnProjectile(source, resolvedTarget);
                 break;
         }
     }
-
-    private ISpellTarget ResolveTarget(ISpellTarget caster, ISpellTarget target)
+    
+    private ICombatTarget ResolveTarget(ICombatTarget source, ICombatTarget target)
     {
         switch (targetingType)
         {
             case TargetingType.Self:
-                return caster;
-            
+                return source; 
+                
             case TargetingType.Other:
-                return target; 
+                return target;
+                
             default:
                 return null;
         }
     }
-
-    private void ApplyEffects(ISpellTarget caster, ISpellTarget target)
+    
+    private void ApplyEffects(ICombatTarget source, ICombatTarget target)
     {
         foreach (var effect in effects)
         {
-            effect?.Apply(caster, target);
+            effect?.Apply(source, target);
         }
     }
-
-    private void SpawnProjectile(ISpellTarget caster, ISpellTarget target)
+    
+    private void SpawnProjectile(ICombatTarget source, ICombatTarget target)
     {
-        Vector3 spawnPos = caster.Transform.position + caster.Transform.forward * 2;
-        Vector3 direction = target != null ? (target.Transform.position - caster.Transform.position).normalized : caster.Transform.forward;
-    
+        if (!projectilePrefab)
+        {
+            Debug.LogError($"Spell {label} is set to Projectile delivery but has no projectile prefab!");
+            return;
+        }
+        
+        Vector3 spawnPos = source.Transform.position + source.Transform.forward * 2f;
+        Vector3 direction = target != null 
+            ? (target.Transform.position - source.Transform.position).normalized 
+            : source.Transform.forward;
+        
         Projectile projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-        projectile.Initialize(direction, 5f);
+        projectile.Initialize(effects, direction, projectileSpeed, source);
     }
-
-
-    
 }

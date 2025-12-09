@@ -61,16 +61,16 @@ public class FPCInteraction : MonoBehaviour
 
     private void OnEnable()
     {
-        manager.FPCInput.OnInteractAction += OnInteract;
-        manager.FPCInput.OnThrowAction += OnThrow;
-        manager.FPCInput.OnDropAction += OnDrop;
+        manager.FpcInput.OnInteractAction += OnInteract;
+        manager.FpcInput.OnThrowAction += OnThrow;
+        manager.FpcInput.OnDropAction += OnDrop;
     }
 
     private void OnDisable()
     {
-        manager.FPCInput.OnInteractAction -= OnInteract;
-        manager.FPCInput.OnThrowAction -= OnThrow;
-        manager.FPCInput.OnDropAction -= OnDrop;
+        manager.FpcInput.OnInteractAction -= OnInteract;
+        manager.FpcInput.OnThrowAction -= OnThrow;
+        manager.FpcInput.OnDropAction -= OnDrop;
     }
     
     private void OnInteract(InputAction.CallbackContext context)
@@ -124,7 +124,7 @@ public class FPCInteraction : MonoBehaviour
         if (!_heldObject) return;
         
         var force = throwForceRange.Lerp(_throwInputHoldTime / throwHeldRange.maxValue);
-        _heldObject.Throw(manager.FPCCamera.GetAimDirection(), force);
+        _heldObject.Throw(manager.FpcCamera.GetAimDirection(), force);
         _heldObject = null;
     }
 

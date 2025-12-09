@@ -30,6 +30,7 @@ public class FPCMovement : MonoBehaviour
     
     
     private Vector3 _velocity;
+    private Vector3 _externalForce;
     private Vector3 _dashDirection;
     private Vector2 _moveInput;
     private float _dashTimeRemaining;
@@ -53,23 +54,24 @@ public class FPCMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        manager.FPCInput.OnMoveAction += GetMovementInput;
-        manager.FPCInput.OnRunAction += GetRunningInput;
-        manager.FPCInput.OnJumpAction += GetJumpInput;
+        manager.FpcInput.OnMoveAction += GetMovementInput;
+        manager.FpcInput.OnRunAction += GetRunningInput;
+        manager.FpcInput.OnJumpAction += GetJumpInput;
     }
 
     private void OnDisable()
     {
-        manager.FPCInput.OnMoveAction -= GetMovementInput;
-        manager.FPCInput.OnRunAction -= GetRunningInput;
-        manager.FPCInput.OnJumpAction -= GetJumpInput;
+        manager.FpcInput.OnMoveAction -= GetMovementInput;
+        manager.FpcInput.OnRunAction -= GetRunningInput;
+        manager.FpcInput.OnJumpAction -= GetJumpInput;
     }
     
     private void Update()
     {
+        CheckGrounded();
         HandleMovement();
         HandleJump();
-        CheckGrounded();
+        ApplyMovement();
     }
     
 
@@ -92,20 +94,28 @@ public class FPCMovement : MonoBehaviour
         }
     }
     
+    private void ApplyMovement()
+    {
+        Vector3 finalMovement = (_velocity + _externalForce) * Time.deltaTime;
+        manager.CharacterController.Move(finalMovement);
+        _externalForce = Vector3.zero;
+    }
 
     private void HandleMovement()
     {
-        Vector3 cameraForward = manager.FPCCamera.GetMovementDirection();
+        Vector3 cameraForward = manager.FpcCamera.GetMovementDirection();
         Vector3 cameraRight = Quaternion.Euler(0, 90, 0) * cameraForward;
         Vector3 moveDir = (cameraForward * _moveInput.y + cameraRight * _moveInput.x).normalized;
 
         IsRunning = _runInput && canRun;
         float targetMoveSpeed = IsRunning ? runSpeed : walkSpeed;
-        if (manager.FPCInteraction.HeldObject)
+        if (manager.FpcInteraction.HeldObject)
         {
-            targetMoveSpeed /= manager.FPCInteraction.HeldObject.ObjectWeight;
+            targetMoveSpeed /= manager.FpcInteraction.HeldObject.ObjectWeight;
         }
-        manager.CharacterController.Move(moveDir * (targetMoveSpeed * Time.deltaTime));
+        
+        _velocity.x = moveDir.x * targetMoveSpeed;
+        _velocity.z = moveDir.z * targetMoveSpeed;
     }
     
     private void HandleJump()
@@ -124,7 +134,6 @@ public class FPCMovement : MonoBehaviour
         }
         
         _velocity.y += gravity * Time.deltaTime;
-        manager.CharacterController.Move(_velocity * Time.deltaTime);
         IsJumping = _velocity.y > 0;
     }
 
@@ -159,6 +168,11 @@ public class FPCMovement : MonoBehaviour
 
     }
 
+
+    public void ApplyForce(Vector3 force)
+    {
+        _externalForce += force;
+    }
 
 
 

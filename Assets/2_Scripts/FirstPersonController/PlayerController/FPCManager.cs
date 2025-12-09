@@ -13,7 +13,7 @@ using UnityEditor;
 [RequireComponent(typeof(FPCInput))]
 [RequireComponent(typeof(FPCRigidBodyPush))]
 [RequireComponent(typeof(CharacterController))]
-public class FPCManager : MonoBehaviour, ISpellTarget
+public class FPCManager : MonoBehaviour, ICombatTarget
 {
     [Header("Settings")]
     [SerializeField] private FPCCameraMode cameraMode = FPCCameraMode.CinemachineCamera;
@@ -24,16 +24,20 @@ public class FPCManager : MonoBehaviour, ISpellTarget
     [SerializeField] private FPCCameraBase fpcCamera;
     [SerializeField] private FPCInput fpcInput;
     [SerializeField] private FPCRigidBodyPush fpcRigidBodyPush;
+    [SerializeField] private FpcHealth fpcHealth;
+    [SerializeField] private FPCCaster fpcCaster;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private ControllerRumbleSource controllerRumbleSource;
 
     private enum FPCCameraMode { NormalCamera, CinemachineCamera }
     
-    public FPCMovement FPCMovement => fpcMovement;
-    public FPCInteraction FPCInteraction => fpcInteraction;
-    public FPCCameraBase FPCCamera => fpcCamera;
-    public FPCInput FPCInput => fpcInput;
-    public FPCRigidBodyPush FPCRigidBodyPush => fpcRigidBodyPush;
+    public FPCMovement FpcMovement => fpcMovement;
+    public FPCInteraction FpcInteraction => fpcInteraction;
+    public FPCCameraBase FpcCamera => fpcCamera;
+    public FPCInput FpcInput => fpcInput;
+    public FPCRigidBodyPush FpcRigidBodyPush => fpcRigidBodyPush;
+    public FpcHealth FpcHealth => fpcHealth;
+    public FPCCaster FpcCaster => fpcCaster;
     public CharacterController CharacterController => characterController;
     public ControllerRumbleSource ControllerRumbleSource => controllerRumbleSource;
 
@@ -112,20 +116,19 @@ public class FPCManager : MonoBehaviour, ISpellTarget
         }
     }
 
-    
     public void TakeDamage(float damage)
     {
-        
+        fpcHealth.TakeDamage(damage);
     }
 
     public void Heal(float amount)
     {
-
+        fpcHealth.Heal(amount);
     }
 
     public void ApplyForce(Vector3 force)
     {
-
+        fpcMovement.ApplyForce(force);
     }
 
     public Transform Transform => transform;

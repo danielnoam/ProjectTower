@@ -47,12 +47,12 @@ public abstract class FPCCameraBase : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        manager.FPCInput.OnLookAction += OnLook;
+        manager.FpcInput.OnLookAction += OnLook;
     }
 
     protected virtual void OnDisable()
     {
-        manager.FPCInput.OnLookAction -= OnLook;
+        manager.FpcInput.OnLookAction -= OnLook;
     }
 
     protected virtual void Update()
@@ -72,7 +72,7 @@ public abstract class FPCCameraBase : MonoBehaviour
         if (!playerHead) return;
         
         float sensitivity = mouseLookSensitivity;
-        if (manager.FPCInput.IsCurrentDeviceGamepad)
+        if (manager.FpcInput.IsCurrentDeviceGamepad)
         {
             sensitivity = gamepadLookSensitivity * Time.deltaTime;
         }
@@ -108,7 +108,7 @@ public abstract class FPCCameraBase : MonoBehaviour
     private void UpdateFov()
     {
         float targetFov = baseFov;
-        if (manager.FPCMovement.IsRunning)
+        if (manager.FpcMovement.IsRunning)
         {
             targetFov *= runFovMultiplier;
         }
