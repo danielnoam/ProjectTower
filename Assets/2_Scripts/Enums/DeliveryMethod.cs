@@ -1,0 +1,1 @@
+public enum DeliveryMethod { Instant, Projectile }

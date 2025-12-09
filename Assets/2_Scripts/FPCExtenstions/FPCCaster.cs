@@ -73,7 +73,7 @@ public class FPCCaster : MonoBehaviour
                 castingTime += Time.deltaTime;
             }
             
-            if (castingTime >= currentSpell.chargeTime)
+            if (castingTime >= currentSpell.channelRate)
             {
                 castingTime = 0f;
                 ICombatTarget target = GetTarget();
@@ -100,7 +100,6 @@ public class FPCCaster : MonoBehaviour
                     break;
                     
                 case CastType.Channeled:
-                    // TODO: Start channeling
                     isCasting = true;
                     castingTime = 0f;
                     break;
@@ -121,15 +120,13 @@ public class FPCCaster : MonoBehaviour
             // Cast charge
             if (currentSpell.castType == CastType.Charged && castingTime >= currentSpell.chargeTime)
             {
-                finishedCasting = false;                
                 ICombatTarget target = GetTarget();
                 spellCaster.CastSpell(currentSpell, target);
             }
             
             // Stop casting
             isCasting = false;
-
-
+            finishedCasting = false; 
             castingTime = 0f;
         }
         
@@ -139,8 +136,6 @@ public class FPCCaster : MonoBehaviour
     
     private ICombatTarget GetTarget()
     {
-        if (currentSpell.targetingType == TargetingType.Self) return null;
-
         if (_cam && Physics.Raycast(_cam.transform.position, _cam.transform.forward, out RaycastHit hit, maxTargetRange))
         {
             return hit.collider.GetComponent<ICombatTarget>();

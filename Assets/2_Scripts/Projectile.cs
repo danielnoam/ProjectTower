@@ -4,10 +4,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private bool _isInitialized;
-    private Vector3 _moveDirection;
-    private float _moveSpeed;
     private ICombatTarget _source;
-    private List<SpellEffect> _spellEffects;
+    private List<SpellEffect> _spawnEffects;
+    private List<SpellEffect> _hitEffects;
+    private ProjectileMovementBehavior _projectileMovementBehavior;
+    
+    
     private void OnCollisionEnter(Collision other)
     {
         if (!_isInitialized) return;
@@ -15,9 +17,9 @@ public class Projectile : MonoBehaviour
         ICombatTarget target = other.gameObject.GetComponent<ICombatTarget>();
         if (target != null && target != _source)
         {
-            foreach (SpellEffect spellEffect in _spellEffects)
+            foreach (SpellEffect spellEffect in _hitEffects)
             {
-                spellEffect.Apply(_source, target);
+                spellEffect?.Apply(_source, target);
             }
         }
         
@@ -28,17 +30,23 @@ public class Projectile : MonoBehaviour
     {
         if (!_isInitialized) return;
 
-        transform.position += _moveDirection * (_moveSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.LookRotation(_moveDirection);
+        _projectileMovementBehavior.UpdateMovement();
+
     }
 
-    public void Initialize(SpellEffect[] spellEffects, Vector3 moveDirection, float moveSpeed, ICombatTarget source)
+    public void Initialize(SpellEffect[] spawnEffects,SpellEffect[] hitEffects, ProjectileMovementBehavior projectileMovementBehavior, ICombatTarget source)
     {
-        _spellEffects = new List<SpellEffect>(spellEffects);
-        _moveDirection = moveDirection;
-        _moveSpeed = moveSpeed;
+        _projectileMovementBehavior = projectileMovementBehavior;
+        _spawnEffects = new List<SpellEffect>(spawnEffects);
+        _hitEffects = new List<SpellEffect>(hitEffects);
         _source = source;
+        _projectileMovementBehavior.Initialize(transform, _source);
         _isInitialized = true;
+        
+        foreach (SpellEffect spellEffect in _spawnEffects)
+        {
+            spellEffect?.Apply(_source, _source);
+        }
     }
 
     private void DestroyProjectile()

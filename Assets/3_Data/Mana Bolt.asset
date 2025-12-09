@@ -21,14 +21,26 @@ MonoBehaviour:
   chargeTime: 1
   targetingType: 1
   deliveryMethod: 1
-  projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
-  projectileSpeed: 20
   effects:
   - rid: 1991720444288827504
+  projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
+  projectileMovement:
+    rid: 1991720447171362884
+  spawnEffects: []
+  hitEffects:
+  - rid: 1991720447171362891
   references:
     version: 2
     RefIds:
     - rid: 1991720444288827504
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 5
+    - rid: 1991720447171362884
+      type: {class: NormalMovement, ns: , asm: Assembly-CSharp}
+      data:
+        moveSpeed: 5
+    - rid: 1991720447171362891
       type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
       data:
         damage: 5

@@ -3,36 +3,30 @@ using DNExtensions;
 using UnityEngine;
 
 
-public enum TargetingType { Self, Other }
-public enum DeliveryMethod { Instant, Projectile }
-public enum CastType { Instant, Channeled, Charged }
-
-
 [CreateAssetMenu(fileName = "Spell", menuName = "ScriptableObjects/Spell", order = 1)]
 public class SOSpell : ScriptableObject
 {
     [Header("Spell Info")]
     public string label = "New Spell";
-    [TextArea] public string description = "Spell Description";
     public Sprite icon;
+    public string description = "Spell Description";
     
     [Header("Casting")]
     public CastType castType = CastType.Instant;
     public float manaCost = 5f;
-    [ShowIf("castType", CastType.Channeled)] public float channelRate = 0.3f;
-    [ShowIf("castType", CastType.Charged)] public float chargeTime = 1f;
+    [ShowIf("castType", CastType.Channeled)] public float channelRate = 0.15f;
+    [ShowIf("castType", CastType.Charged)] public float chargeTime = 1.5f;
     
     [Header("Targeting")]
     public TargetingType targetingType = TargetingType.Other;
     public DeliveryMethod deliveryMethod = DeliveryMethod.Instant;
-    [ShowIf("deliveryMethod", DeliveryMethod.Projectile)] public Projectile projectilePrefab;
-    [ShowIf("deliveryMethod", DeliveryMethod.Projectile)] public float projectileSpeed = 20f;
-    
-    [Header("Effects")]
     [SerializeReference] public SpellEffect[] effects = Array.Empty<SpellEffect>();
     
-
-    
+    [Header("Projectile")]
+    public Projectile projectilePrefab;
+    [SerializeReference] public ProjectileMovementBehavior projectileMovement;
+    [SerializeReference] public SpellEffect[] spawnEffects = Array.Empty<SpellEffect>();
+    [SerializeReference] public SpellEffect[] hitEffects = Array.Empty<SpellEffect>();
 
     
     public void Cast(ICombatTarget source, ICombatTarget target)
@@ -86,11 +80,8 @@ public class SOSpell : ScriptableObject
         }
         
         Vector3 spawnPos = source.Transform.position + source.Transform.forward * 2f;
-        Vector3 direction = target != null 
-            ? (target.Transform.position - source.Transform.position).normalized 
-            : source.Transform.forward;
         
         Projectile projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-        projectile.Initialize(effects, direction, projectileSpeed, source);
+        projectile.Initialize(spawnEffects, hitEffects, projectileMovement, source);
     }
 }

@@ -17,13 +17,17 @@ MonoBehaviour:
   icon: {fileID: 0}
   castType: 0
   manaCost: 0
+  channelRate: 0.15
   chargeTime: 1
   targetingType: 0
   deliveryMethod: 0
-  projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
-  projectileSpeed: 20
   effects:
   - rid: 1991720444288827501
+  projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
+  projectileMovement:
+    rid: 1991720447171362889
+  spawnEffects: []
+  hitEffects: []
   references:
     version: 2
     RefIds:
@@ -32,3 +36,7 @@ MonoBehaviour:
       data:
         force: 1000
         lookDirectionOf: 1
+    - rid: 1991720447171362889
+      type: {class: NormalMovement, ns: , asm: Assembly-CSharp}
+      data:
+        moveSpeed: 5

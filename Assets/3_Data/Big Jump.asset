@@ -18,18 +18,28 @@ MonoBehaviour:
   castType: 2
   manaCost: 1
   channelRate: 0.3
-  chargeTime: 5
+  chargeTime: 1.5
   targetingType: 0
   deliveryMethod: 0
-  projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
-  projectileSpeed: 20
   effects:
   - rid: 1991720444288827502
+  projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
+  projectileMovement:
+    rid: -2
+  spawnEffects:
+  - rid: 1991720447171362890
+  hitEffects: []
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 1991720444288827502
       type: {class: ApplyForceEffect, ns: , asm: Assembly-CSharp}
       data:
         force: 300
         direction: {x: 0, y: 1, z: 0}
+    - rid: 1991720447171362890
+      type: {class: HealEffect, ns: , asm: Assembly-CSharp}
+      data:
+        healAmount: 5

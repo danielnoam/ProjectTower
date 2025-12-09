@@ -40,16 +40,11 @@ public class SpellCaster : MonoBehaviour
     {
         if (!CanCast(spell))
         {
-            Debug.LogWarning("Not enough mana to cast spell!");
             return;
         }
         
         ICombatTarget source = GetComponent<ICombatTarget>();
-        if (source == null)
-        {
-            Debug.LogError("SpellCaster requires ICombatTarget component!");
-            return;
-        }
+        if (source == null) return;
         
         spell.Cast(source, target);
         ConsumeMana(spell.manaCost);

@@ -741,8 +741,9 @@ MonoBehaviour:
   maxTargetRange: 50
   fpcManager: {fileID: 229965593}
   spellCaster: {fileID: 229965602}
-  currentSpell: {fileID: 11400000, guid: cb3abedc37965aa4b93e67c4a849ecaa, type: 2}
+  currentSpell: {fileID: 11400000, guid: 0eb2e83e11497464090b5825ffa95915, type: 2}
   isCasting: 0
+  finishedCasting: 0
   castingTime: 0
 --- !u!114 &229965601
 MonoBehaviour:
@@ -771,8 +772,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellCaster
   maxMana: 100
-  manaRegenPerSecond: 5
-  cooldownBeforeRegen: 2
+  manaRegenPerSecond: 15
+  cooldownBeforeRegen: 1
   currentMana: 0
   regenCooldownTimer: 0
 --- !u!114 &229965603
