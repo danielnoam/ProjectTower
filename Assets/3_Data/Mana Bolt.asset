@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Mana Bolt
   m_EditorClassIdentifier: Assembly-CSharp::SOSpell
   label: Mana Bolt
-  description: A very basic spell
   icon: {fileID: 0}
+  description: A very basic spell
   castType: 1
   manaCost: 5
   channelRate: 0.3
@@ -39,7 +39,7 @@ MonoBehaviour:
     - rid: 1991720447171362884
       type: {class: NormalMovement, ns: , asm: Assembly-CSharp}
       data:
-        moveSpeed: 5
+        moveSpeed: 8
     - rid: 1991720447171362891
       type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
       data:

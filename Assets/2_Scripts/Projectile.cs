@@ -14,16 +14,24 @@ public class Projectile : MonoBehaviour
     {
         if (!_isInitialized) return;
         
-        ICombatTarget target = other.gameObject.GetComponent<ICombatTarget>();
-        if (target != null && target != _source)
-        {
-            foreach (SpellEffect spellEffect in _hitEffects)
-            {
-                spellEffect?.Apply(_source, target);
-            }
-        }
+
+         if (other.gameObject.TryGetComponent(out ICombatTarget hitTarget))
+         {
+             if (hitTarget != null && hitTarget != _source)
+             {
+                 foreach (SpellEffect spellEffect in _hitEffects)
+                 {
+                     spellEffect?.Apply(_source, hitTarget);
+                 }
+                 
+                 DestroyProjectile();
+             }
+         }
+         else
+         {
+             DestroyProjectile();
+         }
         
-        DestroyProjectile();
     }
 
     private void Update()

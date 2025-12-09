@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -6,6 +7,7 @@ public abstract class ProjectileMovementBehavior
     protected Transform projectileTransform;
     protected ICombatTarget casterSource;
 
+    public abstract ProjectileMovementBehavior Clone();
     public abstract void Initialize(Transform projectileTransform, ICombatTarget source);
     public abstract void UpdateMovement();
 }
@@ -17,6 +19,14 @@ public class NormalMovement  : ProjectileMovementBehavior
     [Min(0)] public float moveSpeed = 5f;
     
     private Vector3 _moveDirection;
+    
+    public override ProjectileMovementBehavior Clone()
+    {
+        return new NormalMovement 
+        { 
+            moveSpeed = moveSpeed 
+        };
+    }
     
     public override void Initialize(Transform transform, ICombatTarget source)
     {

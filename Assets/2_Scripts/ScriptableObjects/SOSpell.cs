@@ -24,7 +24,7 @@ public class SOSpell : ScriptableObject
     
     [Header("Projectile")]
     public Projectile projectilePrefab;
-    [SerializeReference] public ProjectileMovementBehavior projectileMovement;
+    [SerializeReference] public ProjectileMovementBehavior projectileMovement = new NormalMovement();
     [SerializeReference] public SpellEffect[] spawnEffects = Array.Empty<SpellEffect>();
     [SerializeReference] public SpellEffect[] hitEffects = Array.Empty<SpellEffect>();
 
@@ -79,9 +79,24 @@ public class SOSpell : ScriptableObject
             return;
         }
         
+        SpellEffect[] spawnEffectsClone = CloneEffects(spawnEffects);
+        SpellEffect[] hitEffectsClone = CloneEffects(hitEffects);
+        ProjectileMovementBehavior movementClone = projectileMovement?.Clone();
         Vector3 spawnPos = source.Transform.position + source.Transform.forward * 2f;
         
         Projectile projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-        projectile.Initialize(spawnEffects, hitEffects, projectileMovement, source);
+        projectile.Initialize(spawnEffectsClone, hitEffectsClone, movementClone, source);
+    }
+    
+    private SpellEffect[] CloneEffects(SpellEffect[] effectsToClone)
+    {
+        if (effectsToClone == null || effectsToClone.Length == 0) return Array.Empty<SpellEffect>();
+    
+        SpellEffect[] clones = new SpellEffect[effectsToClone.Length];
+        for (int i = 0; i < effectsToClone.Length; i++)
+        {
+            clones[i] = effectsToClone[i]?.Clone();
+        }
+        return clones;
     }
 }
