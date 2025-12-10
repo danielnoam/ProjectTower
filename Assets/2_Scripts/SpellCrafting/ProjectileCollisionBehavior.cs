@@ -13,6 +13,7 @@ public abstract class ProjectileCollisionBehavior
 
 
 [System.Serializable]
+[ProjectileCollision("Destroy")]
 public class DestroyBehavior  : ProjectileCollisionBehavior
 {
     public override ProjectileCollisionBehavior Clone()

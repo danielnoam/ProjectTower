@@ -4,7 +4,7 @@ using DNExtensions;
 using UnityEngine;
 
 [RequireComponent(typeof(ManaSourceComponent))]
-public class SpellCaster : MonoBehaviour
+public class SpellCasterComponent : MonoBehaviour
 {
     [Header("Regeneration")]
     [SerializeField] private float manaRegenPerSecond = 15f;

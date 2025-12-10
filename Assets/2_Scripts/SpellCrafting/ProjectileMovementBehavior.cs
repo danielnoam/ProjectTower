@@ -14,6 +14,7 @@ public abstract class ProjectileMovementBehavior
 
 
 [System.Serializable]
+[ProjectileMovement("Straight")]
 public class NormalMovement  : ProjectileMovementBehavior
 {
     [Min(0)] public float moveSpeed = 5f;

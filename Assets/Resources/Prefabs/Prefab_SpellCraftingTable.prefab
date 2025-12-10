@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 6164098140492994342}
   - component: {fileID: 4919361707484889302}
   - component: {fileID: 4034071642064409910}
+  - component: {fileID: 4552621811023591509}
   m_Layer: 7
   m_Name: Prefab_SpellCraftingTable
   m_TagString: Untagged
@@ -220,6 +221,21 @@ MonoBehaviour:
   outlineWidthOnHighlight: 5
   outlineWidthOnUnHighlight: 0
   outline: {fileID: 4919361707484889302}
+--- !u!114 &4552621811023591509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7093134656442540381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9387784bf9f44725b07788583f4b3fc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellFactory
+  spellCraftingUI: {fileID: 0}
+  interactable: {fileID: 4034071642064409910}
+  defaultProjectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
 --- !u!1 &7845381582553530092
 GameObject:
   m_ObjectHideFlags: 0

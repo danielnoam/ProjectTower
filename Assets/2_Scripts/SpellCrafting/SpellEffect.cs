@@ -8,6 +8,7 @@ public abstract class SpellEffect
 }
 
 [System.Serializable]
+[SpellEffect("Damage")]
 public class DamageHealthEffect : SpellEffect
 {
     [Min(0)] public float damage = 5f;
@@ -23,6 +24,7 @@ public class DamageHealthEffect : SpellEffect
 }
 
 [System.Serializable]
+[SpellEffect("Heal")]
 public class HealHealthEffect : SpellEffect
 {
     [Min(0)] public float healAmount = 5f;
@@ -39,6 +41,7 @@ public class HealHealthEffect : SpellEffect
 
 
 [System.Serializable]
+[SpellEffect("Push")]
 public class PushEffect : SpellEffect
 {
     [Min(0)] public float force = 5f;
@@ -62,6 +65,7 @@ public class PushEffect : SpellEffect
 }
 
 [System.Serializable]
+[SpellEffect("Pull")]
 public class PullEffect : SpellEffect
 {
     [Min(0)] public float force = 5f;
@@ -84,6 +88,7 @@ public class PullEffect : SpellEffect
 }
 
 [System.Serializable]
+[SpellEffect("Leech")]
 public class LeechEffect : SpellEffect
 {
     [Min(0)] public float damage = 5f;
@@ -102,6 +107,7 @@ public class LeechEffect : SpellEffect
 }
 
 [System.Serializable]
+[SpellEffect("Burn Mana")]
 public class BurnManaEffect : SpellEffect
 {
     [Min(0)] public float amount = 5f;

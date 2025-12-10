@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using DNExtensions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [DisallowMultipleComponent]
-[RequireComponent(typeof(FPCManager), typeof(SpellCaster))]
+[RequireComponent(typeof(FPCManager), typeof(SpellCasterComponent))]
 public class FPCCaster : MonoBehaviour
 {
     [Header("Settings")]
@@ -12,18 +13,14 @@ public class FPCCaster : MonoBehaviour
     
     [Header("References")]
     [SerializeField] private FPCManager fpcManager;
-    [SerializeField] private SpellCaster spellCaster;
-    [SerializeField] private SOSpell spell1;
-    [SerializeField] private SOSpell spell2;
-    [SerializeField] private SOSpell spell3;
-    [SerializeField] private SOSpell spell4;
-    [SerializeField] private SOSpell spell5;
+    [SerializeField] private SpellCasterComponent spellCasterComponent;
     
     [Separator]
     [SerializeField] private SOSpell currentSpell;
     [SerializeField, ReadOnly] private bool isCasting;
     [SerializeField, ReadOnly] private bool finishedCasting;
     [SerializeField, ReadOnly] private float castingTime;
+    [SerializeField, ReadOnly] private List<SOSpell> spellsList;
     private Camera _cam;
 
     public event Action<SOSpell> SpellChanged;
@@ -31,13 +28,17 @@ public class FPCCaster : MonoBehaviour
     private void OnValidate()
     {
         if (!fpcManager) fpcManager = this.GetOrAddComponent<FPCManager>();
-        if (!spellCaster) spellCaster = this.GetOrAddComponent<SpellCaster>();
+        if (!spellCasterComponent) spellCasterComponent = this.GetOrAddComponent<SpellCasterComponent>();
     }
     
     private void Awake()
     {
         _cam = Camera.main;
+        
+        if (currentSpell) AddSpell(currentSpell);
     }
+    
+
 
     private void OnEnable()
     {
@@ -51,21 +52,29 @@ public class FPCCaster : MonoBehaviour
 
     private void Update()
     {
-        
         // Change spell
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SetSpell(spell1);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SetSpell(spell2);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SetSpell(spell3);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) SetSpell(spell4);
-        if (Input.GetKeyDown(KeyCode.Alpha5)) SetSpell(spell5);
-        
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            int currentIndex = spellsList.IndexOf(currentSpell);
+            int nextIndex = currentIndex + 1;
+            if (nextIndex >= spellsList.Count) nextIndex = 0;
+            SetSpell(spellsList[nextIndex]);
+            
+        } 
+        else if (Input.mouseScrollDelta.y < 0)
+        {
+            int currentIndex = spellsList.IndexOf(currentSpell);
+            int nextIndex = currentIndex - 1;
+            if (nextIndex < 0) nextIndex = spellsList.Count - 1;
+            SetSpell(spellsList[nextIndex]);
+        }
         
         if (!currentSpell || !isCasting) return;
         
         // Charge spell
         if (currentSpell.castMethod == CastMethod.Charge)
         {
-            if (!spellCaster.CanCast(currentSpell))
+            if (!spellCasterComponent.CanCast(currentSpell))
             {
                 StopCasting();
                 return;
@@ -90,14 +99,14 @@ public class FPCCaster : MonoBehaviour
             if (castingTime >= currentSpell.channelRate)
             {
                 castingTime = 0f; 
-                if (!isCasting || !spellCaster.CanCast(currentSpell))
+                if (!isCasting || !spellCasterComponent.CanCast(currentSpell))
                 {
                     StopCasting();
                     return;
                 }
         
                 ICombatTarget target = GetTarget();
-                spellCaster.CastSpell(currentSpell, target);
+                spellCasterComponent.CastSpell(currentSpell, target);
             }
         }
 
@@ -105,7 +114,7 @@ public class FPCCaster : MonoBehaviour
 
     private void TryCastSpell(InputAction.CallbackContext context)
     {
-        if (!currentSpell || !spellCaster.CanCast(currentSpell)) return;
+        if (!currentSpell || !spellCasterComponent.CanCast(currentSpell)) return;
         
         // Start casting
         if ((context.started || context.performed) && !isCasting)
@@ -114,7 +123,7 @@ public class FPCCaster : MonoBehaviour
             {
                 case CastMethod.Instant:
                     ICombatTarget target = GetTarget();
-                    spellCaster.CastSpell(currentSpell, target);
+                    spellCasterComponent.CastSpell(currentSpell, target);
                     break;
                     
                 case CastMethod.Channel:
@@ -139,7 +148,7 @@ public class FPCCaster : MonoBehaviour
             if (currentSpell.castMethod == CastMethod.Charge && castingTime >= currentSpell.chargeTime)
             {
                 ICombatTarget target = GetTarget();
-                spellCaster.CastSpell(currentSpell, target);
+                spellCasterComponent.CastSpell(currentSpell, target);
             }
             
             StopCasting();
@@ -167,11 +176,19 @@ public class FPCCaster : MonoBehaviour
         return null;
     }
     
+    public void AddSpell(SOSpell spell)
+    {
+        if (!spell) return;
+
+        if (!spellsList.Contains(spell)) spellsList.Add(spell);
+    }
+    
     public void SetSpell(SOSpell spell)
     {
         if (!spell) return;
         
         currentSpell = spell;
         SpellChanged?.Invoke(currentSpell);
+        StopCasting();
     }
 }
