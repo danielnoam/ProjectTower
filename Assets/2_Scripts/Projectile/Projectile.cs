@@ -1,20 +1,24 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private LayerMask collisionLayers;
+    [SerializeField] private Rigidbody rigidBody;
+    
     private bool _isInitialized;
     private ICombatTarget _source;
-    private List<SpellEffect> _spawnEffects;
     private List<SpellEffect> _hitEffects;
     private ProjectileMovementBehavior _projectileMovementBehavior;
+    private ProjectileCollisionBehavior _projectileCollisionBehavior;
     
     
     private void OnCollisionEnter(Collision other)
     {
         if (!_isInitialized) return;
+        if (collisionLayers != (collisionLayers | (1 << other.gameObject.layer))) return;
         
-
          if (other.gameObject.TryGetComponent(out ICombatTarget hitTarget))
          {
              if (hitTarget != null && hitTarget != _source)
@@ -23,14 +27,17 @@ public class Projectile : MonoBehaviour
                  {
                      spellEffect?.Apply(_source, hitTarget);
                  }
-                 
-                 DestroyProjectile();
              }
          }
-         else
-         {
-             DestroyProjectile();
-         }
+         
+         _projectileCollisionBehavior?.Collision(this,other);
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!_isInitialized) return;
+        if (collisionLayers != (collisionLayers | (1 << other.gameObject.layer))) return;
         
     }
 
@@ -42,22 +49,17 @@ public class Projectile : MonoBehaviour
 
     }
 
-    public void Initialize(SpellEffect[] spawnEffects,SpellEffect[] hitEffects, ProjectileMovementBehavior projectileMovementBehavior, ICombatTarget source)
+    public void Initialize(SpellEffect[] hitEffects, ProjectileMovementBehavior movementBehavior, ProjectileCollisionBehavior collisionBehavior, ICombatTarget source)
     {
-        _projectileMovementBehavior = projectileMovementBehavior;
-        _spawnEffects = new List<SpellEffect>(spawnEffects);
+        _projectileMovementBehavior = movementBehavior;
+        _projectileCollisionBehavior = collisionBehavior;
         _hitEffects = new List<SpellEffect>(hitEffects);
         _source = source;
-        _projectileMovementBehavior.Initialize(transform, _source);
+        _projectileMovementBehavior.Initialize(rigidBody, _source);
         _isInitialized = true;
-        
-        foreach (SpellEffect spellEffect in _spawnEffects)
-        {
-            spellEffect?.Apply(_source, _source);
-        }
     }
 
-    private void DestroyProjectile()
+    public void DestroyProjectile()
     {
         _isInitialized = false;
         Destroy(gameObject);

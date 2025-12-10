@@ -1,26 +1,35 @@
+using System;
 using DNExtensions;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class FpcHealth : MonoBehaviour
+public class HealthComponent : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private float maxHealth = 100f;
     
     [Separator]
+    [SerializeField, ReadOnly] private bool isDead;
     [SerializeField, ReadOnly] private float currentHealth;
     
     
-    private bool _isDead;
+
+
+    public bool IsDead => isDead;
+    public float MaxHealth => maxHealth;
+    public float CurrentHealth => currentHealth;
+    
+    public event Action Death;
+    
     
     private void Awake()
     {
-        Respawn();
+        Reset();
     }
     
     public void TakeDamage(float damage)
     {
-        if (_isDead) return;
+        if (isDead) return;
         
         currentHealth -= damage;
         currentHealth = Mathf.Max(0, currentHealth);
@@ -34,7 +43,7 @@ public class FpcHealth : MonoBehaviour
     
     public void Heal(float amount)
     {
-        if (_isDead) return;
+        if (isDead) return;
         
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
     }
@@ -42,14 +51,15 @@ public class FpcHealth : MonoBehaviour
     
     private void Die()
     {
-        if (_isDead) return;
+        if (isDead) return;
         
-        _isDead = true;
+        isDead = true;
+        Death?.Invoke();
     }
     
-    private void Respawn()
+    public void Reset()
     {
         currentHealth = maxHealth;
-        _isDead = false;
+        isDead = false;
     }
 }

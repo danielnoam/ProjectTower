@@ -24,10 +24,11 @@ public class FPCManager : MonoBehaviour, ICombatTarget
     [SerializeField] private FPCCameraBase fpcCamera;
     [SerializeField] private FPCInput fpcInput;
     [SerializeField] private FPCRigidBodyPush fpcRigidBodyPush;
-    [SerializeField] private FpcHealth fpcHealth;
     [SerializeField] private FPCCaster fpcCaster;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private ControllerRumbleSource controllerRumbleSource;
+    [SerializeField] private HealthComponent healthComponent;
+    [SerializeField] private InventoryComponent inventoryComponent;
 
     private enum FPCCameraMode { NormalCamera, CinemachineCamera }
     
@@ -36,10 +37,11 @@ public class FPCManager : MonoBehaviour, ICombatTarget
     public FPCCameraBase FpcCamera => fpcCamera;
     public FPCInput FpcInput => fpcInput;
     public FPCRigidBodyPush FpcRigidBodyPush => fpcRigidBodyPush;
-    public FpcHealth FpcHealth => fpcHealth;
     public FPCCaster FpcCaster => fpcCaster;
     public CharacterController CharacterController => characterController;
     public ControllerRumbleSource ControllerRumbleSource => controllerRumbleSource;
+    public HealthComponent HealthComponent => healthComponent;
+    public InventoryComponent InventoryComponent => inventoryComponent;
 
     private void OnValidate()
     {
@@ -118,12 +120,12 @@ public class FPCManager : MonoBehaviour, ICombatTarget
 
     public void TakeDamage(float damage)
     {
-        fpcHealth.TakeDamage(damage);
+        healthComponent.TakeDamage(damage);
     }
 
     public void Heal(float amount)
     {
-        fpcHealth.Heal(amount);
+        healthComponent.Heal(amount);
     }
 
     public void ApplyForce(Vector3 force)
@@ -132,5 +134,6 @@ public class FPCManager : MonoBehaviour, ICombatTarget
     }
 
     public Transform Transform => transform;
+    public Vector3 LookDirection => fpcCamera.GetAimDirection();
 }
 

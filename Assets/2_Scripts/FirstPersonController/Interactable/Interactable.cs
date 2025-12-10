@@ -3,19 +3,16 @@ using DNExtensions;
 using PrimeTween;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(Collider))]
 [DisallowMultipleComponent]
 public class Interactable : MonoBehaviour
 {
     [Header("Interaction Settings")]
     [SerializeField] private bool canInteract = true;
-    [SerializeField] private SOAudioEvent interactionSfx;
     // [SerializeField] private float outlineWidthOnHighlight = 5f;
     // [SerializeField] private float outlineWidthOnUnHighlight;
     
     [Header("References")]
-    [SerializeField] private AudioSource audioSource;
     // [SerializeField] private Outline outline;
     
     private bool _isHighlighted;
@@ -81,7 +78,6 @@ public class Interactable : MonoBehaviour
     public void Interact(FPCInteraction interactor)
     {
         if (!canInteract) return;
-        interactionSfx?.Play(audioSource);
         OnInteract?.Invoke(interactor);
     }
     

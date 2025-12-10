@@ -8,107 +8,109 @@ public abstract class SpellEffect
 }
 
 [System.Serializable]
-public class DealDamageEffect : SpellEffect
+public class DamageHealthEffect : SpellEffect
 {
     [Min(0)] public float damage = 5f;
     
     public override SpellEffect Clone()
     {
-        return new DealDamageEffect { damage = damage };
+        return new DamageHealthEffect { damage = damage };
     }
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
-        target.TakeDamage(damage);
+        target?.TakeDamage(damage);
     }
 }
 
 [System.Serializable]
-public class HealEffect : SpellEffect
+public class HealHealthEffect : SpellEffect
 {
     [Min(0)] public float healAmount = 5f;
 
     public override SpellEffect Clone()
     {
-        return new HealEffect { healAmount = healAmount };
+        return new HealHealthEffect { healAmount = healAmount };
     }
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
-        target.Heal(healAmount);
+        target?.Heal(healAmount);
     }
 }
 
-[System.Serializable]
-public class ApplyForceEffect : SpellEffect
-{
-    [Min(0)] public float force = 5f;
-    public Vector3 direction = Vector3.forward;
-
-    public override SpellEffect Clone()
-    {
-        return new ApplyForceEffect { force = force, direction = direction };
-    }
-    public override void Apply(ICombatTarget source, ICombatTarget target)
-    {
-        Vector3 forceVector = direction.normalized * force;
-        target.ApplyForce(forceVector);
-    }
-}
 
 [System.Serializable]
-public class ApplyForceInLookDirectionEffect : SpellEffect
+public class PushEffect : SpellEffect
 {
     [Min(0)] public float force = 5f;
-    public LookDirection lookDirectionOf = LookDirection.Source;
     
     public enum LookDirection { Source, Target }
     
     public override SpellEffect Clone()
     {
-        return new ApplyForceInLookDirectionEffect { force = force, lookDirectionOf = lookDirectionOf };
+        return new PushEffect { force = force};
     }
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
-        Vector3 direction = (lookDirectionOf == LookDirection.Source) ? source.Transform.forward : target.Transform.forward;
+        Vector3 direction = source.LookDirection;
         Vector3 forceVector = direction.normalized * force;
         target.ApplyForce(forceVector);
     }
 }
 
 [System.Serializable]
-public class LifeStealEffect : SpellEffect
+public class PullEffect : SpellEffect
+{
+    [Min(0)] public float force = 5f;
+    
+    public enum LookDirection { Source, Target }
+    
+    public override SpellEffect Clone()
+    {
+        return new PushEffect { force = force };
+    }
+    public override void Apply(ICombatTarget source, ICombatTarget target)
+    {
+        Vector3 direction = -source.LookDirection;
+        Vector3 forceVector = direction.normalized * force;
+        target.ApplyForce(forceVector);
+    }
+}
+
+[System.Serializable]
+public class LeechEffect : SpellEffect
 {
     [Min(0)] public float damage = 5f;
     [Range(0f, 1f)] public float lifestealPercent = 0.5f;
 
     public override SpellEffect Clone()
     {
-        return new LifeStealEffect { damage = damage, lifestealPercent = lifestealPercent };
+        return new LeechEffect { damage = damage, lifestealPercent = lifestealPercent };
     }
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
         target.TakeDamage(damage);
-        int healAmount = Mathf.RoundToInt(damage * lifestealPercent);
+        float healAmount = damage * lifestealPercent;
         source.Heal(healAmount);
     }
 }
 
 [System.Serializable]
-public class ManaBurnEffect : SpellEffect
+public class BurnManaEffect : SpellEffect
 {
-    [Min(0)] public float damage = 5f;
+    [Min(0)] public float amount = 5f;
     
     public override SpellEffect Clone()
     {
-        return new ManaBurnEffect { damage = damage };
+        return new BurnManaEffect { amount = amount };
     }
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
         MonoBehaviour targetMono = target as MonoBehaviour;
         if (targetMono)
         {
-            if (targetMono.TryGetComponent(out SpellCaster spellCaster))
+            if (targetMono.TryGetComponent(out ManaSourceComponent manaSource))
             {
-                spellCaster.ConsumeMana(damage);
+                manaSource.TryConsume(amount);
             }
         }
     }

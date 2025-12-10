@@ -7,7 +7,7 @@ public class SOSpellEditor : UnityEditor.Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        
+
         SOSpell spell = (SOSpell)target;
         
         // Spell Info
@@ -15,55 +15,33 @@ public class SOSpellEditor : UnityEditor.Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("icon"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("description"));
         
-        EditorGUILayout.Space();
-        
         // Casting
-        EditorGUI.BeginChangeCheck();
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("castType"));
-        bool castTypeChanged = EditorGUI.EndChangeCheck();
-        
+        EditorGUILayout.Space();
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("castMethod"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("manaCost"));
         
-        if (spell.castType == CastType.Channeled)
+        if (spell.castMethod == CastMethod.Channel)
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("channelRate"));
         }
-        
-        if (spell.castType == CastType.Charged)
+        if (spell.castMethod == CastMethod.Charge)
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("chargeTime"));
         }
         
-        EditorGUILayout.Space();
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("spellForm"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("domain"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("effects"), true);
         
-        // Targeting
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("targetingType"));
-        
-        EditorGUI.BeginChangeCheck();
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("deliveryMethod"));
-        bool deliveryMethodChanged = EditorGUI.EndChangeCheck();
-        
-        EditorGUILayout.Space();
-        
-        // Show appropriate sections based on delivery method
-        if (spell.deliveryMethod == DeliveryMethod.Instant)
-        {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("effects"), true);
-        }
-        else if (spell.deliveryMethod == DeliveryMethod.Projectile)
+        // Conjure settings (only for Conjure spells)
+        if (spell.spellForm == SpellForm.Conjure)
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("projectilePrefab"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("projectileMovement"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("spawnEffects"), true);
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("hitEffects"), true);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("projectileCollision"));
         }
         
         serializedObject.ApplyModifiedProperties();
-        
-        if (castTypeChanged || deliveryMethodChanged)
-        {
-            Repaint();
-        }
     }
 }
 #endif

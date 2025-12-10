@@ -1,1 +1,0 @@
-public enum CastType { Instant, Channeled, Charged }

@@ -3,7 +3,7 @@ using DNExtensions;
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "Spell", menuName = "ScriptableObjects/Spell", order = 1)]
+[CreateAssetMenu(fileName = "Spell", menuName = "Scriptable Objects/Spell", order = 1)]
 public class SOSpell : ScriptableObject
 {
     [Header("Spell Info")]
@@ -12,50 +12,48 @@ public class SOSpell : ScriptableObject
     public string description = "Spell Description";
     
     [Header("Casting")]
-    public CastType castType = CastType.Instant;
+    public CastMethod castMethod = CastMethod.Instant;
     public float manaCost = 5f;
-    [ShowIf("castType", CastType.Channeled)] public float channelRate = 0.15f;
-    [ShowIf("castType", CastType.Charged)] public float chargeTime = 1.5f;
-    
-    [Header("Targeting")]
-    public TargetingType targetingType = TargetingType.Other;
-    public DeliveryMethod deliveryMethod = DeliveryMethod.Instant;
+    [ShowIf("castMethod", CastMethod.Channel)] public float channelRate = 0.15f;
+    [ShowIf("castMethod", CastMethod.Charge)] public float chargeTime = 1.5f;
+    public SpellForm spellForm = SpellForm.Invoke;
+    public Domain domain = Domain.Arcane;
     [SerializeReference] public SpellEffect[] effects = Array.Empty<SpellEffect>();
     
-    [Header("Projectile")]
+    [Header("Conjure")]
     public Projectile projectilePrefab;
     [SerializeReference] public ProjectileMovementBehavior projectileMovement = new NormalMovement();
-    [SerializeReference] public SpellEffect[] spawnEffects = Array.Empty<SpellEffect>();
-    [SerializeReference] public SpellEffect[] hitEffects = Array.Empty<SpellEffect>();
+    [SerializeReference] public ProjectileCollisionBehavior projectileCollision = new DestroyBehavior();
 
     
-    public void Cast(ICombatTarget source, ICombatTarget target)
+    public void Cast(ICombatTarget source, ICombatTarget target, Transform castPoint)
     {
         ICombatTarget resolvedTarget = ResolveTarget(source, target);
         
-        switch (deliveryMethod)
+        switch (spellForm)
         {
-            case DeliveryMethod.Instant:
+            case SpellForm.Invoke:
+            case SpellForm.Imbue:
                 if (resolvedTarget != null)
                 {
                     ApplyEffects(source, resolvedTarget);
                 }
                 break;
                 
-            case DeliveryMethod.Projectile:
-                SpawnProjectile(source, resolvedTarget);
+            case SpellForm.Conjure:
+                SpawnProjectile(source, resolvedTarget, castPoint);
                 break;
         }
     }
     
     private ICombatTarget ResolveTarget(ICombatTarget source, ICombatTarget target)
     {
-        switch (targetingType)
+        switch (spellForm)
         {
-            case TargetingType.Self:
+            case SpellForm.Imbue:
                 return source; 
                 
-            case TargetingType.Other:
+            case SpellForm.Invoke:
                 return target;
                 
             default:
@@ -71,21 +69,20 @@ public class SOSpell : ScriptableObject
         }
     }
     
-    private void SpawnProjectile(ICombatTarget source, ICombatTarget target)
+    private void SpawnProjectile(ICombatTarget source, ICombatTarget target, Transform castPoint)
     {
         if (!projectilePrefab)
         {
-            Debug.LogError($"Spell {label} is set to Projectile delivery but has no projectile prefab!");
+            Debug.LogError($"Spell {label} is set to Projectile but has no prefab!");
             return;
         }
         
-        SpellEffect[] spawnEffectsClone = CloneEffects(spawnEffects);
-        SpellEffect[] hitEffectsClone = CloneEffects(hitEffects);
+        SpellEffect[] hitEffectsClone = CloneEffects(effects);
         ProjectileMovementBehavior movementClone = projectileMovement?.Clone();
-        Vector3 spawnPos = source.Transform.position + source.Transform.forward * 2f;
+        ProjectileCollisionBehavior collisionClone = projectileCollision?.Clone();
         
-        Projectile projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-        projectile.Initialize(spawnEffectsClone, hitEffectsClone, movementClone, source);
+        Projectile projectile = Instantiate(projectilePrefab, castPoint.position, Quaternion.identity);
+        projectile.Initialize(hitEffectsClone, movementClone, collisionClone, source);
     }
     
     private SpellEffect[] CloneEffects(SpellEffect[] effectsToClone)

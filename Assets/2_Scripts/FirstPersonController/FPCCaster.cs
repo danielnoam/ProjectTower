@@ -13,6 +13,11 @@ public class FPCCaster : MonoBehaviour
     [Header("References")]
     [SerializeField] private FPCManager fpcManager;
     [SerializeField] private SpellCaster spellCaster;
+    [SerializeField] private SOSpell spell1;
+    [SerializeField] private SOSpell spell2;
+    [SerializeField] private SOSpell spell3;
+    [SerializeField] private SOSpell spell4;
+    [SerializeField] private SOSpell spell5;
     
     [Separator]
     [SerializeField] private SOSpell currentSpell;
@@ -46,11 +51,19 @@ public class FPCCaster : MonoBehaviour
 
     private void Update()
     {
-
+        
+        // Change spell
+        if (Input.GetKeyDown(KeyCode.Alpha1)) SetSpell(spell1);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) SetSpell(spell2);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) SetSpell(spell3);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) SetSpell(spell4);
+        if (Input.GetKeyDown(KeyCode.Alpha5)) SetSpell(spell5);
+        
+        
         if (!currentSpell || !isCasting) return;
         
         // Charge spell
-        if (currentSpell.castType == CastType.Charged)
+        if (currentSpell.castMethod == CastMethod.Charge)
         {
             if (castingTime < currentSpell.chargeTime)
             {
@@ -66,7 +79,7 @@ public class FPCCaster : MonoBehaviour
         }
         
         // Channel spell
-        if (currentSpell.castType == CastType.Channeled)
+        if (currentSpell.castMethod == CastMethod.Channel)
         {
             if (castingTime < currentSpell.channelRate)
             {
@@ -79,7 +92,6 @@ public class FPCCaster : MonoBehaviour
                 ICombatTarget target = GetTarget();
                 spellCaster.CastSpell(currentSpell, target);
             }
-
         }
 
 
@@ -92,19 +104,19 @@ public class FPCCaster : MonoBehaviour
         // Start casting
         if ((context.started || context.performed) && !isCasting)
         {
-            switch (currentSpell.castType)
+            switch (currentSpell.castMethod)
             {
-                case CastType.Instant:
+                case CastMethod.Instant:
                     ICombatTarget target = GetTarget();
                     spellCaster.CastSpell(currentSpell, target);
                     break;
                     
-                case CastType.Channeled:
+                case CastMethod.Channel:
                     isCasting = true;
                     castingTime = 0f;
                     break;
                     
-                case CastType.Charged:
+                case CastMethod.Charge:
                     isCasting = true;
                     finishedCasting = false;
                     castingTime = 0f;
@@ -118,7 +130,7 @@ public class FPCCaster : MonoBehaviour
         if (context.canceled && isCasting)
         {
             // Cast charge
-            if (currentSpell.castType == CastType.Charged && castingTime >= currentSpell.chargeTime)
+            if (currentSpell.castMethod == CastMethod.Charge && castingTime >= currentSpell.chargeTime)
             {
                 ICombatTarget target = GetTarget();
                 spellCaster.CastSpell(currentSpell, target);

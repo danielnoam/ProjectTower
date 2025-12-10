@@ -4,11 +4,11 @@ using UnityEngine;
 [System.Serializable]
 public abstract class ProjectileMovementBehavior
 {
-    protected Transform projectileTransform;
+    protected Rigidbody projectileRb;
     protected ICombatTarget casterSource;
 
     public abstract ProjectileMovementBehavior Clone();
-    public abstract void Initialize(Transform projectileTransform, ICombatTarget source);
+    public abstract void Initialize(Rigidbody projectileTransform, ICombatTarget source);
     public abstract void UpdateMovement();
 }
 
@@ -28,16 +28,16 @@ public class NormalMovement  : ProjectileMovementBehavior
         };
     }
     
-    public override void Initialize(Transform transform, ICombatTarget source)
+    public override void Initialize(Rigidbody rigidbody, ICombatTarget source)
     {
-        projectileTransform = transform;
+        projectileRb = rigidbody;
         casterSource = source;
-        _moveDirection = casterSource.Transform.forward;
+        _moveDirection = casterSource.LookDirection;
     }
     
     public override void UpdateMovement()
     {
-        projectileTransform.position += _moveDirection * (moveSpeed * Time.deltaTime);
-        projectileTransform.rotation = Quaternion.LookRotation(_moveDirection);
+        projectileRb.position += _moveDirection * (moveSpeed * Time.deltaTime);
+        projectileRb.rotation = Quaternion.LookRotation(_moveDirection);
     }
 }

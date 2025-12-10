@@ -1,24 +1,39 @@
+using System;
 using System.Collections;
 using DNExtensions;
 using UnityEngine;
 
+[RequireComponent(typeof(ManaSourceComponent))]
 public class SpellCaster : MonoBehaviour
 {
-    [Header("Mana Settings")]
-    [SerializeField] private float maxMana = 100f;
-    [SerializeField] private float manaRegenPerSecond = 5f;
-    [SerializeField] private float cooldownBeforeRegen = 2f;
+    [Header("Regeneration")]
+    [SerializeField] private float manaRegenPerSecond = 15f;
+    [SerializeField] private float cooldownBeforeRegen = 1;
+    
+    [Header("References")]
+    [SerializeField] private ManaSourceComponent manaSource;
+    [SerializeField] private Transform castPoint;
+    
+
     
     [Separator]
-    [SerializeField, ReadOnly] private float currentMana;
     [SerializeField, ReadOnly] private float regenCooldownTimer;
     
     private Coroutine _manaRegenCoroutine;
     private bool _isRegenerating;
-    
+
+    private void OnValidate()
+    {
+        if (!manaSource) { manaSource = this.GetOrAddComponent<ManaSourceComponent>();}
+    }
+
     private void Awake()
     {
-        currentMana = maxMana;
+        if (!manaSource)
+        {
+            manaSource = GetComponent<ManaSourceComponent>();
+        }
+        
         regenCooldownTimer = 0f;
         _isRegenerating = false;
     }
@@ -35,21 +50,6 @@ public class SpellCaster : MonoBehaviour
             }
         }
     }
-    
-    public void CastSpell(SOSpell spell, ICombatTarget target)
-    {
-        if (!CanCast(spell))
-        {
-            return;
-        }
-        
-        ICombatTarget source = GetComponent<ICombatTarget>();
-        if (source == null) return;
-        
-        spell.Cast(source, target);
-        ConsumeMana(spell.manaCost);
-    }
-    
     
     private void StartManaRegen()
     {
@@ -70,25 +70,37 @@ public class SpellCaster : MonoBehaviour
     
     private IEnumerator ManaRegenCoroutine()
     {
-        while (currentMana < maxMana)
+        while (!manaSource.IsFull)
         {
             yield return new WaitForSeconds(1f);
-            currentMana = Mathf.Min(currentMana + manaRegenPerSecond, maxMana);
+            manaSource.Restore(manaRegenPerSecond);
         }
         
-        currentMana = maxMana;
+        manaSource.RestoreToMax();
         _isRegenerating = false;
         _manaRegenCoroutine = null;
     }
     
-    public void ConsumeMana(float amount)
+    public void CastSpell(SOSpell spell, ICombatTarget target)
     {
-        currentMana = Mathf.Max(0, currentMana - amount);
-        ResetManaRegenTimer();
+        if (!CanCast(spell))
+        {
+            return;
+        }
+        
+        ICombatTarget source = GetComponent<ICombatTarget>();
+        if (source == null) return;
+        
+        spell.Cast(source, target, castPoint ? castPoint : transform);
+        
+        if (manaSource.TryConsume(spell.manaCost))
+        {
+            ResetManaRegenTimer();
+        }
     }
     
     public bool CanCast(SOSpell spell)
     {
-        return currentMana >= spell.manaCost;
+        return manaSource.CurrentMana >= spell.manaCost;
     }
 }

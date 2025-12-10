@@ -10,33 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e54bd609f87a481e9283e152da17280f, type: 3}
-  m_Name: Blink
+  m_Name: Pull
   m_EditorClassIdentifier: Assembly-CSharp::SOSpell
-  label: Blink
-  description: A very basic spell
+  label: Pull
   icon: {fileID: 0}
-  castType: 0
-  manaCost: 0
+  description: A very basic spell
+  castMethod: 2
+  manaCost: 1
   channelRate: 0.15
   chargeTime: 1
-  targetingType: 0
-  deliveryMethod: 0
+  spellForm: 1
+  domain: 0
   effects:
-  - rid: 1991720444288827501
+  - rid: 1991720465952669781
   projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
   projectileMovement:
     rid: 1991720447171362889
-  spawnEffects: []
-  hitEffects: []
+  projectileCollision:
+    rid: 1991720465952669780
   references:
     version: 2
     RefIds:
-    - rid: 1991720444288827501
-      type: {class: ApplyForceInLookDirectionEffect, ns: , asm: Assembly-CSharp}
-      data:
-        force: 1000
-        lookDirectionOf: 1
     - rid: 1991720447171362889
       type: {class: NormalMovement, ns: , asm: Assembly-CSharp}
       data:
         moveSpeed: 5
+    - rid: 1991720465952669780
+      type: {class: DestroyBehavior, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1991720465952669781
+      type: {class: PullEffect, ns: , asm: Assembly-CSharp}
+      data:
+        force: 3
