@@ -380,6 +380,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+  - label: Upgrade 2
+    description: 
+    requiredItems:
+    - item: {fileID: 11400000, guid: a272f1ba1fc837f44aeb4213011a5672, type: 2}
+      amount: 1
+    onUpgrade:
+      m_PersistentCalls:
+        m_Calls: []
+  - label: Upgrade 3
+    description: 
+    requiredItems:
+    - item: {fileID: 11400000, guid: fcb79f0d618c89a4b9742f990cb565ef, type: 2}
+      amount: 1
+    onUpgrade:
+      m_PersistentCalls:
+        m_Calls: []
   currentLevel: 0
   upgradeSuccessSfx: {fileID: 0}
   upgradeFailedSfx: {fileID: 0}

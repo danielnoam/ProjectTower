@@ -18,13 +18,13 @@ public class PlayerHUD : MonoBehaviour
         if (!fpcManager) return;
         
         fpcManager.HealthComponent.HealthChanged += UpdateHealth;
-        fpcManager.ManaSourceComponent.ManaChanged += UpdateMana;
+        fpcManager.SpellCasterComponent.ManaChanged += UpdateMana;
         fpcManager.InventoryComponent.InventoryUpdated += UpdateInventory;
         fpcManager.FpcCaster.SpellChanged += UpdateSpell;
         
-        UpdateHealth(0);
+        UpdateHealth(new HealthChangeData());
         UpdateMana(0);
-        UpdateSpell(null);
+        UpdateSpell(fpcManager.FpcCaster.CurrentSpell);
         UpdateInventory();
     }
 
@@ -33,12 +33,12 @@ public class PlayerHUD : MonoBehaviour
         if (!fpcManager) return;
         
         fpcManager.HealthComponent.HealthChanged -= UpdateHealth;
-        fpcManager.ManaSourceComponent.ManaChanged -= UpdateMana;
+        fpcManager.SpellCasterComponent.ManaChanged -= UpdateMana;
         fpcManager.InventoryComponent.InventoryUpdated -= UpdateInventory;
         fpcManager.FpcCaster.SpellChanged -= UpdateSpell;
     }
 
-    private void UpdateHealth(float currentHealth)
+    private void UpdateHealth(HealthChangeData healthChangeData)
     {
         var health = fpcManager.HealthComponent;
         _healthText = $"Health: {health.CurrentHealth:F0}/{health.MaxHealth:F0}";
@@ -47,7 +47,7 @@ public class PlayerHUD : MonoBehaviour
 
     private void UpdateMana(float currentMana)
     {
-        var mana = fpcManager.ManaSourceComponent;
+        var mana = fpcManager.SpellCasterComponent;
         _manaText = $"Mana: {mana.CurrentMana:F0}/{mana.MaxMana:F0}";
         RefreshStatsText();
     }

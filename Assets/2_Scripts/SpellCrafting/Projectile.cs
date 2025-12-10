@@ -32,7 +32,7 @@ public class Projectile : MonoBehaviour
     {
         if (!_isInitialized) return;
         
-        _projectileMovementBehavior.UpdateMovement();
+        _projectileMovementBehavior.UpdateMovement(Time.fixedDeltaTime);
     }
     
     
@@ -52,7 +52,7 @@ public class Projectile : MonoBehaviour
              }
          }
          
-         _projectileCollisionBehavior?.Collision(this,other);
+         _projectileCollisionBehavior?.OnCollision(this,other);
         
     }
 
@@ -65,13 +65,14 @@ public class Projectile : MonoBehaviour
 
 
 
-    public void Initialize(SpellEffect[] hitEffects, ProjectileMovementBehavior movementBehavior, ProjectileCollisionBehavior collisionBehavior, ICombatTarget source)
+    public void Initialize(SpellEffect[] hitEffects, ProjectileMovementBehavior movementBehavior, ProjectileCollisionBehavior collisionBehavior, ICombatTarget source, ICombatTarget target = null)
     {
         _projectileMovementBehavior = movementBehavior;
         _projectileCollisionBehavior = collisionBehavior;
         _hitEffects = new List<SpellEffect>(hitEffects);
         _source = source;
-        _projectileMovementBehavior.Initialize(rigidBody, _source);
+        _projectileMovementBehavior.Initialize(rigidBody, _source, target);
+        _projectileCollisionBehavior.Initialize(rigidBody,_source);
         _currentLifeTime = lifeTime;
         _isInitialized = true;
     }

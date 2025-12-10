@@ -3,46 +3,53 @@ using System.Collections;
 using DNExtensions;
 using UnityEngine;
 
-[RequireComponent(typeof(ManaSourceComponent))]
 public class SpellCasterComponent : MonoBehaviour
 {
-    [Header("Regeneration")]
+    [Header("Mana Settings")]
+    [SerializeField] private float maxMana = 100f;
     [SerializeField] private float manaRegenPerSecond = 15f;
     [SerializeField] private float cooldownBeforeRegen = 1;
     
     [Header("References")]
-    [SerializeField] private ManaSourceComponent manaSource;
     [SerializeField] private Transform castPoint;
     
-
-    
     [Separator]
+    [SerializeField, ReadOnly] private float currentMana;
     [SerializeField, ReadOnly] private float regenCooldownTimer;
+    [SerializeField, ReadOnly] private bool isRegenerating;
     
+    
+    private ICombatTarget _combatTarget;
     private Coroutine _manaRegenCoroutine;
-    private bool _isRegenerating;
+    
+    public float MaxMana => maxMana;
+    public float CurrentMana => currentMana;
+    public bool IsFull => Mathf.Approximately(currentMana, maxMana);
+    public bool IsEmpty => Mathf.Approximately(currentMana, 0f);
+    
+    public event Action<float> ManaChanged;
+    public event Action ManaEmpty;
+    public event Action ManaFull;
+
     
     
-
-    private void OnValidate()
-    {
-        if (!manaSource) { manaSource = this.GetOrAddComponent<ManaSourceComponent>();}
-    }
-
+    
     private void Awake()
     {
-        if (!manaSource)
+        _combatTarget = GetComponent<ICombatTarget>();
+        if (_combatTarget == null)
         {
-            manaSource = GetComponent<ManaSourceComponent>();
+            Debug.Log("SpellCasterComponent requires an ICombatTarget component.");
+            enabled = false;
+            return;
         }
-        
-        regenCooldownTimer = 0f;
-        _isRegenerating = false;
+
+        RestoreToMax();
     }
     
     private void Update()
     {
-        if (regenCooldownTimer > 0f && !_isRegenerating)
+        if (regenCooldownTimer > 0f && !isRegenerating)
         {
             regenCooldownTimer -= Time.deltaTime;
             if (regenCooldownTimer <= 0f)
@@ -55,7 +62,7 @@ public class SpellCasterComponent : MonoBehaviour
     
     private void StartManaRegen()
     {
-        _isRegenerating = true;
+        isRegenerating = true;
         _manaRegenCoroutine = StartCoroutine(ManaRegenCoroutine());
     }
     
@@ -67,19 +74,37 @@ public class SpellCasterComponent : MonoBehaviour
             _manaRegenCoroutine = null;
         }
         regenCooldownTimer = cooldownBeforeRegen;
-        _isRegenerating = false;
+        isRegenerating = false;
+    }
+    
+    private void Restore(float amount)
+    {
+        currentMana = Mathf.Min(currentMana + amount, maxMana);
+        ManaChanged?.Invoke(currentMana);
+
+        if (currentMana >= maxMana)
+        {
+            RestoreToMax();
+        }
+    }
+    
+    private void RestoreToMax()
+    {
+        ResetManaRegenTimer();
+        currentMana = maxMana;
+        ManaFull?.Invoke();
     }
     
     private IEnumerator ManaRegenCoroutine()
     {
-        while (!manaSource.IsFull)
+        while (!IsFull)
         {
             yield return new WaitForSeconds(1f);
-            manaSource.Restore(manaRegenPerSecond);
+            Restore(manaRegenPerSecond);
         }
         
-        manaSource.RestoreToMax();
-        _isRegenerating = false;
+        RestoreToMax();
+        isRegenerating = false;
         _manaRegenCoroutine = null;
     }
     
@@ -90,12 +115,9 @@ public class SpellCasterComponent : MonoBehaviour
             return;
         }
         
-        ICombatTarget source = GetComponent<ICombatTarget>();
-        if (source == null) return;
+        spell.Cast(_combatTarget, target, castPoint ? castPoint : transform);
         
-        spell.Cast(source, target, castPoint ? castPoint : transform);
-        
-        if (manaSource.TryConsume(spell.manaCost))
+        if (TryConsume(spell.manaCost))
         {
             ResetManaRegenTimer();
         }
@@ -103,6 +125,21 @@ public class SpellCasterComponent : MonoBehaviour
     
     public bool CanCast(SOSpell spell)
     {
-        return manaSource.CurrentMana >= spell.manaCost;
+        return CurrentMana >= spell.manaCost;
     }
+    
+    public bool TryConsume(float amount)
+    {
+        if (currentMana < amount) return false;
+        
+        currentMana = Mathf.Max(0, currentMana - amount);
+        ManaChanged?.Invoke(currentMana);
+        
+        if (currentMana <= 0)
+        {
+            ManaEmpty?.Invoke();
+        }
+        return true;
+    }
+    
 }

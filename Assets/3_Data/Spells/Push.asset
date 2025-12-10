@@ -10,40 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e54bd609f87a481e9283e152da17280f, type: 3}
-  m_Name: Mana Bolt
+  m_Name: Push
   m_EditorClassIdentifier: Assembly-CSharp::SOSpell
   label: Mana Bolt
   icon: {fileID: 0}
   description: A very basic spell
-  castMethod: 2
-  manaCost: 2
+  castMethod: 0
+  manaCost: 5
   channelRate: 0.3
   chargeTime: 0.3
-  spellForm: 2
+  spellForm: 0
   domain: 0
   effects:
-  - rid: 1991720465952669784
-  - rid: 1991720468737949913
+  - rid: 304922301587259500
   projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
   projectileMovement:
-    rid: 1991720447171362884
+    rid: 304922301587259492
   projectileCollision:
     rid: 1991720465952669774
   references:
     version: 2
     RefIds:
-    - rid: 1991720447171362884
-      type: {class: NormalMovement, ns: , asm: Assembly-CSharp}
+    - rid: 304922301587259492
+      type: {class: StraightMovement, ns: , asm: Assembly-CSharp}
       data:
-        moveSpeed: 10
+        moveSpeed: 25
+    - rid: 304922301587259500
+      type: {class: PushEffect, ns: , asm: Assembly-CSharp}
+      data:
+        force: 55555
     - rid: 1991720465952669774
       type: {class: DestroyBehavior, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 1991720465952669784
-      type: {class: DamageHealthEffect, ns: , asm: Assembly-CSharp}
-      data:
-        damage: 5
-    - rid: 1991720468737949913
-      type: {class: PullEffect, ns: , asm: Assembly-CSharp}
-      data:
-        force: 5

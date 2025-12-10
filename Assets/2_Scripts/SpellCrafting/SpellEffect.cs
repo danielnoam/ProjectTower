@@ -11,7 +11,7 @@ public abstract class SpellEffect
 [SpellEffect("Damage")]
 public class DamageHealthEffect : SpellEffect
 {
-    [Min(0)] public float damage = 5f;
+    [Min(0)] public float damage = 15f;
     
     public override SpellEffect Clone()
     {
@@ -19,7 +19,7 @@ public class DamageHealthEffect : SpellEffect
     }
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
-        target?.TakeDamage(damage);
+        target?.TakeDamage(damage, source);
     }
 }
 
@@ -27,7 +27,7 @@ public class DamageHealthEffect : SpellEffect
 [SpellEffect("Heal")]
 public class HealHealthEffect : SpellEffect
 {
-    [Min(0)] public float healAmount = 5f;
+    [Min(0)] public float healAmount = 15f;
 
     public override SpellEffect Clone()
     {
@@ -44,7 +44,7 @@ public class HealHealthEffect : SpellEffect
 [SpellEffect("Push")]
 public class PushEffect : SpellEffect
 {
-    [Min(0)] public float force = 5f;
+    [Min(0)] public float force = 125f;
     
     public enum LookDirection { Source, Target }
     
@@ -68,7 +68,7 @@ public class PushEffect : SpellEffect
 [SpellEffect("Pull")]
 public class PullEffect : SpellEffect
 {
-    [Min(0)] public float force = 5f;
+    [Min(0)] public float force = 10f;
     
     public enum LookDirection { Source, Target }
     
@@ -91,7 +91,7 @@ public class PullEffect : SpellEffect
 [SpellEffect("Leech")]
 public class LeechEffect : SpellEffect
 {
-    [Min(0)] public float damage = 5f;
+    [Min(0)] public float damage = 10f;
     [Range(0f, 1f)] public float lifestealPercent = 0.5f;
 
     public override SpellEffect Clone()
@@ -100,7 +100,7 @@ public class LeechEffect : SpellEffect
     }
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
-        target.TakeDamage(damage);
+        target.TakeDamage(damage, source);
         float healAmount = damage * lifestealPercent;
         source.Heal(healAmount);
     }
@@ -110,7 +110,7 @@ public class LeechEffect : SpellEffect
 [SpellEffect("Burn Mana")]
 public class BurnManaEffect : SpellEffect
 {
-    [Min(0)] public float amount = 5f;
+    [Min(0)] public float amount = 10f;
     
     public override SpellEffect Clone()
     {
@@ -121,9 +121,9 @@ public class BurnManaEffect : SpellEffect
         MonoBehaviour targetMono = target as MonoBehaviour;
         if (targetMono)
         {
-            if (targetMono.TryGetComponent(out ManaSourceComponent manaSource))
+            if (targetMono.TryGetComponent(out SpellCasterComponent spellCasterComponent))
             {
-                manaSource.TryConsume(amount);
+                spellCasterComponent.TryConsume(amount);
             }
         }
     }

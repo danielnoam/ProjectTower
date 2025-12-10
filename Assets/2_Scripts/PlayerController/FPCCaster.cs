@@ -14,6 +14,7 @@ public class FPCCaster : MonoBehaviour
     [Header("References")]
     [SerializeField] private FPCManager fpcManager;
     [SerializeField] private SpellCasterComponent spellCasterComponent;
+    [SerializeField] private SpellCraftingStation spellCraftingStation;
     
     [Separator]
     [SerializeField] private SOSpell currentSpell;
@@ -23,6 +24,7 @@ public class FPCCaster : MonoBehaviour
     [SerializeField, ReadOnly] private List<SOSpell> spellsList;
     private Camera _cam;
 
+    public SOSpell CurrentSpell => currentSpell;
     public event Action<SOSpell> SpellChanged;
 
     private void OnValidate()
@@ -43,11 +45,13 @@ public class FPCCaster : MonoBehaviour
     private void OnEnable()
     {
         fpcManager.FpcInput.OnAttackAction += TryCastSpell;
+        spellCraftingStation.SpellCrafted += AddSpell;
     }
 
     private void OnDisable()
     {
         fpcManager.FpcInput.OnAttackAction -= TryCastSpell;
+        spellCraftingStation.SpellCrafted -= AddSpell;
     }
 
     private void Update()
@@ -55,6 +59,7 @@ public class FPCCaster : MonoBehaviour
         // Change spell
         if (Input.mouseScrollDelta.y > 0)
         {
+            if (spellsList.Count <= 1) return;
             int currentIndex = spellsList.IndexOf(currentSpell);
             int nextIndex = currentIndex + 1;
             if (nextIndex >= spellsList.Count) nextIndex = 0;
@@ -63,6 +68,7 @@ public class FPCCaster : MonoBehaviour
         } 
         else if (Input.mouseScrollDelta.y < 0)
         {
+            if (spellsList.Count <= 1) return;
             int currentIndex = spellsList.IndexOf(currentSpell);
             int nextIndex = currentIndex - 1;
             if (nextIndex < 0) nextIndex = spellsList.Count - 1;
@@ -117,7 +123,7 @@ public class FPCCaster : MonoBehaviour
         if (!currentSpell || !spellCasterComponent.CanCast(currentSpell)) return;
         
         // Start casting
-        if ((context.started || context.performed) && !isCasting)
+        if (context.started && !isCasting)
         {
             switch (currentSpell.castMethod)
             {
@@ -176,14 +182,16 @@ public class FPCCaster : MonoBehaviour
         return null;
     }
     
-    public void AddSpell(SOSpell spell)
+    private void AddSpell(SOSpell spell)
     {
         if (!spell) return;
 
         if (!spellsList.Contains(spell)) spellsList.Add(spell);
+        
+        if (!currentSpell) SetSpell(spell);
     }
     
-    public void SetSpell(SOSpell spell)
+    private void SetSpell(SOSpell spell)
     {
         if (!spell) return;
         

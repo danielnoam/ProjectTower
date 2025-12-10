@@ -20,9 +20,9 @@ public class Box : MonoBehaviour, ICombatTarget
         Destroy(gameObject);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, ICombatTarget damageDealer)
     {
-        _healthComponent.TakeDamage(damage);
+        _healthComponent.TakeDamage(damage, damageDealer);
         
     }
 

@@ -22,7 +22,7 @@ public class SOSpell : ScriptableObject
     
     [Header("Conjure")]
     public Projectile projectilePrefab;
-    [SerializeReference] public ProjectileMovementBehavior projectileMovement = new NormalMovement();
+    [SerializeReference] public ProjectileMovementBehavior projectileMovement = new StraightMovement();
     [SerializeReference] public ProjectileCollisionBehavior projectileCollision = new DestroyBehavior();
 
     
@@ -69,7 +69,7 @@ public class SOSpell : ScriptableObject
         ProjectileCollisionBehavior collisionClone = projectileCollision?.Clone();
         
         Projectile projectile = Instantiate(projectilePrefab, castPoint.position, Quaternion.identity);
-        projectile.Initialize(hitEffectsClone, movementClone, collisionClone, source);
+        projectile.Initialize(hitEffectsClone, movementClone, collisionClone, source, target);
     }
     
     private SpellEffect[] CloneEffects(SpellEffect[] effectsToClone)

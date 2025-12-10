@@ -148,6 +148,32 @@ namespace DNExtensions.InputSystem
             }
         }
 
+
+
+        public void EnablePlayerInput()
+        {
+            var playerActionMap = PlayerInput.actions.FindActionMap("Player");
+            playerActionMap.Enable();
+            
+            var uiActionMap = PlayerInput.actions.FindActionMap("UI");
+            uiActionMap.Disable();
+            
+            SetCursorVisibility(false);
+        }
+
+        public void EnableUIInput()
+        {
+            var playerActionMap = PlayerInput.actions.FindActionMap("Player");
+            playerActionMap.Disable();
+            
+            var uiActionMap = PlayerInput.actions.FindActionMap("UI");
+            uiActionMap.Enable();
+            
+            SetCursorVisibility(true);
+            
+        }
+        
+
         public static string ReplaceActionBindingsWithSprites(string text)
         {
             if (!Instance) return text;

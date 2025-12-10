@@ -3,6 +3,13 @@ using DNExtensions;
 using UnityEngine;
 using UnityEngine.Events;
 
+public struct HealthChangeData 
+{
+    public float NewHealth;
+    public float Delta;
+    public ICombatTarget DamageDealer;
+}
+
 public class HealthComponent : MonoBehaviour
 {
     [Header("Health Settings")]
@@ -14,13 +21,12 @@ public class HealthComponent : MonoBehaviour
     
     
 
-
     public bool IsDead => isDead;
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
     
     public event Action Died;
-    public event Action<float> HealthChanged;
+    public event Action<HealthChangeData> HealthChanged;
     
     
     private void Awake()
@@ -28,26 +34,45 @@ public class HealthComponent : MonoBehaviour
         Reset();
     }
     
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, ICombatTarget damageDealer)
     {
         if (isDead) return;
         
+        float oldHealth = currentHealth;
+        
         currentHealth -= damage;
         currentHealth = Mathf.Max(0, currentHealth);
-        HealthChanged?.Invoke(currentHealth);
+        
+
+        var changeData = new HealthChangeData
+        {
+            NewHealth = currentHealth,
+            Delta = currentHealth - oldHealth,
+            DamageDealer = damageDealer
+        };
         
         if (currentHealth <= 0)
         {
             Die();
+        }
+        else
+        {
+            HealthChanged?.Invoke(changeData);
         }
     }
     
     public void Heal(float amount)
     {
         if (isDead) return;
-        
+    
+        float oldHealth = currentHealth;
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
-        HealthChanged?.Invoke(currentHealth);
+    
+        HealthChanged?.Invoke(new HealthChangeData
+        {
+            NewHealth = currentHealth,
+            Delta = currentHealth - oldHealth,
+        });
     }
     
     
@@ -63,6 +88,10 @@ public class HealthComponent : MonoBehaviour
     {
         isDead = false;
         currentHealth = maxHealth;
-        HealthChanged?.Invoke(currentHealth);
+        HealthChanged?.Invoke(new HealthChangeData
+        {
+            NewHealth = currentHealth,
+            Delta = 0,
+        });
     }
 }

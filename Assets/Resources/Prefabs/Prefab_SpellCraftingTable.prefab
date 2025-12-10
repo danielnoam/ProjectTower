@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1528192387344256276}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 4919361707484889302}
   - component: {fileID: 4034071642064409910}
   - component: {fileID: 4552621811023591509}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Prefab_SpellCraftingTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9387784bf9f44725b07788583f4b3fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpellFactory
-  spellCraftingUI: {fileID: 0}
+  maxEffects: 4
+  defaultChannelRate: 0.15
+  defaultChargeRate: 1.5
+  baseManaCost: 5
+  manaCostPerEffect: 3
+  imbueCost: 0
+  invokeCost: 2
+  conjureCost: 4
+  instantCostMultiplier: 1
+  chargeCostMultiplier: 0.5
+  channelCostMultiplier: 1.5
   interactable: {fileID: 4034071642064409910}
   defaultProjectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
 --- !u!1 &7845381582553530092
@@ -248,7 +258,7 @@ GameObject:
   - component: {fileID: 1023028748156256717}
   - component: {fileID: 4914520636075665977}
   - component: {fileID: 7533589914988435305}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

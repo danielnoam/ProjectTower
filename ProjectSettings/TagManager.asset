@@ -12,10 +12,10 @@ TagManager:
   - Water
   - UI
   - Projectile
-  - Interactble
-  - 
-  - 
-  - 
+  - Collectable
+  - Entity
+  - Pickable
+  - Upgradable
   - 
   - 
   - 

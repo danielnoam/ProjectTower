@@ -1,6 +1,6 @@
 public enum CastMethod
 {
-    Instant = 1,
-    Channel = 2,
-    Charge = 3
+    Instant = 0,
+    Channel = 1,
+    Charge = 2,
 }

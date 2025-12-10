@@ -29,7 +29,7 @@ public class FPCManager : MonoBehaviour, ICombatTarget
     [SerializeField] private ControllerRumbleSource controllerRumbleSource;
     [SerializeField] private HealthComponent healthComponent;
     [SerializeField] private InventoryComponent inventoryComponent;
-    [SerializeField] private ManaSourceComponent manaSourceComponent;
+    [SerializeField] private SpellCasterComponent spellCasterComponent;
 
     private enum FPCCameraMode { NormalCamera, CinemachineCamera }
     
@@ -43,7 +43,7 @@ public class FPCManager : MonoBehaviour, ICombatTarget
     public ControllerRumbleSource ControllerRumbleSource => controllerRumbleSource;
     public HealthComponent HealthComponent => healthComponent;
     public InventoryComponent InventoryComponent => inventoryComponent;
-    public ManaSourceComponent ManaSourceComponent => manaSourceComponent;
+    public SpellCasterComponent SpellCasterComponent => spellCasterComponent;
 
     private void OnValidate()
     {
@@ -120,9 +120,9 @@ public class FPCManager : MonoBehaviour, ICombatTarget
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, ICombatTarget damageDealer)
     {
-        healthComponent.TakeDamage(damage);
+        healthComponent.TakeDamage(damage, damageDealer);
     }
 
     public void Heal(float amount)

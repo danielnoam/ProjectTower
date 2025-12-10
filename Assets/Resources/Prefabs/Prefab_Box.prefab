@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 8190853901701229870}
   - component: {fileID: 4685286085012128032}
   - component: {fileID: 1125147034241106142}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Prefab_Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -7,12 +7,12 @@ using UnityEngine.UI;
 
 public class SpellCraftingUI : MonoBehaviour
 {
-    [Header("Main Dropdowns")]
+    [Header("Base Panel")]
     [SerializeField] private TMP_Dropdown castMethodDropdown;
     [SerializeField] private TMP_Dropdown spellFormDropdown;
     [SerializeField] private TMP_Dropdown domainDropdown;
     
-    [Header("Effects")]
+    [Header("Effects Panel")]
     [SerializeField] private Transform effectListContainer;
     [SerializeField] private GameObject effectEntryPrefab;
     [SerializeField] private Button addEffectButton;
@@ -22,49 +22,47 @@ public class SpellCraftingUI : MonoBehaviour
     [SerializeField] private TMP_Dropdown movementDropdown;
     [SerializeField] private TMP_Dropdown collisionDropdown;
     
-    [Header("Bottom UI")]
+    [Header("Bottom Panel")]
     [SerializeField] private TMP_Text manaCostText;
     [SerializeField] private Button createSpellButton;
     [SerializeField] private Button cancelButton;
     
     [Header("References")]
     [SerializeField] private SpellCraftingStation spellCraftingStation;
-    [SerializeField] private FPCCaster playerCaster;
     
     private SpellCraftingData _currentData = new();
     private readonly List<EffectEntryUI> _effectEntries = new();
+
+    public event Action Closed;
     
     private void Start()
     {
-        PopulateDropdowns();
-        
         castMethodDropdown.onValueChanged.AddListener(OnCastMethodChanged);
         spellFormDropdown.onValueChanged.AddListener(OnSpellFormChanged);
         movementDropdown.onValueChanged.AddListener(OnMovementChanged);
         collisionDropdown.onValueChanged.AddListener(OnCollisionChanged);
-        
         addEffectButton.onClick.AddListener(AddEffectEntry);
         createSpellButton.onClick.AddListener(CreateSpell);
         cancelButton.onClick.AddListener(Close);
         
-        AddEffectEntry();
-        UpdateUI();
+        PopulateDropdowns();
+        ResetData();
     }
     
     private void PopulateDropdowns()
     {
-        // Cast Method
+        // Cast Method 
         castMethodDropdown.ClearOptions();
-        castMethodDropdown.AddOptions(new List<string> { "Instant", "Channel", "Charge" });
-        
+        castMethodDropdown.AddOptions(Enum.GetNames(typeof(CastMethod)).ToList());
+    
         // Spell Form
         spellFormDropdown.ClearOptions();
-        spellFormDropdown.AddOptions(new List<string> { "Imbue", "Invoke", "Conjure" });
-        
-        // Domain (only Arcane for now)
+        spellFormDropdown.AddOptions(Enum.GetNames(typeof(SpellForm)).ToList());
+    
+        // Domain
         domainDropdown.ClearOptions();
-        domainDropdown.AddOptions(new List<string> { "Arcane" });
-        domainDropdown.interactable = false;
+        domainDropdown.AddOptions(Enum.GetNames(typeof(Domain)).ToList());
+        domainDropdown.interactable = Enum.GetValues(typeof(Domain)).Length > 1;
         
         // Movement Types - Dynamic
         movementDropdown.ClearOptions();
@@ -85,6 +83,8 @@ public class SpellCraftingUI : MonoBehaviour
     
     private void AddEffectEntry()
     {
+        if (_effectEntries.Count >= spellCraftingStation.MaxEffects) return;
+        
         GameObject entryGo = Instantiate(effectEntryPrefab, effectListContainer);
         EffectEntryUI entry = entryGo.GetComponent<EffectEntryUI>();
         entry.Initialize(this, _effectEntries.Count);
@@ -100,13 +100,12 @@ public class SpellCraftingUI : MonoBehaviour
     
     public void RemoveEffectEntry(int index)
     {
-        if (_effectEntries.Count <= 1) return; // Keep at least one effect
+        if (_effectEntries.Count <= 1) return;
         
         Destroy(_effectEntries[index].gameObject);
         _effectEntries.RemoveAt(index);
         _currentData.effectTypes.RemoveAt(index);
         
-        // Re-index remaining entries
         for (int i = 0; i < _effectEntries.Count; i++)
         {
             _effectEntries[i].SetIndex(i);
@@ -171,38 +170,38 @@ public class SpellCraftingUI : MonoBehaviour
             return;
         }
         
-        SOSpell spell = spellCraftingStation.CreateSpell(_currentData);
-        playerCaster?.AddSpell(spell);
-        
-        Debug.Log($"Created spell: {spell.label} with {spell.effects.Length} effects, cost: {spell.manaCost}");
+        spellCraftingStation.CreateSpell(_currentData);
     }
     
-    private void Close()
+    public void Close()
     {
-        gameObject.SetActive(false);
+        Closed?.Invoke();
     }
     
-    public void Open()
+    public void ResetData()
     {
-        gameObject.SetActive(true);
+
         
-        // Reset to defaults
-        _currentData = new SpellCraftingData();
-        
-        // Clear existing effect entries
         foreach (var entry in _effectEntries)
         {
             Destroy(entry.gameObject);
         }
         _effectEntries.Clear();
         
-        // Reset dropdowns
         castMethodDropdown.value = 0;
         spellFormDropdown.value = 0;
         movementDropdown.value = 0;
         collisionDropdown.value = 0;
         
-        // Add first effect
+        _currentData = new SpellCraftingData
+        {
+            castMethod = 0,
+            spellForm = 0,
+            domain = 0,
+            movementType = SpellTypeRegistry.MovementTypes[0],
+            collisionType = SpellTypeRegistry.CollisionTypes[0]
+        };
+
         AddEffectEntry();
         UpdateUI();
     }

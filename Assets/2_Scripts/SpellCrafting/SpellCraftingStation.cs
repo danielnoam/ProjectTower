@@ -30,11 +30,35 @@ public class SpellCraftingData
 
 public class SpellCraftingStation : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] private SpellCraftingUI spellCraftingUI;
+    [Header("Effects")]
+    [SerializeField] private int maxEffects = 3;
+    
+    [Header("Cast Method")]
+    [SerializeField] private float defaultChannelRate = 0.15f;
+    [SerializeField] private float defaultChargeRate = 1.5f;
+    
+    [Header("Cost Calculation")]
+    [SerializeField] private float baseManaCost = 5f;
+    [SerializeField] private float manaCostPerEffect = 3f;
+    [Space(10f)]
+    [SerializeField] private float imbueCost;
+    [SerializeField] private float invokeCost = 2f;
+    [SerializeField] private float conjureCost = 4f;
+    [Space(10f)]
+    [SerializeField] private float instantCostMultiplier = 1f;
+    [SerializeField] private float chargeCostMultiplier = 0.5f;
+    [SerializeField] private float channelCostMultiplier = 1.5f;
+    
+    
+    [Header("References")]
     [SerializeField] private Interactable interactable;
     [SerializeField] private Projectile defaultProjectilePrefab;
 
+    
+    public int MaxEffects => maxEffects;
+    public event Action Opened;
+    public event Action<SOSpell> SpellCrafted;
+    
 
     private void OnEnable()
     {
@@ -48,66 +72,176 @@ public class SpellCraftingStation : MonoBehaviour
     
     private void OnInteract(FPCInteraction interactor)
     {
-        spellCraftingUI.Open();
-    }
-    
-    private string GenerateSpellName(SpellCraftingData data)
-    {
-        if (data.effectTypes.Count == 0)
-        {
-            return "Empty Spell";
-        }
-        
-        if (data.effectTypes.Count == 1)
-        {
-            string effectName = SpellTypeRegistry.GetEffectDisplayName(data.effectTypes[0]);
-            return $"{effectName} Spell";
-        }
-        
-        return $"Multi-Effect Spell ({data.effectTypes.Count})";
+        Opened?.Invoke();
     }
     
     public float CalculateManaCost(SpellCraftingData data)
     {
-        float cost = 5f;
-        cost += data.effectTypes.Count * 3f;
+        float cost = baseManaCost;
+        cost += data.effectTypes.Count * manaCostPerEffect;
         
-        if (data.spellForm == SpellForm.Conjure) cost += 5f;
-        if (data.spellForm == SpellForm.Invoke) cost += 2.5f;
-        if (data.castMethod == CastMethod.Charge) cost *= 0.5f;
-        if (data.castMethod == CastMethod.Channel) cost *= 1.5f;
-        
+        switch (data.spellForm)
+        {
+            case SpellForm.Imbue:
+                cost += imbueCost;
+                break;
+            case SpellForm.Invoke:
+                cost += invokeCost;
+                break;
+            case SpellForm.Conjure:
+                cost += conjureCost;
+                break;
+        }
+
+        switch (data.castMethod)
+        {
+            case CastMethod.Instant:
+                cost *= instantCostMultiplier;
+                break;
+            case CastMethod.Charge:
+                cost *= chargeCostMultiplier;
+                break;
+            case CastMethod.Channel:
+                cost *= channelCostMultiplier;
+                break;
+        }
+
         return cost;
     }
-    
 
+    
+    
+    private string GenerateSpellName(SpellCraftingData data)
+    {
+        string spellName = "";
+
+        switch (data.castMethod)
+        {
+            case CastMethod.Instant:
+                spellName += "Instant ";
+                break;
+            case CastMethod.Charge:
+                spellName += "Charged ";
+                break;
+            case CastMethod.Channel:
+                spellName += "Channeled ";
+                break;
+        }
+        
+        switch (data.spellForm)
+        {
+            case SpellForm.Imbue:
+                spellName += "Imbued ";
+                break;
+            case SpellForm.Invoke:
+                spellName += "Invoked ";
+                break;
+            case SpellForm.Conjure:
+                spellName += "Conjured ";
+                break;
+        }
+        
+        switch (data.effectTypes.Count)
+        {
+            case 0:
+                spellName += "Empty Spell";
+                break;
+            case 1:
+                
+                string effectName = SpellTypeRegistry.GetEffectDisplayName(data.effectTypes[0]);
+                spellName += $"{effectName} Spell";
+                break;
+            
+            default:
+                spellName += $"Multi-Effect Spell ({data.effectTypes.Count})";
+                break;
+        }
+
+
+        return spellName;
+
+    }
+    
+    private string GenerateSpellDescription(SpellCraftingData data)
+    {
+        string description = "";
+
+        switch (data.castMethod)
+        {
+            case CastMethod.Instant:
+                description += "Instant ";
+                break;
+            case CastMethod.Charge:
+                description += "Charged ";
+                break;
+            case CastMethod.Channel:
+                description += "Channeled ";
+                break;
+        }
+        
+        switch (data.spellForm)
+        {
+            case SpellForm.Imbue:
+                description += "Imbued ";
+                break;
+            case SpellForm.Invoke:
+                description += "Invoked ";
+                break;
+            case SpellForm.Conjure:
+                description += "Conjured ";
+                break;
+        }
+
+        foreach (var effectType in data.effectTypes)
+        {
+            description += $"{SpellTypeRegistry.GetEffectDisplayName(effectType)} ";
+        }
+        
+        return description;
+
+    }
+
+    private SpellEffect[] CreateEffects(List<Type> effectTypes)
+    {
+        SpellEffect[] effects = new SpellEffect[effectTypes.Count];
+        
+        for (int i = 0; i < effectTypes.Count; i++)
+        {
+            effects[i] = SpellTypeRegistry.CreateEffect(effectTypes[i]);
+        }
+        
+        return effects;
+    }
+    
     public SOSpell CreateSpell(SpellCraftingData data)
     {
         SOSpell spell = ScriptableObject.CreateInstance<SOSpell>();
         
-        // Basic properties
+
         var spellName = GenerateSpellName(data);
         spell.name = spellName;
         spell.label = spellName;
+        spell.description = GenerateSpellDescription(data);
         spell.castMethod = data.castMethod;
         spell.spellForm = data.spellForm;
         spell.domain = data.domain;
         spell.manaCost = CalculateManaCost(data);
         
-        // Channel/Charge specifics
-        if (data.castMethod == CastMethod.Channel)
+
+        switch (data.castMethod)
         {
-            spell.channelRate = 0.15f; // Default value
+            case CastMethod.Channel:
+                spell.channelRate = defaultChannelRate;
+                break;
+            case CastMethod.Charge:
+                spell.chargeTime = defaultChargeRate;
+                break;
         }
-        if (data.castMethod == CastMethod.Charge)
-        {
-            spell.chargeTime = 1.5f; // Default value
-        }
-        
-        // Create effects from types
+
+
         spell.effects = CreateEffects(data.effectTypes);
         
-        // Conjure settings
+
         if (data.spellForm == SpellForm.Conjure)
         {
             if (!defaultProjectilePrefab)
@@ -120,19 +254,10 @@ public class SpellCraftingStation : MonoBehaviour
             spell.projectileCollision = SpellTypeRegistry.CreateCollision(data.collisionType);
         }
         
+        SpellCrafted?.Invoke(spell);
         return spell;
     }
     
-    private SpellEffect[] CreateEffects(List<Type> effectTypes)
-    {
-        SpellEffect[] effects = new SpellEffect[effectTypes.Count];
-        
-        for (int i = 0; i < effectTypes.Count; i++)
-        {
-            effects[i] = SpellTypeRegistry.CreateEffect(effectTypes[i]);
-        }
-        
-        return effects;
-    }
+
     
 }

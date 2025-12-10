@@ -54,7 +54,7 @@ public static class SpellTypeRegistry
             }
             catch (ReflectionTypeLoadException)
             {
-                continue; // Skip assemblies that can't be loaded
+                continue; 
             }
             
             foreach (Type type in types)
