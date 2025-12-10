@@ -38,7 +38,7 @@ MonoBehaviour:
     - rid: 304922301587259500
       type: {class: PushEffect, ns: , asm: Assembly-CSharp}
       data:
-        force: 55555
+        force: 55
     - rid: 1991720465952669774
       type: {class: DestroyBehavior, ns: , asm: Assembly-CSharp}
       data: 

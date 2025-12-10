@@ -98,9 +98,9 @@ public class FPCMovement : MonoBehaviour
     {
         Vector3 finalMovement = (_velocity + _externalForce) * Time.deltaTime;
         manager.CharacterController.Move(finalMovement);
-        _externalForce = Vector3.zero;
+        
+        _externalForce = Vector3.Lerp(_externalForce, Vector3.zero, 5f * Time.deltaTime);
     }
-
     private void HandleMovement()
     {
         Vector3 cameraForward = manager.FpcCamera.GetMovementDirection();

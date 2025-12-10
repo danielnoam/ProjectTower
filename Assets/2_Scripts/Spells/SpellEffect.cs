@@ -46,7 +46,6 @@ public class PushEffect : SpellEffect
 {
     [Min(0)] public float force = 125f;
     
-    public enum LookDirection { Source, Target }
     
     public override SpellEffect Clone()
     {
@@ -70,7 +69,6 @@ public class PullEffect : SpellEffect
 {
     [Min(0)] public float force = 10f;
     
-    public enum LookDirection { Source, Target }
     
     public override SpellEffect Clone()
     {
