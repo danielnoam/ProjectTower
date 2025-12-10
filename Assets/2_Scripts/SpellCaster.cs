@@ -21,6 +21,8 @@ public class SpellCaster : MonoBehaviour
     
     private Coroutine _manaRegenCoroutine;
     private bool _isRegenerating;
+    
+    
 
     private void OnValidate()
     {

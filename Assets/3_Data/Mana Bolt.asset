@@ -16,14 +16,14 @@ MonoBehaviour:
   icon: {fileID: 0}
   description: A very basic spell
   castMethod: 2
-  manaCost: 5
+  manaCost: 2
   channelRate: 0.3
   chargeTime: 0.3
   spellForm: 2
   domain: 0
   effects:
   - rid: 1991720465952669784
-  - rid: 1991720465952669790
+  - rid: 1991720468737949913
   projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
   projectileMovement:
     rid: 1991720447171362884
@@ -35,7 +35,7 @@ MonoBehaviour:
     - rid: 1991720447171362884
       type: {class: NormalMovement, ns: , asm: Assembly-CSharp}
       data:
-        moveSpeed: 8
+        moveSpeed: 10
     - rid: 1991720465952669774
       type: {class: DestroyBehavior, ns: , asm: Assembly-CSharp}
       data: 
@@ -43,7 +43,7 @@ MonoBehaviour:
       type: {class: DamageHealthEffect, ns: , asm: Assembly-CSharp}
       data:
         damage: 5
-    - rid: 1991720465952669790
+    - rid: 1991720468737949913
       type: {class: PullEffect, ns: , asm: Assembly-CSharp}
       data:
-        force: 25
+        force: 5

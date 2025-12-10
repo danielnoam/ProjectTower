@@ -19,7 +19,8 @@ public class HealthComponent : MonoBehaviour
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
     
-    public event Action Death;
+    public event Action Died;
+    public event Action<float> HealthChanged;
     
     
     private void Awake()
@@ -33,7 +34,7 @@ public class HealthComponent : MonoBehaviour
         
         currentHealth -= damage;
         currentHealth = Mathf.Max(0, currentHealth);
-        
+        HealthChanged?.Invoke(currentHealth);
         
         if (currentHealth <= 0)
         {
@@ -46,6 +47,7 @@ public class HealthComponent : MonoBehaviour
         if (isDead) return;
         
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
+        HealthChanged?.Invoke(currentHealth);
     }
     
     
@@ -54,12 +56,13 @@ public class HealthComponent : MonoBehaviour
         if (isDead) return;
         
         isDead = true;
-        Death?.Invoke();
+        Died?.Invoke();
     }
     
     public void Reset()
     {
-        currentHealth = maxHealth;
         isDead = false;
+        currentHealth = maxHealth;
+        HealthChanged?.Invoke(currentHealth);
     }
 }

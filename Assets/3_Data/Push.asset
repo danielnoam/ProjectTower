@@ -41,4 +41,4 @@ MonoBehaviour:
     - rid: 1991720465952669779
       type: {class: PushEffect, ns: , asm: Assembly-CSharp}
       data:
-        force: 500
+        force: 100

@@ -11,7 +11,7 @@ public class Box : MonoBehaviour, ICombatTarget
     {
         _rigidbody = GetComponent<Rigidbody>();
         _healthComponent = GetComponent<HealthComponent>();
-        _healthComponent.Death += OnDeath;
+        _healthComponent.Died += OnDeath;
         _healthComponent.Reset();
     }
 

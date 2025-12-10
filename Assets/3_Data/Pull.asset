@@ -19,7 +19,7 @@ MonoBehaviour:
   manaCost: 1
   channelRate: 0.15
   chargeTime: 1
-  spellForm: 1
+  spellForm: 0
   domain: 0
   effects:
   - rid: 1991720465952669781
@@ -41,4 +41,4 @@ MonoBehaviour:
     - rid: 1991720465952669781
       type: {class: PullEffect, ns: , asm: Assembly-CSharp}
       data:
-        force: 3
+        force: 25

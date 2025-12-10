@@ -58,4 +58,9 @@ public class InventoryComponent : MonoBehaviour
     {
         return _items.ContainsKey(item) && _items[item] >= 1;
     }
+    
+    public Dictionary<SOItem, int> GetAllItems()
+    {
+        return new Dictionary<SOItem, int>(_items);
+    }
 }

@@ -28,41 +28,28 @@ public class SOSpell : ScriptableObject
     
     public void Cast(ICombatTarget source, ICombatTarget target, Transform castPoint)
     {
-        ICombatTarget resolvedTarget = ResolveTarget(source, target);
         
         switch (spellForm)
         {
-            case SpellForm.Invoke:
             case SpellForm.Imbue:
-                if (resolvedTarget != null)
-                {
-                    ApplyEffects(source, resolvedTarget);
-                }
+                ApplyEffects(source,source);
+                break;
+            
+            case SpellForm.Invoke:
+                if (target != null) ApplyEffects(source, target);
                 break;
                 
             case SpellForm.Conjure:
-                SpawnProjectile(source, resolvedTarget, castPoint);
+                SpawnProjectile(source, target, castPoint);
                 break;
         }
     }
     
-    private ICombatTarget ResolveTarget(ICombatTarget source, ICombatTarget target)
-    {
-        switch (spellForm)
-        {
-            case SpellForm.Imbue:
-                return source; 
-                
-            case SpellForm.Invoke:
-                return target;
-                
-            default:
-                return null;
-        }
-    }
     
     private void ApplyEffects(ICombatTarget source, ICombatTarget target)
     {
+        if (effects == null || effects.Length == 0) return;
+        
         foreach (var effect in effects)
         {
             effect?.Apply(source, target);

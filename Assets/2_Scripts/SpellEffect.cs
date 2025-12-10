@@ -51,9 +51,13 @@ public class PushEffect : SpellEffect
     }
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
-        Vector3 direction = source.LookDirection;
-        Vector3 forceVector = direction.normalized * force;
+        var direction = source == target
+            ? source.LookDirection
+            : (target.Transform.position - source.Transform.position).normalized;
+
+        Vector3 forceVector = direction * force;
         target.ApplyForce(forceVector);
+    
     }
 }
 
@@ -66,12 +70,15 @@ public class PullEffect : SpellEffect
     
     public override SpellEffect Clone()
     {
-        return new PushEffect { force = force };
+        return new PullEffect { force = force };
     }
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
-        Vector3 direction = -source.LookDirection;
-        Vector3 forceVector = direction.normalized * force;
+        var direction = source == target
+            ? -source.LookDirection
+            : (source.Transform.position - target.Transform.position).normalized;
+
+        Vector3 forceVector = direction * force;
         target.ApplyForce(forceVector);
     }
 }

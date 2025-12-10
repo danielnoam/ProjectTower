@@ -4,14 +4,36 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private float lifeTime = 8f;
     [SerializeField] private LayerMask collisionLayers;
     [SerializeField] private Rigidbody rigidBody;
     
     private bool _isInitialized;
+    private float _currentLifeTime;
     private ICombatTarget _source;
     private List<SpellEffect> _hitEffects;
     private ProjectileMovementBehavior _projectileMovementBehavior;
     private ProjectileCollisionBehavior _projectileCollisionBehavior;
+    
+    
+    private void Update()
+    {
+        if (!_isInitialized) return;
+
+        _currentLifeTime -= Time.deltaTime;
+        if (_currentLifeTime <= 0)
+        {
+            DestroyProjectile();
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (!_isInitialized) return;
+        
+        _projectileMovementBehavior.UpdateMovement();
+    }
     
     
     private void OnCollisionEnter(Collision other)
@@ -41,13 +63,7 @@ public class Projectile : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        if (!_isInitialized) return;
 
-        _projectileMovementBehavior.UpdateMovement();
-
-    }
 
     public void Initialize(SpellEffect[] hitEffects, ProjectileMovementBehavior movementBehavior, ProjectileCollisionBehavior collisionBehavior, ICombatTarget source)
     {
@@ -56,6 +72,7 @@ public class Projectile : MonoBehaviour
         _hitEffects = new List<SpellEffect>(hitEffects);
         _source = source;
         _projectileMovementBehavior.Initialize(rigidBody, _source);
+        _currentLifeTime = lifeTime;
         _isInitialized = true;
     }
 
