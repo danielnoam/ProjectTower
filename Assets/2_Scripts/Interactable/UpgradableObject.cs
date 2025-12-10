@@ -63,8 +63,8 @@ public class UpgradeLevel
 public class UpgradableObject : MonoBehaviour
 {
     [Header("Upgrade Settings")]
+    [SerializeField, Min(0)] private int startLevel;
     [SerializeField] private List<UpgradeLevel> upgradeLevels = new List<UpgradeLevel>();
-    [SerializeField] private int currentLevel = 0;
     [SerializeField] private SOAudioEvent upgradeSuccessSfx;
     [SerializeField] private SOAudioEvent upgradeFailedSfx;
     
@@ -73,8 +73,11 @@ public class UpgradableObject : MonoBehaviour
     [SerializeField] private Interactable interactable;
     [SerializeField] private InteractableTooltip tooltip;
     
-    public int CurrentLevel => currentLevel;
-    public bool IsMaxLevel => currentLevel >= upgradeLevels.Count;
+    [Separator]
+    [SerializeField, ReadOnly] private int currentLevel;
+    
+    private bool IsMaxLevel => currentLevel >= upgradeLevels.Count;
+    
     
     private void OnValidate()
     {
@@ -82,7 +85,13 @@ public class UpgradableObject : MonoBehaviour
         if (!tooltip) tooltip = GetComponentInChildren<InteractableTooltip>();
         if (!audioSource) audioSource = GetComponent<AudioSource>();
     }
-    
+
+    private void Start()
+    {
+        currentLevel = Mathf.Clamp(startLevel, 0, upgradeLevels.Count);
+        upgradeLevels[currentLevel]?.OnUpgrade?.Invoke();
+    }
+
     private void OnEnable()
     {
         interactable.OnInteract += OnInteract;
@@ -111,19 +120,14 @@ public class UpgradableObject : MonoBehaviour
         
         if (currentUpgrade.HasRequiredItems(inventory))
         {
-            // Consume items and upgrade
             currentUpgrade.ConsumeItems(inventory);
             currentUpgrade.OnUpgrade?.Invoke();
             upgradeSuccessSfx?.Play(audioSource);
-            
             currentLevel++;
-            
-            // Update tooltip after upgrade
             UpdateTooltip(interactor);
         }
         else
         {
-            // Not enough items
             upgradeFailedSfx?.Play(audioSource);
             tooltip?.Punch(Color.red);
         }
@@ -143,7 +147,7 @@ public class UpgradableObject : MonoBehaviour
         }
         
         var upgrade = upgradeLevels[currentLevel];
-        string action = currentLevel == 0 ? $"Fix {upgrade.Label}" : $"Upgrade to {upgrade.Label}";
+        string action = $"{upgrade.Label}";
         
         string requirements = upgrade.GetRequirementsText(inventory);
         string description = string.IsNullOrEmpty(requirements) 
@@ -153,8 +157,4 @@ public class UpgradableObject : MonoBehaviour
         tooltip.SetText(action, description);
     }
     
-    public void SetLevel(int level)
-    {
-        currentLevel = Mathf.Clamp(level, 0, upgradeLevels.Count);
-    }
 }

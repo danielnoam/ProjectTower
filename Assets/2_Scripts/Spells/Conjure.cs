@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Conjure : MonoBehaviour
 {
-    [SerializeField] private float lifeTime = 8f;
     [SerializeField] private LayerMask collisionLayers;
     [SerializeField] private Rigidbody rigidBody;
     
@@ -12,8 +11,8 @@ public class Projectile : MonoBehaviour
     private float _currentLifeTime;
     private ICombatTarget _source;
     private List<SpellEffect> _hitEffects;
-    private ProjectileMovementBehavior _projectileMovementBehavior;
-    private ProjectileCollisionBehavior _projectileCollisionBehavior;
+    private ConjureMovementBehavior _conjureMovementBehavior;
+    private ConjureCollisionBehavior _conjureCollisionBehavior;
     
     
     private void Update()
@@ -32,7 +31,7 @@ public class Projectile : MonoBehaviour
     {
         if (!_isInitialized) return;
         
-        _projectileMovementBehavior.UpdateMovement(Time.fixedDeltaTime);
+        _conjureMovementBehavior.UpdateMovement(Time.fixedDeltaTime);
     }
     
     
@@ -52,7 +51,7 @@ public class Projectile : MonoBehaviour
              }
          }
          
-         _projectileCollisionBehavior?.OnCollision(this,other);
+         _conjureCollisionBehavior?.OnCollision(this,other);
         
     }
 
@@ -65,15 +64,15 @@ public class Projectile : MonoBehaviour
 
 
 
-    public void Initialize(SpellEffect[] hitEffects, ProjectileMovementBehavior movementBehavior, ProjectileCollisionBehavior collisionBehavior, ICombatTarget source, ICombatTarget target = null)
+    public void Initialize(SpellEffect[] hitEffects, ConjureMovementBehavior movementBehavior, ConjureCollisionBehavior collisionBehavior, float lifetime, ICombatTarget source, ICombatTarget target = null)
     {
-        _projectileMovementBehavior = movementBehavior;
-        _projectileCollisionBehavior = collisionBehavior;
+        _conjureMovementBehavior = movementBehavior;
+        _conjureCollisionBehavior = collisionBehavior;
         _hitEffects = new List<SpellEffect>(hitEffects);
         _source = source;
-        _projectileMovementBehavior.Initialize(rigidBody, _source, target);
-        _projectileCollisionBehavior.Initialize(rigidBody,_source);
-        _currentLifeTime = lifeTime;
+        _conjureMovementBehavior.Initialize(rigidBody, _source, target);
+        _conjureCollisionBehavior.Initialize(rigidBody,_source);
+        _currentLifeTime = lifetime;
         _isInitialized = true;
     }
 

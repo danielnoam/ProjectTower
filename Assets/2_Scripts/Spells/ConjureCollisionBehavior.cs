@@ -2,14 +2,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class ProjectileCollisionBehavior
+public abstract class ConjureCollisionBehavior
 {
     protected Rigidbody projectileRb;
     protected ICombatTarget casterSource;
     
-    public abstract ProjectileCollisionBehavior Clone();
+    public abstract ConjureCollisionBehavior Clone();
     public abstract void Initialize(Rigidbody rigidBody, ICombatTarget source);
-    public abstract void OnCollision(Projectile projectile, Collision other);
+    public abstract void OnCollision(Conjure conjure, Collision other);
 
 
 }
@@ -17,9 +17,9 @@ public abstract class ProjectileCollisionBehavior
 
 [System.Serializable]
 [ProjectileCollision("Destroy")]
-public class DestroyBehavior  : ProjectileCollisionBehavior
+public class DestroyBehavior  : ConjureCollisionBehavior
 {
-    public override ProjectileCollisionBehavior Clone()
+    public override ConjureCollisionBehavior Clone()
     {
         return new DestroyBehavior { };
     }
@@ -31,8 +31,8 @@ public class DestroyBehavior  : ProjectileCollisionBehavior
         casterSource = source;
     }
     
-    public override void OnCollision(Projectile projectile, Collision other)
+    public override void OnCollision(Conjure conjure, Collision other)
     {
-        projectile.DestroyProjectile();
+        conjure.DestroyProjectile();
     }
 }

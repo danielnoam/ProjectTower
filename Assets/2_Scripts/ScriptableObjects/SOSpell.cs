@@ -21,9 +21,10 @@ public class SOSpell : ScriptableObject
     [SerializeReference] public SpellEffect[] effects = Array.Empty<SpellEffect>();
     
     [Header("Conjure")]
-    public Projectile projectilePrefab;
-    [SerializeReference] public ProjectileMovementBehavior projectileMovement = new StraightMovement();
-    [SerializeReference] public ProjectileCollisionBehavior projectileCollision = new DestroyBehavior();
+    public Conjure conjurePrefab;
+    public float conjureLifeTime = 5f;
+    [SerializeReference] public ConjureMovementBehavior conjureMovement = new StraightMovement();
+    [SerializeReference] public ConjureCollisionBehavior conjureCollision = new DestroyBehavior();
 
     
     public void Cast(ICombatTarget source, ICombatTarget target, Transform castPoint)
@@ -58,18 +59,18 @@ public class SOSpell : ScriptableObject
     
     private void SpawnProjectile(ICombatTarget source, ICombatTarget target, Transform castPoint)
     {
-        if (!projectilePrefab)
+        if (!conjurePrefab)
         {
             Debug.LogError($"Spell {label} is set to Projectile but has no prefab!");
             return;
         }
         
         SpellEffect[] hitEffectsClone = CloneEffects(effects);
-        ProjectileMovementBehavior movementClone = projectileMovement?.Clone();
-        ProjectileCollisionBehavior collisionClone = projectileCollision?.Clone();
+        ConjureMovementBehavior movementClone = conjureMovement?.Clone();
+        ConjureCollisionBehavior collisionClone = conjureCollision?.Clone();
         
-        Projectile projectile = Instantiate(projectilePrefab, castPoint.position, Quaternion.identity);
-        projectile.Initialize(hitEffectsClone, movementClone, collisionClone, source, target);
+        Conjure conjure = Instantiate(conjurePrefab, castPoint.position, Quaternion.identity);
+        conjure.Initialize(hitEffectsClone, movementClone, collisionClone,conjureLifeTime, source, target);
     }
     
     private SpellEffect[] CloneEffects(SpellEffect[] effectsToClone)

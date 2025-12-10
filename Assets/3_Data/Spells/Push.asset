@@ -22,23 +22,24 @@ MonoBehaviour:
   spellForm: 0
   domain: 0
   effects:
-  - rid: 304922301587259500
-  projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
-  projectileMovement:
-    rid: 304922301587259492
-  projectileCollision:
-    rid: 1991720465952669774
+  - rid: 304922306508488705
+  conjurePrefab: {fileID: 0}
+  conjureLifeTime: 5
+  conjureMovement:
+    rid: 304922306508488802
+  conjureCollision:
+    rid: 304922306508488803
   references:
     version: 2
     RefIds:
-    - rid: 304922301587259492
-      type: {class: StraightMovement, ns: , asm: Assembly-CSharp}
-      data:
-        moveSpeed: 25
-    - rid: 304922301587259500
+    - rid: 304922306508488705
       type: {class: PushEffect, ns: , asm: Assembly-CSharp}
       data:
-        force: 55
-    - rid: 1991720465952669774
+        force: 125
+    - rid: 304922306508488802
+      type: {class: StraightMovement, ns: , asm: Assembly-CSharp}
+      data:
+        moveSpeed: 5
+    - rid: 304922306508488803
       type: {class: DestroyBehavior, ns: , asm: Assembly-CSharp}
       data: 

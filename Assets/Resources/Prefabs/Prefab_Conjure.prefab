@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 711494175010799481}
   - component: {fileID: 8749326377232842898}
   m_Layer: 6
-  m_Name: Prefab_Projectile
+  m_Name: Prefab_Conjure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
   lifeTime: 8
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 1921
+    m_Bits: 3969
   rigidBody: {fileID: 711494175010799481}
 --- !u!54 &711494175010799481
 Rigidbody:

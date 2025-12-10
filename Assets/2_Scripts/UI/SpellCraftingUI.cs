@@ -19,11 +19,12 @@ public class SpellCraftingUI : MonoBehaviour
     
     [Header("Conjure Panel")]
     [SerializeField] private GameObject conjurePanel;
+    [SerializeField] private TextMeshProUGUI conjureLifetimeText;
     [SerializeField] private TMP_Dropdown movementDropdown;
     [SerializeField] private TMP_Dropdown collisionDropdown;
     
     [Header("Bottom Panel")]
-    [SerializeField] private TMP_Text manaCostText;
+    [SerializeField] private TextMeshProUGUI manaCostText;
     [SerializeField] private Button createSpellButton;
     [SerializeField] private Button cancelButton;
     
@@ -64,7 +65,7 @@ public class SpellCraftingUI : MonoBehaviour
         domainDropdown.AddOptions(Enum.GetNames(typeof(Domain)).ToList());
         domainDropdown.interactable = Enum.GetValues(typeof(Domain)).Length > 1;
         
-        // Movement Types - Dynamic
+        // Movement Types
         movementDropdown.ClearOptions();
         var movementNames = SpellTypeRegistry.MovementTypes
             .Select(SpellTypeRegistry.GetMovementDisplayName)
@@ -72,7 +73,7 @@ public class SpellCraftingUI : MonoBehaviour
         movementDropdown.AddOptions(movementNames);
         movementDropdown.interactable = movementNames.Count > 1;
         
-        // Collision Types - Dynamic
+        // Collision Types
         collisionDropdown.ClearOptions();
         var collisionNames = SpellTypeRegistry.CollisionTypes
             .Select(SpellTypeRegistry.GetCollisionDisplayName)
@@ -127,8 +128,14 @@ public class SpellCraftingUI : MonoBehaviour
     {
         _currentData.castMethod = (CastMethod)value;
         UpdateManaCost();
+        UpdateConjureLifetime();
     }
-    
+
+    private void UpdateConjureLifetime()
+    {
+        conjureLifetimeText.text = $"Lifetime: {spellCraftingStation.CalculateConjureLifeTime(_currentData)}s";
+    }
+
     private void OnSpellFormChanged(int value)
     {
         _currentData.spellForm = (SpellForm)value;
@@ -142,6 +149,8 @@ public class SpellCraftingUI : MonoBehaviour
         {
             _currentData.movementType = SpellTypeRegistry.MovementTypes[value];
         }
+        
+        UpdateConjureLifetime();
     }
     
     private void OnCollisionChanged(int value)
@@ -150,6 +159,8 @@ public class SpellCraftingUI : MonoBehaviour
         {
             _currentData.collisionType = SpellTypeRegistry.CollisionTypes[value];
         }
+        
+        UpdateConjureLifetime();
     }
     
     private void UpdateUI()
@@ -159,7 +170,8 @@ public class SpellCraftingUI : MonoBehaviour
     
     private void UpdateManaCost()
     {
-        manaCostText.text = spellCraftingStation.CalculateManaCost(_currentData).ToString("F0");
+        var cost = spellCraftingStation.CalculateManaCost(_currentData).ToString("0.0");
+        manaCostText.text = $"Mana Cost: {cost}";
     }
     
     private void CreateSpell()

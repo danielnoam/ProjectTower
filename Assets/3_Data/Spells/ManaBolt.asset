@@ -24,11 +24,12 @@ MonoBehaviour:
   effects:
   - rid: 1991720465952669784
   - rid: 304922301587259491
-  projectilePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
-  projectileMovement:
-    rid: 304922301587259492
-  projectileCollision:
-    rid: 1991720465952669774
+  conjurePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
+  conjureLifeTime: 5
+  conjureMovement:
+    rid: 304922306508488800
+  conjureCollision:
+    rid: 304922306508488801
   references:
     version: 2
     RefIds:
@@ -36,11 +37,11 @@ MonoBehaviour:
       type: {class: PushEffect, ns: , asm: Assembly-CSharp}
       data:
         force: 5
-    - rid: 304922301587259492
+    - rid: 304922306508488800
       type: {class: StraightMovement, ns: , asm: Assembly-CSharp}
       data:
-        moveSpeed: 25
-    - rid: 1991720465952669774
+        moveSpeed: 5
+    - rid: 304922306508488801
       type: {class: DestroyBehavior, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 1991720465952669784

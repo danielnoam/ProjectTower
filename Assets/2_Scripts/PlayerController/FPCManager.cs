@@ -15,8 +15,7 @@ using UnityEditor;
 [RequireComponent(typeof(CharacterController))]
 public class FPCManager : MonoBehaviour, ICombatTarget
 {
-    [Header("Settings")]
-    [SerializeField] private FPCCameraMode cameraMode = FPCCameraMode.CinemachineCamera;
+    public static FPCManager Instance { get; private set; }
     
     [Header("References")]
     [SerializeField] private FPCMovement fpcMovement;
@@ -30,8 +29,7 @@ public class FPCManager : MonoBehaviour, ICombatTarget
     [SerializeField] private HealthComponent healthComponent;
     [SerializeField] private InventoryComponent inventoryComponent;
     [SerializeField] private SpellCasterComponent spellCasterComponent;
-
-    private enum FPCCameraMode { NormalCamera, CinemachineCamera }
+    
     
     public FPCMovement FpcMovement => fpcMovement;
     public FPCInteraction FpcInteraction => fpcInteraction;
@@ -52,71 +50,17 @@ public class FPCManager : MonoBehaviour, ICombatTarget
         if (!fpcInput) fpcInput = gameObject.GetOrAddComponent<FPCInput>();
         if (!fpcRigidBodyPush) fpcRigidBodyPush = gameObject.GetOrAddComponent<FPCRigidBodyPush>();
         if (!characterController) characterController = gameObject.GetOrAddComponent<CharacterController>();
-        HandleCameraComponentSwitch();
     }
 
-    private void HandleCameraComponentSwitch()
+    private void Awake()
     {
-        Type requiredCameraType = cameraMode switch
+        if (!Instance || Instance == this)
         {
-            FPCCameraMode.NormalCamera => typeof(FPCCameraNormal),
-            FPCCameraMode.CinemachineCamera => typeof(FPCCameraCinemachine),
-            _ => null
-        };
-
-        if (requiredCameraType == null) return;
-        
-        FPCCameraBase existingCamera = GetComponent<FPCCameraBase>();
-
-        if (existingCamera && existingCamera.GetType() != requiredCameraType)
-        {
-            #if UNITY_EDITOR
-            if (!Application.isPlaying)
-            {
-                EditorApplication.delayCall += () =>
-                {
-                    if (this != null && existingCamera != null)
-                    {
-                        DestroyImmediate(existingCamera);
-                        if (cameraMode == FPCCameraMode.NormalCamera)
-                        {
-                            fpcCamera = gameObject.GetOrAddComponent<FPCCameraNormal>();
-                        }
-                        else if (cameraMode == FPCCameraMode.CinemachineCamera)
-                        {
-                            fpcCamera = gameObject.GetOrAddComponent<FPCCameraCinemachine>();
-                        }
-                    }
-                };
-            }
-            else
-            #endif
-            {
-                Destroy(existingCamera);
-                if (cameraMode == FPCCameraMode.NormalCamera)
-                {
-                    fpcCamera = gameObject.GetOrAddComponent<FPCCameraNormal>();
-                }
-                else if (cameraMode == FPCCameraMode.CinemachineCamera)
-                {
-                    fpcCamera = gameObject.GetOrAddComponent<FPCCameraCinemachine>();
-                }
-            }
-        }
-        else if (!existingCamera)
-        {
-            if (cameraMode == FPCCameraMode.NormalCamera)
-            {
-                fpcCamera = gameObject.GetOrAddComponent<FPCCameraNormal>();
-            }
-            else if (cameraMode == FPCCameraMode.CinemachineCamera)
-            {
-                fpcCamera = gameObject.GetOrAddComponent<FPCCameraCinemachine>();
-            }
+            Instance = this;
         }
         else
         {
-            fpcCamera = existingCamera;
+            Destroy(gameObject);
         }
     }
 

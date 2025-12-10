@@ -2,21 +2,25 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class ProjectileMovementBehavior
+public abstract class ConjureMovementBehavior
 {
     protected Rigidbody projectileRb;
     protected ICombatTarget casterSource;
+    
+    public virtual float Lifetime => 5f;
 
-    public abstract ProjectileMovementBehavior Clone();
+    public abstract ConjureMovementBehavior Clone();
     public abstract void Initialize(Rigidbody projectileTransform, ICombatTarget source, ICombatTarget target);
     public abstract void UpdateMovement(float delta);
 }
 
 [System.Serializable]
 [ProjectileMovement("Stationary")]
-public class StationaryMovement : ProjectileMovementBehavior
+public class StationaryMovement : ConjureMovementBehavior
 {
-    public override ProjectileMovementBehavior Clone()
+    public override float Lifetime => 15f;
+
+    public override ConjureMovementBehavior Clone()
     {
         return new StationaryMovement();
     }
@@ -31,18 +35,21 @@ public class StationaryMovement : ProjectileMovementBehavior
     {
 
     }
+    
 }
 
 
 [System.Serializable]
 [ProjectileMovement("Straight")]
-public class StraightMovement  : ProjectileMovementBehavior
+public class StraightMovement  : ConjureMovementBehavior
 {
     [Min(0)] public float moveSpeed = 5f;
+    public override float Lifetime => 7f;
+    
     
     private Vector3 _moveDirection;
     
-    public override ProjectileMovementBehavior Clone()
+    public override ConjureMovementBehavior Clone()
     {
         return new StraightMovement 
         { 
@@ -62,19 +69,21 @@ public class StraightMovement  : ProjectileMovementBehavior
         projectileRb.position += _moveDirection * (moveSpeed * delta);
         projectileRb.rotation = Quaternion.LookRotation(_moveDirection);
     }
+    
 }
 
 [System.Serializable]
 [ProjectileMovement("Homing")]
-public class HomingMovement : ProjectileMovementBehavior
+public class HomingMovement : ConjureMovementBehavior
 {
     [Min(0)] public float moveSpeed = 5f;
     [Min(0)] public float turnSpeed = 5f;
+    public override float Lifetime => 5f;
 
     private ICombatTarget _target;
     private Vector3 _moveDirection;
 
-    public override ProjectileMovementBehavior Clone()
+    public override ConjureMovementBehavior Clone()
     {
         return new HomingMovement
         {
@@ -107,17 +116,18 @@ public class HomingMovement : ProjectileMovementBehavior
 
 [System.Serializable]
 [ProjectileMovement("Boomerang")]
-public class BoomerangMovement : ProjectileMovementBehavior
+public class BoomerangMovement : ConjureMovementBehavior
 {
         
     [Min(0)] public float moveSpeed = 5f;
     [Min(0)] public float turnSpeed = 5f;
     [Min(0)] public float returnAfterInSeconds = 5f;
+    public override float Lifetime => returnAfterInSeconds * 1.5f;
 
     private Vector3 _moveDirection;
     private float _timeSinceSpawn;
 
-    public override ProjectileMovementBehavior Clone()
+    public override ConjureMovementBehavior Clone()
     {
         return new BoomerangMovement
         {
@@ -155,4 +165,5 @@ public class BoomerangMovement : ProjectileMovementBehavior
         projectileRb.position += _moveDirection * (moveSpeed * delta);
         projectileRb.rotation = Quaternion.LookRotation(_moveDirection);
     }
+    
 }

@@ -36,9 +36,9 @@ public class SOSpellEditor : UnityEditor.Editor
         // Conjure settings (only for Conjure spells)
         if (spell.spellForm == SpellForm.Conjure)
         {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("projectilePrefab"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("projectileMovement"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("projectileCollision"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("conjurePrefab"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("conjureMovement"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("conjureCollision"));
         }
         
         serializedObject.ApplyModifiedProperties();

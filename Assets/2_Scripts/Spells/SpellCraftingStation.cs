@@ -30,32 +30,32 @@ public class SpellCraftingData
 
 public class SpellCraftingStation : MonoBehaviour
 {
-    [Header("Effects")]
-    [SerializeField] private int maxEffects = 3;
+    [Header("Spell Form")]
+    [SerializeField] private float imbueCost = 5f;
+    [SerializeField] private float invokeCost = 7f;
+    [SerializeField] private float conjureCost = 9f;
     
     [Header("Cast Method")]
-    [SerializeField] private float defaultChannelRate = 0.15f;
+    [SerializeField] private float defaultChannelRate = 0.1f;
     [SerializeField] private float defaultChargeRate = 1.5f;
-    
-    [Header("Cost Calculation")]
-    [SerializeField] private float baseManaCost = 5f;
-    [SerializeField] private float manaCostPerEffect = 3f;
-    [Space(10f)]
-    [SerializeField] private float imbueCost;
-    [SerializeField] private float invokeCost = 2f;
-    [SerializeField] private float conjureCost = 4f;
-    [Space(10f)]
     [SerializeField] private float instantCostMultiplier = 1f;
-    [SerializeField] private float chargeCostMultiplier = 0.5f;
-    [SerializeField] private float channelCostMultiplier = 1.5f;
-    
+    [SerializeField] private float chargeCostMultiplier = 0.75f;
+    [SerializeField] private float channelCostMultiplier = 1.25f;
+
+    [Header("Domain")]
+    [SerializeField] private int maxDomains = 4;
+
+    [Header("Effects")]
+    [SerializeField] private int maxEffects = 4;
     
     [Header("References")]
     [SerializeField] private Interactable interactable;
-    [SerializeField] private Projectile defaultProjectilePrefab;
+    [SerializeField] private Conjure defaultConjurePrefab;
 
     
     public int MaxEffects => maxEffects;
+    public int MaxDomains => maxDomains;
+    
     public event Action Opened;
     public event Action<SOSpell> SpellCrafted;
     
@@ -77,8 +77,7 @@ public class SpellCraftingStation : MonoBehaviour
     
     public float CalculateManaCost(SpellCraftingData data)
     {
-        float cost = baseManaCost;
-        cost += data.effectTypes.Count * manaCostPerEffect;
+        float cost = 0;
         
         switch (data.spellForm)
         {
@@ -92,6 +91,9 @@ public class SpellCraftingStation : MonoBehaviour
                 cost += conjureCost;
                 break;
         }
+        
+        cost *= data.effectTypes.Count;
+        
 
         switch (data.castMethod)
         {
@@ -109,7 +111,18 @@ public class SpellCraftingStation : MonoBehaviour
         return cost;
     }
 
+    public float CalculateConjureLifeTime(SpellCraftingData data)
+    {
+        var lifeTime = 0f;
+        
+        var movement = SpellTypeRegistry.CreateMovement(data.movementType);
+        if (movement != null)
+        {
+            lifeTime += movement.Lifetime;
+        }
     
+        return lifeTime;
+    }
     
     private string GenerateSpellName(SpellCraftingData data)
     {
@@ -226,6 +239,7 @@ public class SpellCraftingStation : MonoBehaviour
         spell.spellForm = data.spellForm;
         spell.domain = data.domain;
         spell.manaCost = CalculateManaCost(data);
+        spell.conjureLifeTime = CalculateConjureLifeTime(data);
         
 
         switch (data.castMethod)
@@ -244,14 +258,14 @@ public class SpellCraftingStation : MonoBehaviour
 
         if (data.spellForm == SpellForm.Conjure)
         {
-            if (!defaultProjectilePrefab)
+            if (!defaultConjurePrefab)
             {
                 Debug.LogError("No default projectile prefab assigned!");
             }
             
-            spell.projectilePrefab = defaultProjectilePrefab;
-            spell.projectileMovement = SpellTypeRegistry.CreateMovement(data.movementType);
-            spell.projectileCollision = SpellTypeRegistry.CreateCollision(data.collisionType);
+            spell.conjurePrefab = defaultConjurePrefab;
+            spell.conjureMovement = SpellTypeRegistry.CreateMovement(data.movementType);
+            spell.conjureCollision = SpellTypeRegistry.CreateCollision(data.collisionType);
         }
         
         SpellCrafted?.Invoke(spell);

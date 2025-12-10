@@ -127,7 +127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5942887148525320425
 Transform:
   m_ObjectHideFlags: 0
@@ -179,6 +179,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3633440116406003807}
   - {fileID: 2480945912231603368}
   - {fileID: 5942887148525320425}
   m_Father: {fileID: 0}
@@ -347,11 +348,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a0460d78fb4c2db3e1df3b1425de8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradableObject
+  startLevel: 0
   upgradeLevels:
-  - label: Upgrade 1
+  - label: Fix Ritual Circel
     description: 
     requiredItems:
     - item: {fileID: 11400000, guid: 73a0a58ed9b0472448dfe89084dd17cc, type: 2}
+      amount: 0
+    onUpgrade:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6789491372528917753}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 2607723024979019814}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - label: Fix Ritual Circel
+    description: 
+    requiredItems:
+    - item: {fileID: 11400000, guid: a272f1ba1fc837f44aeb4213011a5672, type: 2}
       amount: 1
     onUpgrade:
       m_PersistentCalls:
@@ -380,15 +414,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
-  - label: Upgrade 2
-    description: 
-    requiredItems:
-    - item: {fileID: 11400000, guid: a272f1ba1fc837f44aeb4213011a5672, type: 2}
-      amount: 1
-    onUpgrade:
-      m_PersistentCalls:
-        m_Calls: []
-  - label: Upgrade 3
+  - label: Fix Ritual Circel
     description: 
     requiredItems:
     - item: {fileID: 11400000, guid: fcb79f0d618c89a4b9742f990cb565ef, type: 2}
@@ -396,12 +422,12 @@ MonoBehaviour:
     onUpgrade:
       m_PersistentCalls:
         m_Calls: []
-  currentLevel: 0
   upgradeSuccessSfx: {fileID: 0}
   upgradeFailedSfx: {fileID: 0}
   audioSource: {fileID: 6823129833864669884}
   interactable: {fileID: 5205295219120547229}
-  tooltip: {fileID: 0}
+  tooltip: {fileID: 6568524505546975861}
+  currentLevel: 0
 --- !u!1 &6048451274761843267
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,3 +684,96 @@ Transform:
   - {fileID: 5952293590469889388}
   m_Father: {fileID: 1055648225926114135}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2730810066782692029
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1055648225926114135}
+    m_Modifications:
+    - target: {fileID: 1199903054658586160, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1199903054658586160, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.462
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303670623758452852, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 3303670623758452852, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 8926150755946574978, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: m_Name
+      value: UIPrefab_InteractbleTooltip
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137204916638959816, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+      propertyPath: interactable
+      value: 
+      objectReference: {fileID: 5205295219120547229}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+--- !u!4 &3633440116406003807 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1695987621058841314, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+  m_PrefabInstance: {fileID: 2730810066782692029}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6568524505546975861 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9137204916638959816, guid: 34e7d5b82c839dd4bb035977b79fb23e, type: 3}
+  m_PrefabInstance: {fileID: 2730810066782692029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56d4d04a2d94164be3820a3c164f543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

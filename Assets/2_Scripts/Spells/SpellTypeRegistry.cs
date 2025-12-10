@@ -70,14 +70,14 @@ public static class SpellTypeRegistry
                 
                 // Check for movement attribute
                 if (type.GetCustomAttribute<ProjectileMovementAttribute>() != null && 
-                    typeof(ProjectileMovementBehavior).IsAssignableFrom(type))
+                    typeof(ConjureMovementBehavior).IsAssignableFrom(type))
                 {
                     movementTypes.Add(type);
                 }
                 
                 // Check for collision attribute
                 if (type.GetCustomAttribute<ProjectileCollisionAttribute>() != null && 
-                    typeof(ProjectileCollisionBehavior).IsAssignableFrom(type))
+                    typeof(ConjureCollisionBehavior).IsAssignableFrom(type))
                 {
                     collisionTypes.Add(type);
                 }
@@ -110,13 +110,13 @@ public static class SpellTypeRegistry
         return Activator.CreateInstance(type) as SpellEffect;
     }
     
-    public static ProjectileMovementBehavior CreateMovement(Type type)
+    public static ConjureMovementBehavior CreateMovement(Type type)
     {
-        return Activator.CreateInstance(type) as ProjectileMovementBehavior;
+        return Activator.CreateInstance(type) as ConjureMovementBehavior;
     }
     
-    public static ProjectileCollisionBehavior CreateCollision(Type type)
+    public static ConjureCollisionBehavior CreateCollision(Type type)
     {
-        return Activator.CreateInstance(type) as ProjectileCollisionBehavior;
+        return Activator.CreateInstance(type) as ConjureCollisionBehavior;
     }
 }
