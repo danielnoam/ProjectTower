@@ -1,0 +1,6472 @@
+fileFormatVersion: 2
+guid: 373ab94ad223f8f46b8490ae6814176a
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 1979
+        width: 386
+        height: 418
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 062901331e8146d45b55906ba49af764
+      internalID: -2085838446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 2253
+        width: 395
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac0da55d5fd1ba34e8c5ac50b8785137
+      internalID: -747039350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1353
+        y: 2192
+        width: 639
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e74788332319c0a4abe5fb38432c6c9a
+      internalID: -540422702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 2108
+        y: 2189
+        width: 199
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95c76f5c68eca7c4dbef51f2cb3cc125
+      internalID: -1873771410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 2380
+        y: 2189
+        width: 199
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06e300bf41bbd6f41ac127371b1ee1b2
+      internalID: 2012213552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 2669
+        y: 2189
+        width: 199
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8eed104fa16c234a8a7877548311ad3
+      internalID: -1218299267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 2941
+        y: 2189
+        width: 199
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f1a7c20f9d0a6c4a8c91222487e6ca2
+      internalID: -456595172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 2151
+        width: 256
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86e88537b6ed8874f93b03fbb82016aa
+      internalID: 420349043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 2380
+        y: 1997
+        width: 216
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9cffce385a6cce478a24abec949b757
+      internalID: -964821968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 2941
+        y: 1997
+        width: 213
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d7bb6033b8d05245bfb6c33f2ada10d
+      internalID: 845744160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 2040
+        width: 301
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45c791bd8d5c3ea48b7362e3bffe0c6a
+      internalID: -196926785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 1957
+        width: 182
+        height: 183
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baaaa3ec41660a64b8374280b0f72dc1
+      internalID: 677952111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 1609
+        y: 2019
+        width: 239
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26c687c2ed7cd4b4d8a16edcfa230b8a
+      internalID: 582501802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 2101
+        y: 2078
+        width: 206
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbaa5e1994212364bad28e4e5d13989c
+      internalID: 2131495108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 2662
+        y: 2078
+        width: 206
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa2e4490423736541b6500436a1f687c
+      internalID: 52098052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_15
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 1886
+        width: 568
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 036a2fadce2e1104db2de696bbea0bbe
+      internalID: 1117697062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_16
+      rect:
+        serializedVersion: 2
+        x: 2094
+        y: 1934
+        width: 229
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 257d92baf0d7df544b6613359836ce62
+      internalID: -276035624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_17
+      rect:
+        serializedVersion: 2
+        x: 2380
+        y: 1806
+        width: 216
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c1b3979de055394ea72b24a9dcecf16
+      internalID: -642720567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_18
+      rect:
+        serializedVersion: 2
+        x: 2652
+        y: 1934
+        width: 230
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85d3edbded615b247ad6281674369657
+      internalID: 1491142642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_19
+      rect:
+        serializedVersion: 2
+        x: 2941
+        y: 1806
+        width: 213
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e91286f8ed03064e907935413e19aff
+      internalID: -2021283817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_20
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 1742
+        width: 398
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d018b8696993fc4bb56d8e7d6d4e214
+      internalID: -648285066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_21
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 1661
+        width: 581
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1935f785adcd1d478b87ca3d4dd9e5a
+      internalID: 390752653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_22
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 1564
+        width: 69
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d33f2b4c6e13f8144abd5dff5a809dfe
+      internalID: 1444463950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_23
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 1564
+        width: 71
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e06c9d01dcead46ac84cc31dbaf306
+      internalID: 984627603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_24
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 1178
+        width: 628
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3d098b66427ef94f853524fd6903491
+      internalID: -489335986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_25
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 1437
+        width: 421
+        height: 195
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbdbc140855a1d848bc1e0589cc2d835
+      internalID: 1743384622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_26
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 1342
+        width: 69
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d2f61c36cc6ca0489fa484c8e3d6f79
+      internalID: 1301923406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_27
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 1342
+        width: 71
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76d3bbf83157ba84a9414c0b611ff8e4
+      internalID: 814428668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_28
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 1261
+        width: 421
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998cf141309707e4eb5e10c073eb88a3
+      internalID: 1178914119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_29
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 1235
+        width: 85
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a6f49581319c734498fe6176f476d7a
+      internalID: 1905390659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_30
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 1235
+        width: 85
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80362c11eb63c774f9bc9052aff7829c
+      internalID: -2048401353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_31
+      rect:
+        serializedVersion: 2
+        x: 1805
+        y: 1235
+        width: 85
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e9455f7516fab4481d2c6d1f80547d
+      internalID: -85369778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_32
+      rect:
+        serializedVersion: 2
+        x: 1916
+        y: 1235
+        width: 87
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7e457141a0a6aa448cb74df9f9db218
+      internalID: 1911875818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_33
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 1235
+        width: 85
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad5ff628768a3424088bfdada7cdbbc1
+      internalID: -1097220665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_34
+      rect:
+        serializedVersion: 2
+        x: 2141
+        y: 1235
+        width: 85
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0f6d30ebf8f9314e936c738bc60cfb7
+      internalID: -1611020864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_35
+      rect:
+        serializedVersion: 2
+        x: 2271
+        y: 1247
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab72fd5074db5084782ca90b5b398bdb
+      internalID: -57661557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_36
+      rect:
+        serializedVersion: 2
+        x: 2302
+        y: 1247
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74a67877755ca024c9908d73c79c0b6c
+      internalID: -1393987780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_37
+      rect:
+        serializedVersion: 2
+        x: 2338
+        y: 1247
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60ce02463d9f31e449494956eb00bb76
+      internalID: -890036681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_38
+      rect:
+        serializedVersion: 2
+        x: 2368
+        y: 1247
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d9f37735b162f84abf9a8cc105285af
+      internalID: 223402448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_39
+      rect:
+        serializedVersion: 2
+        x: 2402
+        y: 1240
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f135b8fcc8f01a49acf7368ba0e67e2
+      internalID: 127250721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_40
+      rect:
+        serializedVersion: 2
+        x: 2432
+        y: 1240
+        width: 17
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fddd6715bf8a62341ba95594ad60f5a5
+      internalID: 1440499263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_41
+      rect:
+        serializedVersion: 2
+        x: 2465
+        y: 1247
+        width: 24
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c36f0a56919de147a233046fd1ba888
+      internalID: 2120397818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_42
+      rect:
+        serializedVersion: 2
+        x: 2503
+        y: 1240
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f95877bc36edf1447a55669de90078d1
+      internalID: 1872549557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_43
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 1133
+        width: 421
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d371190ba60cf34e88b9cab19eb2614
+      internalID: -1368953556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_44
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 1202
+        width: 85
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1eb5cc32e8daf5d42ace906df76650de
+      internalID: 1834090014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_45
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 1202
+        width: 85
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31e5fdd2b6f805540850dfaf169e2281
+      internalID: 1142443677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_46
+      rect:
+        serializedVersion: 2
+        x: 1805
+        y: 1202
+        width: 85
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c450a50260632f346bdce9537d45d7e4
+      internalID: 874497411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_47
+      rect:
+        serializedVersion: 2
+        x: 1916
+        y: 1202
+        width: 87
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e49e9f3c7f74ce4da462daf082c186a
+      internalID: -114092255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_48
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 1202
+        width: 85
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91e7912e5bc6c1040aa1e702b0f3d227
+      internalID: -1106969381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_49
+      rect:
+        serializedVersion: 2
+        x: 2141
+        y: 1202
+        width: 85
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54b861d6dc28c794a8847009c16c314c
+      internalID: 1818522050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_50
+      rect:
+        serializedVersion: 2
+        x: 2271
+        y: 1197
+        width: 19
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 807777d3ca63a014087133776d67bf5d
+      internalID: -413338574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_51
+      rect:
+        serializedVersion: 2
+        x: 2302
+        y: 1197
+        width: 19
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 502c46d7f9bbdee40ae8a130e41e1ac7
+      internalID: 1454245472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_52
+      rect:
+        serializedVersion: 2
+        x: 2335
+        y: 1207
+        width: 66
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e46955cac76be04c87ac175b8e809cd
+      internalID: -65457792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_53
+      rect:
+        serializedVersion: 2
+        x: 2416
+        y: 1199
+        width: 19
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48772dc1aea1cbc4789e7c8e178f151a
+      internalID: -1013505092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_54
+      rect:
+        serializedVersion: 2
+        x: 2447
+        y: 1199
+        width: 18
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53977bc770fee20488308fc402952aba
+      internalID: 1862689438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_55
+      rect:
+        serializedVersion: 2
+        x: 2482
+        y: 1202
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27e500a8477d26841b205eb19aa5031c
+      internalID: -1082713598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_56
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 1154
+        width: 85
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 794592297f43a804f94f5945d2f760bb
+      internalID: -490097734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_57
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 1154
+        width: 85
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2460db997f947d40a473325431ccf50
+      internalID: -870619566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_58
+      rect:
+        serializedVersion: 2
+        x: 1805
+        y: 1154
+        width: 85
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 476e9963bb7604940aaf0d4c0a485549
+      internalID: 1258279799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_59
+      rect:
+        serializedVersion: 2
+        x: 1916
+        y: 1154
+        width: 87
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25973bb1ac7dc9a4bb6c81bcdf030c03
+      internalID: 1960609634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_60
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 1154
+        width: 85
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d8aa5aad4651294d8efba3628f0afda
+      internalID: 773389233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_61
+      rect:
+        serializedVersion: 2
+        x: 2141
+        y: 1154
+        width: 85
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9c588812c406af488a21df4c59e28d0
+      internalID: -1293985008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_62
+      rect:
+        serializedVersion: 2
+        x: 2274
+        y: 1154
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b4542dc659f76644b67a0fd778ba9e3
+      internalID: 86169768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_63
+      rect:
+        serializedVersion: 2
+        x: 2307
+        y: 1152
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 775736eb013192b469a6db5e00f3892c
+      internalID: -314367819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_64
+      rect:
+        serializedVersion: 2
+        x: 2338
+        y: 1152
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a81aa42ba174eab46adb2f24c2c97da5
+      internalID: -149891798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_65
+      rect:
+        serializedVersion: 2
+        x: 1566
+        y: 1121
+        width: 85
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c2f43bfe03f9d04aaa58a7da85dd8ea
+      internalID: -2131859847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_66
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 1121
+        width: 85
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 676af706ee055e04bb51d77d35f2990f
+      internalID: -455682628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_67
+      rect:
+        serializedVersion: 2
+        x: 1805
+        y: 1121
+        width: 85
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb9cfefb546778408d05d86b4fce2fd
+      internalID: 779807870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_68
+      rect:
+        serializedVersion: 2
+        x: 1916
+        y: 1121
+        width: 87
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64c006dfa1baad446a1c9d6077a9751d
+      internalID: -89151539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_69
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 1121
+        width: 85
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60f5f32e2e59eb144978db2b341b0106
+      internalID: 829466443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_70
+      rect:
+        serializedVersion: 2
+        x: 2141
+        y: 1121
+        width: 85
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1dcf4a2e9183e746a2a78f2726cefd4
+      internalID: 952049557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_71
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 946
+        width: 59
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c141fa5feb249494e9264ed485dc17a0
+      internalID: -2033434116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_72
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 946
+        width: 61
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 865a7dfa36dd4e143ac84324dcdfbe60
+      internalID: 1925917265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_73
+      rect:
+        serializedVersion: 2
+        x: 929
+        y: 996
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 916f6747db8d7f24fb0e8a217e23cf9b
+      internalID: 1714061852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_74
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 1003
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d64f6926b6816204bbc288d59c02c091
+      internalID: 1337899012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_75
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 996
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa566a0a4b0fbb54890609c4e08a69d6
+      internalID: -2066077248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_76
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 920
+        width: 56
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f00cd06dc5b2754c8afaee11ddab01c
+      internalID: -135575622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_77
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 925
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0861c0660088cda479f6b202e5a0d4da
+      internalID: 1811408629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_78
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 930
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 202204efe8e2b2349b9d94cab5fe59d9
+      internalID: -1459883838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_79
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 937
+        width: 57
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3490a293ed4e8184f8d945b8e0548c31
+      internalID: -431196436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_80
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 941
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e67ecdc9afb93834d9415904c90c74b6
+      internalID: -1274289807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_81
+      rect:
+        serializedVersion: 2
+        x: 676
+        y: 944
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f09eb6963fe8f46bc95b2bf1e03be9
+      internalID: -1106383045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_82
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 946
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4b09a8cdfc415c41bf0650943ee109f
+      internalID: 1256551007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_83
+      rect:
+        serializedVersion: 2
+        x: 974
+        y: 977
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a800b23743b43945a813344c6f88d79
+      internalID: -1841433937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_84
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 946
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7b822bda1e92e544a7c726cc1520f98
+      internalID: 711402452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_85
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 946
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdda13c3545a70e43893a621726fea9d
+      internalID: 1745608954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_86
+      rect:
+        serializedVersion: 2
+        x: 1156
+        y: 946
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d0b0339c0b7df04294c73ffae361ce9
+      internalID: -1417396174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_87
+      rect:
+        serializedVersion: 2
+        x: 1237
+        y: 946
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f25da77c4d5f2449a470ab84e9033aa
+      internalID: 1346383341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_88
+      rect:
+        serializedVersion: 2
+        x: 1317
+        y: 946
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8c4c7119abe1bf41903a6d38b394c5a
+      internalID: 1651721829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_89
+      rect:
+        serializedVersion: 2
+        x: 1395
+        y: 944
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5b5f8b6e3855c4fb4bbb35c552cc8c
+      internalID: -1411416259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_90
+      rect:
+        serializedVersion: 2
+        x: 1474
+        y: 941
+        width: 54
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d1daeace5ee04642848622ff5b6656e
+      internalID: 727808422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_91
+      rect:
+        serializedVersion: 2
+        x: 1547
+        y: 937
+        width: 57
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30fc8a955e790a34e91b94f5c62511a7
+      internalID: -1720428392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_92
+      rect:
+        serializedVersion: 2
+        x: 1623
+        y: 930
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d708f3f7d1c38d4ba86fc1e2db3d9e1
+      internalID: -999572358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_93
+      rect:
+        serializedVersion: 2
+        x: 1696
+        y: 925
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2492307d96f8c474c89f26a0f53b7477
+      internalID: -728137472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_94
+      rect:
+        serializedVersion: 2
+        x: 1772
+        y: 920
+        width: 54
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb8623f185a8cfa499a53a8be965bffd
+      internalID: -511342227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_95
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 925
+        width: 35
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09cb86d6c1e2cc1418893d77d811bf37
+      internalID: -1592608844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_96
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 958
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab9132f9374b9da479c3060bd34d5f2e
+      internalID: -185158033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_97
+      rect:
+        serializedVersion: 2
+        x: 3741
+        y: 733
+        width: 582
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e844f0358fbf54f4cb0e9c359a4557b9
+      internalID: -2083963925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_98
+      rect:
+        serializedVersion: 2
+        x: 4414
+        y: 750
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de60beb63b5e1ea4b933cdc933150ec9
+      internalID: -659862042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_99
+      rect:
+        serializedVersion: 2
+        x: 4541
+        y: 750
+        width: 69
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 523e0547f565ece4e83e4c331a0990e7
+      internalID: 2073685289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_100
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 487
+        width: 187
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f9f6943ec2cbeb48ac943a6443e045c
+      internalID: -640800201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_101
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 669
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6063590f2718c874daad5ee813c80f3d
+      internalID: 295271068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_102
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 669
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef9d6d5e4f21c3d46aa6fea70c8fb3f6
+      internalID: -380893668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_103
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 671
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4616398fbc5ce584680c2753f9120c49
+      internalID: 1529035854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_104
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 669
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5830415c653d994468b3b83d80179e5c
+      internalID: -1947167039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_105
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 669
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a48d816011b8d424eae369ea935683a3
+      internalID: -1946809732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_106
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 669
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b856d2ff7429b4c92f74767c39471a
+      internalID: 1115703705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_107
+      rect:
+        serializedVersion: 2
+        x: 1310
+        y: 638
+        width: 36
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcc8db5e7c8ba3e4c84080ae521b6c70
+      internalID: -1856700751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_108
+      rect:
+        serializedVersion: 2
+        x: 1784
+        y: 615
+        width: 54
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d289ff25726dbc4484468bf26e7b198
+      internalID: -349619575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_109
+      rect:
+        serializedVersion: 2
+        x: 1999
+        y: 636
+        width: 81
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b59f7092902334499dec5d326e4c84d
+      internalID: -1807045094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_110
+      rect:
+        serializedVersion: 2
+        x: 2120
+        y: 636
+        width: 64
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fc1502041284c047b1a8f4b8cf8e153
+      internalID: 939201624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_111
+      rect:
+        serializedVersion: 2
+        x: 2215
+        y: 636
+        width: 66
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16fb0f46d65f21b4fa25310cb9e1bc0a
+      internalID: 484822008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_112
+      rect:
+        serializedVersion: 2
+        x: 2312
+        y: 636
+        width: 63
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a49eadbe878cf646af642d7b138de97
+      internalID: -1634167440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_113
+      rect:
+        serializedVersion: 2
+        x: 2406
+        y: 636
+        width: 66
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3220109f6f1876499f1ddcd5946d74d
+      internalID: -1543515612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_114
+      rect:
+        serializedVersion: 2
+        x: 2503
+        y: 636
+        width: 64
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bc6ef2d0ee2d98458dcd4e4ae2a3dc0
+      internalID: 795387277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_115
+      rect:
+        serializedVersion: 2
+        x: 2766
+        y: 589
+        width: 102
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10661e5bbabfc6d4d9acd1ab5b496745
+      internalID: 220316386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_116
+      rect:
+        serializedVersion: 2
+        x: 2899
+        y: 596
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12cd9755e165d0249a6d28321dafde4e
+      internalID: 2058316407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_117
+      rect:
+        serializedVersion: 2
+        x: 3069
+        y: 558
+        width: 199
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c7946e7ebaac0146903cb6544382a24
+      internalID: 529874654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_118
+      rect:
+        serializedVersion: 2
+        x: 3341
+        y: 558
+        width: 199
+        height: 165
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6a952b56a5ead8498ffc1a65ae1f3f0
+      internalID: 2010578573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_119
+      rect:
+        serializedVersion: 2
+        x: 3805
+        y: 558
+        width: 422
+        height: 149
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a1a06d6704cdd248a9b7864a5038cc5
+      internalID: -1675974124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_120
+      rect:
+        serializedVersion: 2
+        x: 4414
+        y: 669
+        width: 68
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82e5cf76e4f6c9a49bc8f561e72ecc2a
+      internalID: 552346165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_121
+      rect:
+        serializedVersion: 2
+        x: 4541
+        y: 669
+        width: 69
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab0842c5f9d53c143a826ac9f9362125
+      internalID: 1564787389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_122
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 541
+        width: 114
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52b6c1dd228eab344a6b16574eeeedf5
+      internalID: -909727229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_123
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 636
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 789137a64da82134e85877989ddf0271
+      internalID: 758066864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_124
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 638
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb6b40e995b43f8469db4f9b57b0b72f
+      internalID: -252849171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_125
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 638
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acde88e406f3a4745b192a6a698ff1e8
+      internalID: -1398506539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_126
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 637
+        width: 23
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 999608cb56ea9fb4db5e7804ad33a69d
+      internalID: 2080368419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_127
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 636
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29c58482f2e400d47b14d00992b06b2d
+      internalID: -1223985385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_128
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 638
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01614f127be460345b7f6363246dc3a0
+      internalID: 298025972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_129
+      rect:
+        serializedVersion: 2
+        x: 1377
+        y: 593
+        width: 56
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 441923ed61615d4408d0e90367475803
+      internalID: 1326525252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_130
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 598
+        width: 57
+        height: 59
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06c5eb3a96ff3ab48a29aed8c679e09e
+      internalID: -2000686891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_131
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 605
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 533f9dc5629b20945880aba62906803e
+      internalID: -1961597244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_132
+      rect:
+        serializedVersion: 2
+        x: 1682
+        y: 610
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da9019c8c2e1af1478da9985ce216bb8
+      internalID: 1608009218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_133
+      rect:
+        serializedVersion: 2
+        x: 4414
+        y: 589
+        width: 68
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40491b3046067334294a750c7836e1f3
+      internalID: 913119261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_134
+      rect:
+        serializedVersion: 2
+        x: 4541
+        y: 589
+        width: 69
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b89e0f9752b2abb4780851d1db67f8ec
+      internalID: -1867430436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_135
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 605
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c81a4acbfa9d924a92d50060abc48f8
+      internalID: 1115755102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_136
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 605
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccacee1dbf0185a4ca5b6a3e0f6cad9b
+      internalID: -1741846245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_137
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 605
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a6781511e411e647a3fb23dcd60d9e1
+      internalID: -653344490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_138
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 560
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 260dcc92a3c425c4ab663dbd9e712b37
+      internalID: -2011613989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_139
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 558
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35bad8adb71fc1c4d8ee8be072bfe476
+      internalID: -1849509062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_140
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 558
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542ae01177a17ef498f88dd1f03bb150
+      internalID: 1350522244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_141
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 558
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6258df83258a3f64fa7179af1669649b
+      internalID: 445647142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_142
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 558
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81fe6c20319d02c4696d83f5790d0667
+      internalID: 451632626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_143
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 558
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 699bc72cf7351ae458cad3dde60f7461
+      internalID: 1900472102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_144
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 508
+        width: 56
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88b6c7f65c4c7d74e90dfde49eabf86f
+      internalID: 1946541570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_145
+      rect:
+        serializedVersion: 2
+        x: 1594
+        y: 508
+        width: 62
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96582148b58ea4a4f9c7b0e9490ed22e
+      internalID: 97964417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_146
+      rect:
+        serializedVersion: 2
+        x: 1703
+        y: 558
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 562aeda1e3d1c8645b1a5d15c6fff7f4
+      internalID: -198725246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_147
+      rect:
+        serializedVersion: 2
+        x: 1722
+        y: 565
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76a829d5ecacc534d8daa1de249b836a
+      internalID: -800079218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_148
+      rect:
+        serializedVersion: 2
+        x: 1741
+        y: 558
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842799b3614f3114b8bf0cdf2703a706
+      internalID: -371156549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_149
+      rect:
+        serializedVersion: 2
+        x: 2136
+        y: 565
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd5fe04795fef64488a44601b071bc1d
+      internalID: 613641155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_150
+      rect:
+        serializedVersion: 2
+        x: 2227
+        y: 560
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18160524a54eb04499a611b2495799fa
+      internalID: -83095458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_151
+      rect:
+        serializedVersion: 2
+        x: 2328
+        y: 565
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ebeff46ee608ea4e9d0630b2670d6fa
+      internalID: -380874798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_152
+      rect:
+        serializedVersion: 2
+        x: 2416
+        y: 565
+        width: 47
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef55019299458514781c473e5b13868e
+      internalID: 1360626513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_153
+      rect:
+        serializedVersion: 2
+        x: 2520
+        y: 565
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0e2d0d7d5881fd488079f48cf491007
+      internalID: -1713904515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_154
+      rect:
+        serializedVersion: 2
+        x: 2766
+        y: 477
+        width: 102
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9475d158c0b66f43972bb1a56a16f7b
+      internalID: 649460606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_155
+      rect:
+        serializedVersion: 2
+        x: 2899
+        y: 482
+        width: 90
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 033c61105939fae47996c0042ad062e6
+      internalID: -191368292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_156
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 506
+        width: 57
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cfd4823bebb18c4f8962e6a854aa2ab
+      internalID: 146468789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_157
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 508
+        width: 55
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b07c57e2a5803424b817b1a5e946770d
+      internalID: 2042338572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_158
+      rect:
+        serializedVersion: 2
+        x: 1748
+        y: 540
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72d122105af54674d89411d0811c8917
+      internalID: -1381248809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_159
+      rect:
+        serializedVersion: 2
+        x: 1786
+        y: 508
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0c425b03afa7f045b7bb3901be9b668
+      internalID: 1654409829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_160
+      rect:
+        serializedVersion: 2
+        x: 4172
+        y: 418
+        width: 88
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56cb9a09dce96394da26b09b3e06014c
+      internalID: -987693058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_161
+      rect:
+        serializedVersion: 2
+        x: 4414
+        y: 494
+        width: 68
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7ba136f39fef7247b3c15af67b93279
+      internalID: -1744644089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_162
+      rect:
+        serializedVersion: 2
+        x: 4541
+        y: 494
+        width: 69
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30a280b4b9ce002449c9727bdeff503b
+      internalID: -757109419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_163
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 491
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1ef0406a7190fb45b74e0318fddd1a0
+      internalID: 1539307479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_164
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 491
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb2c7865fd5888444a1751c46a00f17e
+      internalID: 845001874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_165
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 494
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7241dc0e6606d9740b68dceca8a91128
+      internalID: -1708676673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_166
+      rect:
+        serializedVersion: 2
+        x: 1741
+        y: 520
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e22f42e1033485044af01976ea6bf50f
+      internalID: 854935468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_167
+      rect:
+        serializedVersion: 2
+        x: 2115
+        y: 496
+        width: 71
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2641ce89d883bdc4aa9c7dec17fde664
+      internalID: -1189958052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_168
+      rect:
+        serializedVersion: 2
+        x: 2212
+        y: 496
+        width: 71
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9625902b06e689d469b27f8735fb026d
+      internalID: -455188952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_169
+      rect:
+        serializedVersion: 2
+        x: 2307
+        y: 496
+        width: 71
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a978ec20f8e0d5449a2f2437ec98695
+      internalID: 833354926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_170
+      rect:
+        serializedVersion: 2
+        x: 2404
+        y: 496
+        width: 71
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c95ab0a56b9f40a43898a93c5fdb2707
+      internalID: -1152447320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_171
+      rect:
+        serializedVersion: 2
+        x: 2501
+        y: 496
+        width: 69
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eae1a9f67ce1dc4a8455b7022d90f40
+      internalID: -77522926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_172
+      rect:
+        serializedVersion: 2
+        x: 3069
+        y: 477
+        width: 199
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 452744903de69be428da3bf84d584ba7
+      internalID: -657686847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_173
+      rect:
+        serializedVersion: 2
+        x: 3341
+        y: 366
+        width: 213
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49aa9c3fe066575478e1c81521ed7177
+      internalID: -530884269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_174
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 413
+        width: 54
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a96e50190d970844ab2a4eecd437168
+      internalID: 677463712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_175
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 399
+        width: 83
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3fabf9860bcf714cb7161f39f114c10
+      internalID: 864175327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_176
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 444
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f8abd6d7400b6f4fa31d69d7b1b16af
+      internalID: -1863972107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_177
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 444
+        width: 38
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c74a804b4a9d5a47b2cc8a68ff61107
+      internalID: 510971078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_178
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 444
+        width: 38
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 444ca6bebdddb5e4cac8f4f1bf6e09d6
+      internalID: -846459144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_179
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 450
+        width: 64
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1254b18a7c8c6534e87b08c33154c90d
+      internalID: -718212753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_180
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 430
+        width: 71
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76c5b93a8b0df7b4693a51705ff30c0f
+      internalID: 48378888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_181
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 430
+        width: 69
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c420924f130fb94b8c4708d54cb07b3
+      internalID: -613703188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_182
+      rect:
+        serializedVersion: 2
+        x: 1403
+        y: 394
+        width: 54
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a35daa883df1bbf4887d522406507429
+      internalID: -226946175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_183
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 394
+        width: 54
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32553dadbee7c384a9bc3d7a0841f5e0
+      internalID: 382753390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_184
+      rect:
+        serializedVersion: 2
+        x: 1594
+        y: 394
+        width: 55
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be691301bacc74428601a8cd342426f
+      internalID: -932610576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_185
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 394
+        width: 55
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4963b531b314ddb4fa46c338b30b89c7
+      internalID: 279990231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_186
+      rect:
+        serializedVersion: 2
+        x: 3053
+        y: 366
+        width: 229
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b96aef490aa2bce4eab156df48499ed9
+      internalID: -518803907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_187
+      rect:
+        serializedVersion: 2
+        x: 3805
+        y: 349
+        width: 119
+        height: 133
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15b4e6f8b3b170847b5f683b6cb61229
+      internalID: -192217533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_188
+      rect:
+        serializedVersion: 2
+        x: 3933
+        y: 418
+        width: 230
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff2e8bc70735ce47b8024b682bb20cb
+      internalID: -809186401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_189
+      rect:
+        serializedVersion: 2
+        x: 4414
+        y: 413
+        width: 68
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8518c3d9b9f9634a8ca5adc87e4f272
+      internalID: 451784682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_190
+      rect:
+        serializedVersion: 2
+        x: 4541
+        y: 413
+        width: 69
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 219ae7c13e0477240bac7799b0bff1ab
+      internalID: 887622922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_191
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 404
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 267daac4c4b65694f886cd357dc78780
+      internalID: 560075178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_192
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 404
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 035ccf7b83b3f794ea9b0f066136d3f0
+      internalID: -1021471656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_193
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 404
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc0871e15c1001541ba0ad73f472e0c4
+      internalID: -697865604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_194
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 397
+        width: 40
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f98c63be3053ec40898a0a4a00fa441
+      internalID: 925260468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_195
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 418
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8307bb8b4768cf4a881e84af8f72d99
+      internalID: -1192008478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_196
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 419
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4babe608969041a49b171ac49fd8ba84
+      internalID: 2074516841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_197
+      rect:
+        serializedVersion: 2
+        x: 605
+        y: 397
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a801e6afab7c37647866fd7bd587bcca
+      internalID: 1343237518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_198
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 335
+        width: 102
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eef5b6517c2e24d418608c6faa6b1a23
+      internalID: -1497423034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_199
+      rect:
+        serializedVersion: 2
+        x: 1786
+        y: 392
+        width: 54
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d7fe456f5b150741a979f2076e17ddb
+      internalID: -1107710757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_200
+      rect:
+        serializedVersion: 2
+        x: 2759
+        y: 425
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49f08cc17e898214b8a4ac01a74315bd
+      internalID: 292834790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_201
+      rect:
+        serializedVersion: 2
+        x: 2790
+        y: 425
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03f5122d7309e4041bd885b9ee71cdbe
+      internalID: 2043629132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_202
+      rect:
+        serializedVersion: 2
+        x: 2823
+        y: 425
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8c8816c00d585446af3c9d5adea5a9d
+      internalID: 545495778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_203
+      rect:
+        serializedVersion: 2
+        x: 2856
+        y: 425
+        width: 17
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed41ceb9b8034b14682dead494c858b5
+      internalID: 707336042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_204
+      rect:
+        serializedVersion: 2
+        x: 2887
+        y: 383
+        width: 21
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caf737b9f325aa445b4b11b9bd33d958
+      internalID: -1948285007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_205
+      rect:
+        serializedVersion: 2
+        x: 2920
+        y: 383
+        width: 19
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98a282cb7b9a0534e94dec2c11518e7e
+      internalID: 1457294693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_206
+      rect:
+        serializedVersion: 2
+        x: 2948
+        y: 425
+        width: 24
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 601e253b05699f94785150c217be6302
+      internalID: -169604100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_207
+      rect:
+        serializedVersion: 2
+        x: 2984
+        y: 420
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 131be5672644e7e42b2f2a671c7d2f6b
+      internalID: 617563372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_208
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 399
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da7e8319ea545ff4abb297712fa9a23a
+      internalID: 227962367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_209
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 399
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6289925663e587648a43f8ce32928040
+      internalID: -1761113293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_210
+      rect:
+        serializedVersion: 2
+        x: 2754
+        y: 354
+        width: 26
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cbab46ffb91b34489a3d53d7bdfe462
+      internalID: 2100154731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_211
+      rect:
+        serializedVersion: 2
+        x: 2787
+        y: 354
+        width: 26
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85871240a5ac050429a8d118874150fd
+      internalID: 300990064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_212
+      rect:
+        serializedVersion: 2
+        x: 2816
+        y: 390
+        width: 66
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ec3823cdc4fcf04ab849b6a5216a8f5
+      internalID: 662470332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_213
+      rect:
+        serializedVersion: 2
+        x: 2946
+        y: 387
+        width: 28
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dd3ad35f45eebc4b9c7e8b9bf0b0dce
+      internalID: -1254751765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_214
+      rect:
+        serializedVersion: 2
+        x: 2978
+        y: 387
+        width: 29
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42fcddb84713eb641a493c4f6793a51c
+      internalID: -2051045765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_215
+      rect:
+        serializedVersion: 2
+        x: 4414
+        y: 333
+        width: 68
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86921e4b753f2d44d84d49b741fa7907
+      internalID: 966408466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_216
+      rect:
+        serializedVersion: 2
+        x: 4541
+        y: 333
+        width: 69
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9903f30c0aa32d44a89da099647548b5
+      internalID: -1054542999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_217
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 371
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39521ab6fe90c4444b84c915f1049154
+      internalID: -1707301117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_218
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 371
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3266ca74693b2ec49825941b7f160bf2
+      internalID: 1587306355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_219
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 371
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8f5031d225f3344397f064a809fe4c4
+      internalID: -1534523361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_220
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 349
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 351ebf95f7bdbaa4584652eca5a3d482
+      internalID: 1498277395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_221
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 378
+        width: 37
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 966f9c00bc657e142abacd87e70cb109
+      internalID: 1490506410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_222
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 349
+        width: 40
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc884da72eaf4aa409b6ef5fb7001542
+      internalID: -499437883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_223
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 337
+        width: 38
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b517d97b33f57843adf75fcb659fdd1
+      internalID: -18247781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_224
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 342
+        width: 57
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8784547d0522c18448471ccca3afdf5c
+      internalID: 1365317894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_225
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 340
+        width: 61
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a799b052e898c49a77f2cbf4abdc93
+      internalID: 952169358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_226
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 349
+        width: 37
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c443192f393e2143a6e83cdf1d7cfec
+      internalID: 803620810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_227
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 354
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70978bdd435509b448af61cea947aa2f
+      internalID: -1755253023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_228
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 349
+        width: 114
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cda3225068bcc745ad61dacd8fcf3e2
+      internalID: 632663782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_229
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 323
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e6adc89f430bc42a85af1b4957ff21
+      internalID: 955972998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_230
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 323
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2fff87ee4f050d43b446f80e64f8e9a
+      internalID: -1858247733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_231
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 323
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a7d54ce10064154bba5f2ed140e534b
+      internalID: 1118174874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_232
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 316
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e246233271485242aca1175ec109328
+      internalID: -1318419118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_233
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 304
+        width: 11
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51301d79298221641a993ab25954e662
+      internalID: -1846777125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_234
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 319
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec0afbc132fcf07418a3462721834b11
+      internalID: 1333258498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_235
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 319
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2eb4fbbf00a2b5489e5eff5494eab6e
+      internalID: 983683200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_236
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 319
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17380ef87f9499745a887696466e70f6
+      internalID: 1570716767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_237
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 316
+        width: 55
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fe96f785078b0640a81030af0cac160
+      internalID: -192557041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_238
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 316
+        width: 55
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d84b296b9054caa419809549411188e4
+      internalID: -1944152983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_239
+      rect:
+        serializedVersion: 2
+        x: 1398
+        y: 278
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb20ae3812654d444b22e19aa89cf601
+      internalID: 2001068876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_240
+      rect:
+        serializedVersion: 2
+        x: 1490
+        y: 274
+        width: 57
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7048b1130b58a6741ae69c64fa31c8a7
+      internalID: -2065749671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_241
+      rect:
+        serializedVersion: 2
+        x: 1580
+        y: 269
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7dd7ba20ccf51f46b49abffcf187650
+      internalID: 391024176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_242
+      rect:
+        serializedVersion: 2
+        x: 1997
+        y: 321
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27595e228e3ed1c4caf7e43c6d0a59d6
+      internalID: 553279432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_243
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 321
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a34672b011d5f34f9334e18a2f3818a
+      internalID: -722419686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_244
+      rect:
+        serializedVersion: 2
+        x: 2061
+        y: 321
+        width: 21
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2cd870a5cb5a24e8c31e03e8d66749
+      internalID: 1017233437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_245
+      rect:
+        serializedVersion: 2
+        x: 3341
+        y: 174
+        width: 213
+        height: 166
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 815c6b033bd715a4d83786706176124f
+      internalID: -992959732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_246
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 290
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c346ed7ff87d3b841ba8b9d5f0149d08
+      internalID: 1714962065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_247
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 290
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44fec8ee54f90dd47a620d3ba9c82ca9
+      internalID: 1981027080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_248
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 290
+        width: 38
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4816bf52aec6a74f84a3bba660a4e44
+      internalID: 953199142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_249
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 285
+        width: 12
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7274afa4f54447f4ab33fd8bfda9452d
+      internalID: -120669879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_250
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 295
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 299ef9399654aeb4ebbc5ae6dd9f75a4
+      internalID: 851058200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_251
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 295
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3252056eb037c34f80fd68c6120dcf3
+      internalID: -1351677320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_252
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 286
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8578c1b43e87b24da718c8dc808a60e
+      internalID: -1018568595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_253
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 304
+        width: 28
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeff80aaae2702149b6713c2d15c8efe
+      internalID: -1577444756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_254
+      rect:
+        serializedVersion: 2
+        x: 1670
+        y: 264
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1db9efa8ce6d76145aa781d544baf108
+      internalID: -1568163204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_255
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 257
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df0aeb4fb36ebf469024c804b53d34e
+      internalID: 1753589445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_256
+      rect:
+        serializedVersion: 2
+        x: 1997
+        y: 288
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b2205e7a773a44cbcbf96f0a4ace45
+      internalID: 541693069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_257
+      rect:
+        serializedVersion: 2
+        x: 2030
+        y: 288
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd6fbf986718f7946a20fc0f88e18ad2
+      internalID: -2023825517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_258
+      rect:
+        serializedVersion: 2
+        x: 2061
+        y: 288
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fcd6313cc5ec4b49af0d80d160d2140
+      internalID: 662181708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_259
+      rect:
+        serializedVersion: 2
+        x: 3805
+        y: 238
+        width: 119
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a74bf691a9a1d841bf76858dcf5da3f
+      internalID: -1175217782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_260
+      rect:
+        serializedVersion: 2
+        x: 3933
+        y: 252
+        width: 199
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9407fda6dc0768741a7968f67973e4f3
+      internalID: -2008257038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_261
+      rect:
+        serializedVersion: 2
+        x: 4141
+        y: 238
+        width: 119
+        height: 76
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acb07ea051a1e0c41ad357c36d487645
+      internalID: -902455532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_262
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 252
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c3778acda5f4d44eaf2867a50a27443
+      internalID: -1824088875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_263
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 271
+        width: 54
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 922d604f3da8b6d4da4023cf9698e762
+      internalID: -1940338642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_264
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 275
+        width: 48
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af3a5f2dfa9a314bb3c9e4cb9d89fd2
+      internalID: 521068505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_265
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 275
+        width: 21
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e42febb621c6c340b0045b35241438c
+      internalID: 524211036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_266
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 243
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a919eca2634717439a70246b1df5e56
+      internalID: 882458175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_267
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 243
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c7b92110e9e349488b30a418430871a
+      internalID: -1288758657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_268
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 243
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1b3580cadcf5d946881b4ad05219a31
+      internalID: 1097658120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_269
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 259
+        width: 47
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6abd1b2b5ad24d64c947a0f3b0cedbdd
+      internalID: -63617092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_270
+      rect:
+        serializedVersion: 2
+        x: 1999
+        y: 259
+        width: 50
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 902ece442fe7b5c49b2f568413d75afb
+      internalID: 1142697419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_271
+      rect:
+        serializedVersion: 2
+        x: 1999
+        y: 243
+        width: 50
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fd56e5d7c8ac414596d4c5c5d1cbdc5
+      internalID: 1273385683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_272
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 210
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44d82a2b243fa704c97b5f70c20b3e78
+      internalID: 1158909846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_273
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 210
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3fac1aa5823e3947bee6ea390897816
+      internalID: 769447830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paper UI SpriteSheet_274
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 210
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eea76c0248bb674a857feabc67f1e0d
+      internalID: 1533950852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: f7133a5abadd0b545ac4af08a1c99eab
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceOnImport
+        value: False
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Paper UI SpriteSheet_0: -2085838446
+      Paper UI SpriteSheet_1: -747039350
+      Paper UI SpriteSheet_10: -196926785
+      Paper UI SpriteSheet_100: -640800201
+      Paper UI SpriteSheet_101: 295271068
+      Paper UI SpriteSheet_102: -380893668
+      Paper UI SpriteSheet_103: 1529035854
+      Paper UI SpriteSheet_104: -1947167039
+      Paper UI SpriteSheet_105: -1946809732
+      Paper UI SpriteSheet_106: 1115703705
+      Paper UI SpriteSheet_107: -1856700751
+      Paper UI SpriteSheet_108: -349619575
+      Paper UI SpriteSheet_109: -1807045094
+      Paper UI SpriteSheet_11: 677952111
+      Paper UI SpriteSheet_110: 939201624
+      Paper UI SpriteSheet_111: 484822008
+      Paper UI SpriteSheet_112: -1634167440
+      Paper UI SpriteSheet_113: -1543515612
+      Paper UI SpriteSheet_114: 795387277
+      Paper UI SpriteSheet_115: 220316386
+      Paper UI SpriteSheet_116: 2058316407
+      Paper UI SpriteSheet_117: 529874654
+      Paper UI SpriteSheet_118: 2010578573
+      Paper UI SpriteSheet_119: -1675974124
+      Paper UI SpriteSheet_12: 582501802
+      Paper UI SpriteSheet_120: 552346165
+      Paper UI SpriteSheet_121: 1564787389
+      Paper UI SpriteSheet_122: -909727229
+      Paper UI SpriteSheet_123: 758066864
+      Paper UI SpriteSheet_124: -252849171
+      Paper UI SpriteSheet_125: -1398506539
+      Paper UI SpriteSheet_126: 2080368419
+      Paper UI SpriteSheet_127: -1223985385
+      Paper UI SpriteSheet_128: 298025972
+      Paper UI SpriteSheet_129: 1326525252
+      Paper UI SpriteSheet_13: 2131495108
+      Paper UI SpriteSheet_130: -2000686891
+      Paper UI SpriteSheet_131: -1961597244
+      Paper UI SpriteSheet_132: 1608009218
+      Paper UI SpriteSheet_133: 913119261
+      Paper UI SpriteSheet_134: -1867430436
+      Paper UI SpriteSheet_135: 1115755102
+      Paper UI SpriteSheet_136: -1741846245
+      Paper UI SpriteSheet_137: -653344490
+      Paper UI SpriteSheet_138: -2011613989
+      Paper UI SpriteSheet_139: -1849509062
+      Paper UI SpriteSheet_14: 52098052
+      Paper UI SpriteSheet_140: 1350522244
+      Paper UI SpriteSheet_141: 445647142
+      Paper UI SpriteSheet_142: 451632626
+      Paper UI SpriteSheet_143: 1900472102
+      Paper UI SpriteSheet_144: 1946541570
+      Paper UI SpriteSheet_145: 97964417
+      Paper UI SpriteSheet_146: -198725246
+      Paper UI SpriteSheet_147: -800079218
+      Paper UI SpriteSheet_148: -371156549
+      Paper UI SpriteSheet_149: 613641155
+      Paper UI SpriteSheet_15: 1117697062
+      Paper UI SpriteSheet_150: -83095458
+      Paper UI SpriteSheet_151: -380874798
+      Paper UI SpriteSheet_152: 1360626513
+      Paper UI SpriteSheet_153: -1713904515
+      Paper UI SpriteSheet_154: 649460606
+      Paper UI SpriteSheet_155: -191368292
+      Paper UI SpriteSheet_156: 146468789
+      Paper UI SpriteSheet_157: 2042338572
+      Paper UI SpriteSheet_158: -1381248809
+      Paper UI SpriteSheet_159: 1654409829
+      Paper UI SpriteSheet_16: -276035624
+      Paper UI SpriteSheet_160: -987693058
+      Paper UI SpriteSheet_161: -1744644089
+      Paper UI SpriteSheet_162: -757109419
+      Paper UI SpriteSheet_163: 1539307479
+      Paper UI SpriteSheet_164: 845001874
+      Paper UI SpriteSheet_165: -1708676673
+      Paper UI SpriteSheet_166: 854935468
+      Paper UI SpriteSheet_167: -1189958052
+      Paper UI SpriteSheet_168: -455188952
+      Paper UI SpriteSheet_169: 833354926
+      Paper UI SpriteSheet_17: -642720567
+      Paper UI SpriteSheet_170: -1152447320
+      Paper UI SpriteSheet_171: -77522926
+      Paper UI SpriteSheet_172: -657686847
+      Paper UI SpriteSheet_173: -530884269
+      Paper UI SpriteSheet_174: 677463712
+      Paper UI SpriteSheet_175: 864175327
+      Paper UI SpriteSheet_176: -1863972107
+      Paper UI SpriteSheet_177: 510971078
+      Paper UI SpriteSheet_178: -846459144
+      Paper UI SpriteSheet_179: -718212753
+      Paper UI SpriteSheet_18: 1491142642
+      Paper UI SpriteSheet_180: 48378888
+      Paper UI SpriteSheet_181: -613703188
+      Paper UI SpriteSheet_182: -226946175
+      Paper UI SpriteSheet_183: 382753390
+      Paper UI SpriteSheet_184: -932610576
+      Paper UI SpriteSheet_185: 279990231
+      Paper UI SpriteSheet_186: -518803907
+      Paper UI SpriteSheet_187: -192217533
+      Paper UI SpriteSheet_188: -809186401
+      Paper UI SpriteSheet_189: 451784682
+      Paper UI SpriteSheet_19: -2021283817
+      Paper UI SpriteSheet_190: 887622922
+      Paper UI SpriteSheet_191: 560075178
+      Paper UI SpriteSheet_192: -1021471656
+      Paper UI SpriteSheet_193: -697865604
+      Paper UI SpriteSheet_194: 925260468
+      Paper UI SpriteSheet_195: -1192008478
+      Paper UI SpriteSheet_196: 2074516841
+      Paper UI SpriteSheet_197: 1343237518
+      Paper UI SpriteSheet_198: -1497423034
+      Paper UI SpriteSheet_199: -1107710757
+      Paper UI SpriteSheet_2: -540422702
+      Paper UI SpriteSheet_20: -648285066
+      Paper UI SpriteSheet_200: 292834790
+      Paper UI SpriteSheet_201: 2043629132
+      Paper UI SpriteSheet_202: 545495778
+      Paper UI SpriteSheet_203: 707336042
+      Paper UI SpriteSheet_204: -1948285007
+      Paper UI SpriteSheet_205: 1457294693
+      Paper UI SpriteSheet_206: -169604100
+      Paper UI SpriteSheet_207: 617563372
+      Paper UI SpriteSheet_208: 227962367
+      Paper UI SpriteSheet_209: -1761113293
+      Paper UI SpriteSheet_21: 390752653
+      Paper UI SpriteSheet_210: 2100154731
+      Paper UI SpriteSheet_211: 300990064
+      Paper UI SpriteSheet_212: 662470332
+      Paper UI SpriteSheet_213: -1254751765
+      Paper UI SpriteSheet_214: -2051045765
+      Paper UI SpriteSheet_215: 966408466
+      Paper UI SpriteSheet_216: -1054542999
+      Paper UI SpriteSheet_217: -1707301117
+      Paper UI SpriteSheet_218: 1587306355
+      Paper UI SpriteSheet_219: -1534523361
+      Paper UI SpriteSheet_22: 1444463950
+      Paper UI SpriteSheet_220: 1498277395
+      Paper UI SpriteSheet_221: 1490506410
+      Paper UI SpriteSheet_222: -499437883
+      Paper UI SpriteSheet_223: -18247781
+      Paper UI SpriteSheet_224: 1365317894
+      Paper UI SpriteSheet_225: 952169358
+      Paper UI SpriteSheet_226: 803620810
+      Paper UI SpriteSheet_227: -1755253023
+      Paper UI SpriteSheet_228: 632663782
+      Paper UI SpriteSheet_229: 955972998
+      Paper UI SpriteSheet_23: 984627603
+      Paper UI SpriteSheet_230: -1858247733
+      Paper UI SpriteSheet_231: 1118174874
+      Paper UI SpriteSheet_232: -1318419118
+      Paper UI SpriteSheet_233: -1846777125
+      Paper UI SpriteSheet_234: 1333258498
+      Paper UI SpriteSheet_235: 983683200
+      Paper UI SpriteSheet_236: 1570716767
+      Paper UI SpriteSheet_237: -192557041
+      Paper UI SpriteSheet_238: -1944152983
+      Paper UI SpriteSheet_239: 2001068876
+      Paper UI SpriteSheet_24: -489335986
+      Paper UI SpriteSheet_240: -2065749671
+      Paper UI SpriteSheet_241: 391024176
+      Paper UI SpriteSheet_242: 553279432
+      Paper UI SpriteSheet_243: -722419686
+      Paper UI SpriteSheet_244: 1017233437
+      Paper UI SpriteSheet_245: -992959732
+      Paper UI SpriteSheet_246: 1714962065
+      Paper UI SpriteSheet_247: 1981027080
+      Paper UI SpriteSheet_248: 953199142
+      Paper UI SpriteSheet_249: -120669879
+      Paper UI SpriteSheet_25: 1743384622
+      Paper UI SpriteSheet_250: 851058200
+      Paper UI SpriteSheet_251: -1351677320
+      Paper UI SpriteSheet_252: -1018568595
+      Paper UI SpriteSheet_253: -1577444756
+      Paper UI SpriteSheet_254: -1568163204
+      Paper UI SpriteSheet_255: 1753589445
+      Paper UI SpriteSheet_256: 541693069
+      Paper UI SpriteSheet_257: -2023825517
+      Paper UI SpriteSheet_258: 662181708
+      Paper UI SpriteSheet_259: -1175217782
+      Paper UI SpriteSheet_26: 1301923406
+      Paper UI SpriteSheet_260: -2008257038
+      Paper UI SpriteSheet_261: -902455532
+      Paper UI SpriteSheet_262: -1824088875
+      Paper UI SpriteSheet_263: -1940338642
+      Paper UI SpriteSheet_264: 521068505
+      Paper UI SpriteSheet_265: 524211036
+      Paper UI SpriteSheet_266: 882458175
+      Paper UI SpriteSheet_267: -1288758657
+      Paper UI SpriteSheet_268: 1097658120
+      Paper UI SpriteSheet_269: -63617092
+      Paper UI SpriteSheet_27: 814428668
+      Paper UI SpriteSheet_270: 1142697419
+      Paper UI SpriteSheet_271: 1273385683
+      Paper UI SpriteSheet_272: 1158909846
+      Paper UI SpriteSheet_273: 769447830
+      Paper UI SpriteSheet_274: 1533950852
+      Paper UI SpriteSheet_28: 1178914119
+      Paper UI SpriteSheet_29: 1905390659
+      Paper UI SpriteSheet_3: -1873771410
+      Paper UI SpriteSheet_30: -2048401353
+      Paper UI SpriteSheet_31: -85369778
+      Paper UI SpriteSheet_32: 1911875818
+      Paper UI SpriteSheet_33: -1097220665
+      Paper UI SpriteSheet_34: -1611020864
+      Paper UI SpriteSheet_35: -57661557
+      Paper UI SpriteSheet_36: -1393987780
+      Paper UI SpriteSheet_37: -890036681
+      Paper UI SpriteSheet_38: 223402448
+      Paper UI SpriteSheet_39: 127250721
+      Paper UI SpriteSheet_4: 2012213552
+      Paper UI SpriteSheet_40: 1440499263
+      Paper UI SpriteSheet_41: 2120397818
+      Paper UI SpriteSheet_42: 1872549557
+      Paper UI SpriteSheet_43: -1368953556
+      Paper UI SpriteSheet_44: 1834090014
+      Paper UI SpriteSheet_45: 1142443677
+      Paper UI SpriteSheet_46: 874497411
+      Paper UI SpriteSheet_47: -114092255
+      Paper UI SpriteSheet_48: -1106969381
+      Paper UI SpriteSheet_49: 1818522050
+      Paper UI SpriteSheet_5: -1218299267
+      Paper UI SpriteSheet_50: -413338574
+      Paper UI SpriteSheet_51: 1454245472
+      Paper UI SpriteSheet_52: -65457792
+      Paper UI SpriteSheet_53: -1013505092
+      Paper UI SpriteSheet_54: 1862689438
+      Paper UI SpriteSheet_55: -1082713598
+      Paper UI SpriteSheet_56: -490097734
+      Paper UI SpriteSheet_57: -870619566
+      Paper UI SpriteSheet_58: 1258279799
+      Paper UI SpriteSheet_59: 1960609634
+      Paper UI SpriteSheet_6: -456595172
+      Paper UI SpriteSheet_60: 773389233
+      Paper UI SpriteSheet_61: -1293985008
+      Paper UI SpriteSheet_62: 86169768
+      Paper UI SpriteSheet_63: -314367819
+      Paper UI SpriteSheet_64: -149891798
+      Paper UI SpriteSheet_65: -2131859847
+      Paper UI SpriteSheet_66: -455682628
+      Paper UI SpriteSheet_67: 779807870
+      Paper UI SpriteSheet_68: -89151539
+      Paper UI SpriteSheet_69: 829466443
+      Paper UI SpriteSheet_7: 420349043
+      Paper UI SpriteSheet_70: 952049557
+      Paper UI SpriteSheet_71: -2033434116
+      Paper UI SpriteSheet_72: 1925917265
+      Paper UI SpriteSheet_73: 1714061852
+      Paper UI SpriteSheet_74: 1337899012
+      Paper UI SpriteSheet_75: -2066077248
+      Paper UI SpriteSheet_76: -135575622
+      Paper UI SpriteSheet_77: 1811408629
+      Paper UI SpriteSheet_78: -1459883838
+      Paper UI SpriteSheet_79: -431196436
+      Paper UI SpriteSheet_8: -964821968
+      Paper UI SpriteSheet_80: -1274289807
+      Paper UI SpriteSheet_81: -1106383045
+      Paper UI SpriteSheet_82: 1256551007
+      Paper UI SpriteSheet_83: -1841433937
+      Paper UI SpriteSheet_84: 711402452
+      Paper UI SpriteSheet_85: 1745608954
+      Paper UI SpriteSheet_86: -1417396174
+      Paper UI SpriteSheet_87: 1346383341
+      Paper UI SpriteSheet_88: 1651721829
+      Paper UI SpriteSheet_89: -1411416259
+      Paper UI SpriteSheet_9: 845744160
+      Paper UI SpriteSheet_90: 727808422
+      Paper UI SpriteSheet_91: -1720428392
+      Paper UI SpriteSheet_92: -999572358
+      Paper UI SpriteSheet_93: -728137472
+      Paper UI SpriteSheet_94: -511342227
+      Paper UI SpriteSheet_95: -1592608844
+      Paper UI SpriteSheet_96: -185158033
+      Paper UI SpriteSheet_97: -2083963925
+      Paper UI SpriteSheet_98: -659862042
+      Paper UI SpriteSheet_99: 2073685289
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
