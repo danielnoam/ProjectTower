@@ -10,6 +10,7 @@ public class SpellCraftingUI : MonoBehaviour
     [Header("Base Panel")]
     [SerializeField] private TMP_Dropdown castMethodDropdown;
     [SerializeField] private TMP_Dropdown spellFormDropdown;
+    [SerializeField] private TMP_Dropdown augmentDropdown;
     
     [Header("Domain Panel")]
     [SerializeField] private TextMeshProUGUI domainCountText;
@@ -46,6 +47,7 @@ public class SpellCraftingUI : MonoBehaviour
     {
         castMethodDropdown.onValueChanged.AddListener(OnCastMethodChanged);
         spellFormDropdown.onValueChanged.AddListener(OnSpellFormChanged);
+        augmentDropdown.onValueChanged.AddListener(OnAugmentChanged);
         movementDropdown.onValueChanged.AddListener(OnMovementChanged);
         collisionDropdown.onValueChanged.AddListener(OnCollisionChanged);
         addEffectButton.onClick.AddListener(AddEffectEntry);
@@ -66,6 +68,13 @@ public class SpellCraftingUI : MonoBehaviour
         // Spell Form
         spellFormDropdown.ClearOptions();
         spellFormDropdown.AddOptions(Enum.GetNames(typeof(SpellForm)).ToList());
+        
+        // Augment Types
+        augmentDropdown.ClearOptions();
+        var augmentNames = SpellTypeRegistry.AugmentTypes
+            .Select(SpellTypeRegistry.GetAugmentDisplayName)
+            .ToList();
+        augmentDropdown.AddOptions(augmentNames);
         
         // Movement Types
         movementDropdown.ClearOptions();
@@ -199,6 +208,15 @@ public class SpellCraftingUI : MonoBehaviour
         UpdateUI();
         UpdateManaCost();
         UpdateConjureLifetime();
+    }
+    
+    private void OnAugmentChanged(int value)
+    {
+        if (value >= 0 && value < SpellTypeRegistry.AugmentTypes.Count)
+        {
+            _currentData.augmentType = SpellTypeRegistry.AugmentTypes[value];
+            UpdateManaCost();
+        }
     }
     
     private void OnMovementChanged(int value)
@@ -339,6 +357,7 @@ public class SpellCraftingUI : MonoBehaviour
         
         castMethodDropdown.value = 0;
         spellFormDropdown.value = 0;
+        augmentDropdown.value = 0;
         movementDropdown.value = 0;
         collisionDropdown.value = 0;
         
@@ -346,6 +365,7 @@ public class SpellCraftingUI : MonoBehaviour
         {
             castMethod = 0,
             spellForm = 0,
+            augmentType = SpellTypeRegistry.AugmentTypes[0],
             movementType = SpellTypeRegistry.MovementTypes[0],
             collisionType = SpellTypeRegistry.CollisionTypes[0]
         };

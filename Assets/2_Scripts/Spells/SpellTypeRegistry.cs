@@ -8,6 +8,7 @@ public static class SpellTypeRegistry
     private static List<Type> effectTypes;
     private static List<Type> movementTypes;
     private static List<Type> collisionTypes;
+    private static List<Type> augmentTypes;
     
     public static List<Type> EffectTypes
     {
@@ -36,11 +37,21 @@ public static class SpellTypeRegistry
         }
     }
     
+    public static List<Type> AugmentTypes
+    {
+        get
+        {
+            if (augmentTypes == null) CacheTypes();
+            return augmentTypes;
+        }
+    }
+    
     private static void CacheTypes()
     {
         effectTypes = new List<Type>();
         movementTypes = new List<Type>();
         collisionTypes = new List<Type>();
+        augmentTypes = new List<Type>();
         
         // Get all types in all assemblies
         Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -68,6 +79,13 @@ public static class SpellTypeRegistry
                     effectTypes.Add(type);
                 }
                 
+                // Check for Augment attribute
+                if (type.GetCustomAttribute<AugmentAttribute>() != null && typeof(Augment).IsAssignableFrom(type))
+                {
+                    augmentTypes.Add(type);
+                }
+
+                
                 // Check for movement attribute
                 if (type.GetCustomAttribute<ProjectileMovementAttribute>() != null && 
                     typeof(ConjureMovementBehavior).IsAssignableFrom(type))
@@ -86,6 +104,10 @@ public static class SpellTypeRegistry
         
         // Sort alphabetically by display name
         effectTypes = effectTypes.OrderBy(t => t.GetCustomAttribute<SpellEffectAttribute>().DisplayName).ToList();
+        augmentTypes = augmentTypes
+            .OrderBy(t => t.Name == "NoneAugment" ? 0 : 1)
+            .ThenBy(t => t.GetCustomAttribute<AugmentAttribute>()?.DisplayName ?? "")
+            .ToList();
         movementTypes = movementTypes.OrderBy(t => t.GetCustomAttribute<ProjectileMovementAttribute>().DisplayName).ToList();
         collisionTypes = collisionTypes.OrderBy(t => t.GetCustomAttribute<ProjectileCollisionAttribute>().DisplayName).ToList();
     }
@@ -135,6 +157,21 @@ public static class SpellTypeRegistry
     public static ConjureCollisionBehavior CreateCollision(Type type)
     {
         return Activator.CreateInstance(type) as ConjureCollisionBehavior;
+    }
+    
+    public static string GetAugmentDisplayName(Type type)
+    {
+        return type.GetCustomAttribute<AugmentAttribute>()?.DisplayName ?? type.Name;
+    }
+
+    public static float GetAugmentManaCost(Type type)
+    {
+        return type.GetCustomAttribute<AugmentAttribute>()?.ManaCost ?? 0f;
+    }
+
+    public static Augment CreateAugment(Type type)
+    {
+        return Activator.CreateInstance(type) as Augment;
     }
     
 }

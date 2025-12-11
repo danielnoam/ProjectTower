@@ -30,6 +30,7 @@ public class SOSpellEditor : UnityEditor.Editor
         }
         
         EditorGUILayout.PropertyField(serializedObject.FindProperty("spellForm"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("augment"));
         
         // Conjure
         if (spell.spellForm == SpellForm.Conjure)

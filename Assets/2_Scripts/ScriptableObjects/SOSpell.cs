@@ -18,6 +18,7 @@ public class SOSpell : ScriptableObject
     public float channelRate = 0.15f;
     public float chargeTime = 1.5f;
     public SpellForm spellForm = SpellForm.Invoke;
+    [SerializeReference] public Augment augment = new NoneAugment();
     public Conjure conjurePrefab;
     public float conjureLifeTime = 5f;
     [SerializeReference] public ConjureMovementBehavior conjureMovement = new StraightMovement();
@@ -56,11 +57,13 @@ public class SOSpell : ScriptableObject
     private void ApplyEffects(ICombatTarget source, ICombatTarget target)
     {
         if (effects == null || effects.Length == 0) return;
-        
-        foreach (var effect in effects)
-        {
-            effect?.Apply(source, target);
-        }
+    
+        Vector3 impactPoint = target.Transform.position;
+        List<SpellEffect> effectsList = new List<SpellEffect>(effects);
+    
+        augment ??= new NoneAugment();
+    
+        augment.Apply(effectsList, domains, source, target, impactPoint);
     }
     
     private void SpawnProjectile(ICombatTarget source, ICombatTarget target, Transform castPoint)
@@ -71,23 +74,11 @@ public class SOSpell : ScriptableObject
             return;
         }
         
-        SpellEffect[] hitEffectsClone = CloneEffects(effects);
-        ConjureMovementBehavior movementClone = conjureMovement?.Clone();
-        ConjureCollisionBehavior collisionClone = conjureCollision?.Clone();
+        
         
         Conjure conjure = Instantiate(conjurePrefab, castPoint.position, Quaternion.identity);
-        conjure.Initialize(hitEffectsClone, movementClone, collisionClone,conjureLifeTime, source, target);
+        conjure.Initialize(this, source, target);
     }
     
-    private SpellEffect[] CloneEffects(SpellEffect[] effectsToClone)
-    {
-        if (effectsToClone == null || effectsToClone.Length == 0) return Array.Empty<SpellEffect>();
-    
-        SpellEffect[] clones = new SpellEffect[effectsToClone.Length];
-        for (int i = 0; i < effectsToClone.Length; i++)
-        {
-            clones[i] = effectsToClone[i]?.Clone();
-        }
-        return clones;
-    }
+
 }

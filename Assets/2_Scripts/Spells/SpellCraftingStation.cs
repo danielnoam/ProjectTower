@@ -10,11 +10,18 @@ public class SpellCraftingData
     public readonly List<Domain> domains = new();
     public readonly List<Type> effectTypes = new();
     
+    public Type augmentType;
     public Type movementType;
     public Type collisionType;
     
     public SpellCraftingData()
     {
+        augmentType = SpellTypeRegistry.AugmentTypes.FirstOrDefault(t => t == typeof(NoneAugment));
+        if (augmentType == null && SpellTypeRegistry.AugmentTypes.Count > 0)
+        {
+            augmentType = SpellTypeRegistry.AugmentTypes[0];
+        }
+        
         if (SpellTypeRegistry.MovementTypes.Count > 0)
         {
             movementType = SpellTypeRegistry.MovementTypes[0];
@@ -102,6 +109,9 @@ public class SpellCraftingStation : MonoBehaviour
         {
             cost += SpellTypeRegistry.GetEffectManaCost(effectType);
         }
+        
+        float augmentCost = SpellTypeRegistry.GetAugmentManaCost(data.augmentType);
+        cost += augmentCost;
 
         switch (data.castMethod)
         {
@@ -281,6 +291,7 @@ public class SpellCraftingStation : MonoBehaviour
         float strengthMultiplier = GetCastMethodStrengthMultiplier(data.castMethod);
         spell.effects = CreateEffects(data.effectTypes, strengthMultiplier);
         
+        spell.augment = SpellTypeRegistry.CreateAugment(data.augmentType);
 
         if (data.spellForm == SpellForm.Conjure)
         {

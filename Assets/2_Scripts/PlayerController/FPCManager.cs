@@ -29,6 +29,7 @@ public class FPCManager : MonoBehaviour, ICombatTarget
     [SerializeField] private HealthComponent healthComponent;
     [SerializeField] private InventoryComponent inventoryComponent;
     [SerializeField] private SpellCasterComponent spellCasterComponent;
+    [SerializeField] private StatusEffectComponent statusEffectComponent;
     
     
     public FPCMovement FpcMovement => fpcMovement;
@@ -77,6 +78,11 @@ public class FPCManager : MonoBehaviour, ICombatTarget
     public void ApplyForce(Vector3 force)
     {
         fpcMovement.ApplyForce(force);
+    }
+
+    public void ApplyStatus(StatusEffect status)
+    {
+        statusEffectComponent.ApplyStatus(status);
     }
 
     public Transform Transform => transform;

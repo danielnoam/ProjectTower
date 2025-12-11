@@ -20,6 +20,7 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private HealthComponent healthComponent;
     [SerializeField] private SpellCasterComponent spellCasterComponent;
+    [SerializeField] private StatusEffectComponent statusEffectComponent;
 
 
     private enum AIBehavior { Idle, Wander, Chase }
@@ -120,6 +121,11 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
     {
         agent.enabled = false;
         rigidBody.AddForce(force, ForceMode.Impulse);
+    }
+
+    public void ApplyStatus(StatusEffect status)
+    {
+        statusEffectComponent.ApplyStatus(status);
     }
 
     public Transform Transform => transform;

@@ -6,17 +6,17 @@ using System.Linq;
 [CustomPropertyDrawer(typeof(SpellEffect), true)]
 public class SpellEffectDrawer : PropertyDrawer
 {
-    private static readonly Type[] EffectTypes;
-    private static readonly string[] EffectNames;
+    private static readonly Type[] effectTypes;
+    private static readonly string[] effectNames;
 
     static SpellEffectDrawer()
     {
-        EffectTypes = AppDomain.CurrentDomain.GetAssemblies()
+        effectTypes = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(assembly => assembly.GetTypes())
             .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(SpellEffect)))
             .ToArray();
 
-        EffectNames = EffectTypes.Select(t => FormatName(t.Name)).ToArray();
+        effectNames = effectTypes.Select(t => FormatName(t.Name)).ToArray();
     }
     
     private static string FormatName(string name)
@@ -48,15 +48,15 @@ public class SpellEffectDrawer : PropertyDrawer
         // Get current type
         string typeName = property.managedReferenceFullTypename;
         
-        int selectedIndex = Array.FindIndex(EffectTypes, t => typeName.Contains(t.Name));
+        int selectedIndex = Array.FindIndex(effectTypes, t => typeName.Contains(t.Name));
 
         // Draw dropdown
         Rect dropdownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-        int newIndex = EditorGUI.Popup(dropdownRect, selectedIndex, EffectNames);
+        int newIndex = EditorGUI.Popup(dropdownRect, selectedIndex, effectNames);
 
         if (newIndex != selectedIndex && newIndex >= 0)
         {
-            property.managedReferenceValue = Activator.CreateInstance(EffectTypes[newIndex]);
+            property.managedReferenceValue = Activator.CreateInstance(effectTypes[newIndex]);
         }
 
         // Draw fields directly without foldout

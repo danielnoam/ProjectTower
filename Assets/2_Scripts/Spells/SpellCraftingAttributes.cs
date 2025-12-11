@@ -16,6 +16,22 @@ public class SpellEffectAttribute : Attribute
 }
 
 [AttributeUsage(AttributeTargets.Class)]
+public class AugmentAttribute : Attribute
+{
+    public string DisplayName { get; }
+    public float ManaCost { get; }
+    public SpellForm[] CompatibleForms { get; }
+    
+    public AugmentAttribute(string displayName, float manaCost, SpellForm[] compatibleForms = null)
+    {
+        DisplayName = displayName;
+        ManaCost = manaCost;
+        CompatibleForms = compatibleForms;
+    }
+}
+
+
+[AttributeUsage(AttributeTargets.Class)]
 public class ProjectileMovementAttribute : Attribute
 {
     public string DisplayName { get; }

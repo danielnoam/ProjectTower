@@ -6,17 +6,17 @@ using System.Linq;
 [CustomPropertyDrawer(typeof(ConjureMovementBehavior), true)]
 public class ProjectileMovementBehaviorDrawer : PropertyDrawer
 {
-    private static readonly Type[] BehaviorTypes;
-    private static readonly string[] BehaviorNames;
+    private static readonly Type[] behaviorTypes;
+    private static readonly string[] behaviorNames;
 
     static ProjectileMovementBehaviorDrawer()
     {
-        BehaviorTypes = AppDomain.CurrentDomain.GetAssemblies()
+        behaviorTypes = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(assembly => assembly.GetTypes())
             .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(ConjureMovementBehavior)))
             .ToArray();
 
-        BehaviorNames = BehaviorTypes.Select(t => FormatName(t.Name)).ToArray();
+        behaviorNames = behaviorTypes.Select(t => FormatName(t.Name)).ToArray();
     }
     
     private static string FormatName(string name)
@@ -51,18 +51,18 @@ public class ProjectileMovementBehaviorDrawer : PropertyDrawer
         int selectedIndex = -1;
         if (!string.IsNullOrEmpty(typeName))
         {
-            selectedIndex = Array.FindIndex(BehaviorTypes, t => typeName.Contains(t.Name));
+            selectedIndex = Array.FindIndex(behaviorTypes, t => typeName.Contains(t.Name));
         }
 
         // Draw dropdown with label
         Rect dropdownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
         
         EditorGUI.BeginChangeCheck();
-        int newIndex = EditorGUI.Popup(dropdownRect, label.text, selectedIndex, BehaviorNames);
+        int newIndex = EditorGUI.Popup(dropdownRect, label.text, selectedIndex, behaviorNames);
         
         if (EditorGUI.EndChangeCheck() && newIndex >= 0)
         {
-            property.managedReferenceValue = Activator.CreateInstance(BehaviorTypes[newIndex]);
+            property.managedReferenceValue = Activator.CreateInstance(behaviorTypes[newIndex]);
         }
 
         // Draw fields
