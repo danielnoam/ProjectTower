@@ -95,6 +95,23 @@ public static class SpellTypeRegistry
         return type.GetCustomAttribute<SpellEffectAttribute>()?.DisplayName ?? type.Name;
     }
     
+    public static float GetEffectManaCost(Type type)
+    {
+        return type.GetCustomAttribute<SpellEffectAttribute>()?.ManaCost ?? 10f;
+    }
+
+    public static Domain[] GetEffectDomains(Type type)
+    {
+        var attr = type.GetCustomAttribute<SpellEffectAttribute>();
+        return attr?.AvailableDomains ?? System.Array.Empty<Domain>();
+    }
+
+    public static bool IsEffectValidForDomain(Type effectType, Domain domain)
+    {
+        var domains = GetEffectDomains(effectType);
+        return domains.Length == 0 || domains.Contains(domain);
+    }
+    
     public static string GetMovementDisplayName(Type type)
     {
         return type.GetCustomAttribute<ProjectileMovementAttribute>()?.DisplayName ?? type.Name;
@@ -119,4 +136,5 @@ public static class SpellTypeRegistry
     {
         return Activator.CreateInstance(type) as ConjureCollisionBehavior;
     }
+    
 }

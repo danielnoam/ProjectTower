@@ -36,3 +36,30 @@ public class DestroyBehavior  : ConjureCollisionBehavior
         conjure.DestroyProjectile();
     }
 }
+
+[System.Serializable]
+[ProjectileCollision("Pierce")]
+public class PierceBehavior  : ConjureCollisionBehavior
+{
+    public override ConjureCollisionBehavior Clone()
+    {
+        return new PierceBehavior { };
+    }
+
+    public override void Initialize(Rigidbody rigidBody, ICombatTarget source)
+    {
+        
+        projectileRb = rigidBody;
+        casterSource = source;
+
+        if (rigidBody.TryGetComponent(out Collider collider))
+        {
+            collider.isTrigger = true;
+        }
+    }
+    
+    public override void OnCollision(Conjure conjure, Collision other)
+    {
+
+    }
+}

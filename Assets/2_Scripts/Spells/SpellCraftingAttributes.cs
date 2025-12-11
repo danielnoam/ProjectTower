@@ -4,10 +4,14 @@ using System;
 public class SpellEffectAttribute : Attribute
 {
     public string DisplayName { get; }
+    public float ManaCost { get; set; }
+    public Domain[] AvailableDomains { get; set; }
     
-    public SpellEffectAttribute(string displayName)
+    public SpellEffectAttribute(string displayName, float manaCost = 10f)
     {
         DisplayName = displayName;
+        ManaCost = manaCost;
+        AvailableDomains = Array.Empty<Domain>();
     }
 }
 

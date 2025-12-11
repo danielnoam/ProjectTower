@@ -29,6 +29,7 @@ public class StationaryMovement : ConjureMovementBehavior
     {
         projectileRb = rigidbody;
         casterSource = source;
+        projectileRb.isKinematic = true;
     }
 
     public override void UpdateMovement(float delta)

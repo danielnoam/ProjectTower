@@ -1,18 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public abstract class SpellEffect
 {
+    public virtual List<Domain> AvailableForDomains => new List<Domain> {};
     public abstract SpellEffect Clone();
     public abstract void Apply(ICombatTarget source, ICombatTarget target);
+    public abstract void ApplyStrengthMultiplier(float multiplier);
+    public abstract string GetDescription();
 }
 
 [System.Serializable]
-[SpellEffect("Damage")]
+[SpellEffect("Damage", manaCost: 10f)]
 public class DamageHealthEffect : SpellEffect
 {
     [Min(0)] public float damage = 15f;
     
+    public override void ApplyStrengthMultiplier(float multiplier)
+    {
+        damage *= multiplier;
+    }
+    
+    public override string GetDescription()
+    {
+        return $"Deals {damage:F0} damage";
+    }
+
     public override SpellEffect Clone()
     {
         return new DamageHealthEffect { damage = damage };
@@ -21,13 +35,27 @@ public class DamageHealthEffect : SpellEffect
     {
         target?.TakeDamage(damage, source);
     }
+    
+    
 }
 
 [System.Serializable]
-[SpellEffect("Heal")]
+[SpellEffect("Heal", manaCost: 15f, AvailableDomains = new[] { Domain.Arcane })]
 public class HealHealthEffect : SpellEffect
 {
     [Min(0)] public float healAmount = 15f;
+    
+    public override void ApplyStrengthMultiplier(float multiplier)
+    {
+        healAmount *= multiplier;
+    }
+    
+    public override string GetDescription()
+    {
+        return $"Heals {healAmount:F0} health";
+    }
+    
+    public override List<Domain> AvailableForDomains => new List<Domain> { Domain.Arcane};
 
     public override SpellEffect Clone()
     {
@@ -41,11 +69,23 @@ public class HealHealthEffect : SpellEffect
 
 
 [System.Serializable]
-[SpellEffect("Push")]
+[SpellEffect("Push", manaCost: 25f, AvailableDomains = new[] { Domain.Arcane })]
 public class PushEffect : SpellEffect
 {
-    [Min(0)] public float force = 125f;
+    [Min(0)] public float force = 100f;
     
+    public override void ApplyStrengthMultiplier(float multiplier)
+    {
+        force *= multiplier;
+    }
+    
+    public override string GetDescription()
+    {
+        return $"Pushes {force:F0} units";
+    }
+    
+    
+    public override List<Domain> AvailableForDomains => new List<Domain> { Domain.Arcane};
     
     public override SpellEffect Clone()
     {
@@ -64,11 +104,22 @@ public class PushEffect : SpellEffect
 }
 
 [System.Serializable]
-[SpellEffect("Pull")]
+[SpellEffect("Pull", manaCost: 20f, AvailableDomains = new[] { Domain.Arcane })]
 public class PullEffect : SpellEffect
 {
-    [Min(0)] public float force = 10f;
+    [Min(0)] public float force = 100f;
     
+    public override string GetDescription()
+    {
+        return $"Pulls {force:F0} units";
+    }
+    
+    public override void ApplyStrengthMultiplier(float multiplier)
+    {
+        force *= multiplier;
+    }
+    
+    public override List<Domain> AvailableForDomains => new List<Domain> { Domain.Arcane};
     
     public override SpellEffect Clone()
     {
@@ -86,11 +137,21 @@ public class PullEffect : SpellEffect
 }
 
 [System.Serializable]
-[SpellEffect("Leech")]
+[SpellEffect("Leech", ManaCost = 20f)]
 public class LeechEffect : SpellEffect
 {
     [Min(0)] public float damage = 10f;
     [Range(0f, 1f)] public float lifestealPercent = 0.5f;
+    
+    public override string GetDescription()
+    {
+        return $"Deals {damage:F0} damage and heals {lifestealPercent:P0} of that damage";
+    }
+    
+    public override void ApplyStrengthMultiplier(float multiplier)
+    {
+        damage *= multiplier;
+    }
 
     public override SpellEffect Clone()
     {
@@ -105,10 +166,20 @@ public class LeechEffect : SpellEffect
 }
 
 [System.Serializable]
-[SpellEffect("Burn Mana")]
+[SpellEffect("Burn Mana", ManaCost = 15f)]
 public class BurnManaEffect : SpellEffect
 {
-    [Min(0)] public float amount = 10f;
+    [Min(0)] public float amount = 25f;
+    
+    public override string GetDescription()
+    {
+        return $"Burns {amount:F0} mana";
+    }
+    
+    public override void ApplyStrengthMultiplier(float multiplier)
+    {
+        amount *= multiplier;
+    }
     
     public override SpellEffect Clone()
     {

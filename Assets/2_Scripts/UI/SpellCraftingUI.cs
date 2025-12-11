@@ -10,7 +10,11 @@ public class SpellCraftingUI : MonoBehaviour
     [Header("Base Panel")]
     [SerializeField] private TMP_Dropdown castMethodDropdown;
     [SerializeField] private TMP_Dropdown spellFormDropdown;
-    [SerializeField] private TMP_Dropdown domainDropdown;
+    
+    [Header("Domain Panel")]
+    [SerializeField] private TextMeshProUGUI domainCountText;
+    [SerializeField] private Transform domainButtonContainer;
+    [SerializeField] private DomainButtonUI domainButtonPrefab;
     
     [Header("Effects Panel")]
     [SerializeField] private Transform effectListContainer;
@@ -33,6 +37,8 @@ public class SpellCraftingUI : MonoBehaviour
     
     private SpellCraftingData _currentData = new();
     private readonly List<EffectEntryUI> _effectEntries = new();
+    private readonly List<DomainButtonUI> _domainButtons = new();
+    private readonly HashSet<Domain> _selectedDomains = new();
 
     public event Action Closed;
     
@@ -47,6 +53,7 @@ public class SpellCraftingUI : MonoBehaviour
         cancelButton.onClick.AddListener(Close);
         
         PopulateDropdowns();
+        InitializeDomainButtons();
         ResetData();
     }
     
@@ -59,11 +66,6 @@ public class SpellCraftingUI : MonoBehaviour
         // Spell Form
         spellFormDropdown.ClearOptions();
         spellFormDropdown.AddOptions(Enum.GetNames(typeof(SpellForm)).ToList());
-    
-        // Domain
-        domainDropdown.ClearOptions();
-        domainDropdown.AddOptions(Enum.GetNames(typeof(Domain)).ToList());
-        domainDropdown.interactable = Enum.GetValues(typeof(Domain)).Length > 1;
         
         // Movement Types
         movementDropdown.ClearOptions();
@@ -82,20 +84,78 @@ public class SpellCraftingUI : MonoBehaviour
         collisionDropdown.interactable = collisionNames.Count > 1;
     }
     
+    private void InitializeDomainButtons()
+    {
+        foreach (Domain domain in Enum.GetValues(typeof(Domain)))
+        {
+            DomainButtonUI button = Instantiate(domainButtonPrefab, domainButtonContainer);
+            button.Initialize(domain);
+            button.StateChanged += OnDomainButtonClicked;
+            _domainButtons.Add(button);
+        }
+        
+        UpdateDomainCountText();
+    }
+    
+    private void OnDomainButtonClicked(Domain domain, bool wantsToSelect)
+    {
+        if (wantsToSelect)
+        {
+            if (_selectedDomains.Count >= spellCraftingStation.MaxDomains)
+            {
+                return; 
+            }
+            
+            _selectedDomains.Add(domain);
+            UpdateDomainButton(domain, true);
+        }
+        else
+        {
+            if (_selectedDomains.Count <= 1)
+            {
+                return;
+            }
+            _selectedDomains.Remove(domain);
+            UpdateDomainButton(domain, false);
+        }
+        
+        UpdateDomainCountText();
+        RefreshEffectDropdowns();
+        UpdateManaCost();
+    }
+    
+    private void UpdateDomainButton(Domain domain, bool selected)
+    {
+        var button = _domainButtons.Find(b => b.Domain == domain);
+        button?.SetSelected(selected);
+    }
+    
+    private void UpdateDomainCountText()
+    {
+        domainCountText.text = $"Domains ({_selectedDomains.Count}/{spellCraftingStation.MaxDomains})";
+    }
+    
     private void AddEffectEntry()
     {
         if (_effectEntries.Count >= spellCraftingStation.MaxEffects) return;
-        
-        GameObject entryGo = Instantiate(effectEntryPrefab, effectListContainer);
-        EffectEntryUI entry = entryGo.GetComponent<EffectEntryUI>();
-        entry.Initialize(this, _effectEntries.Count);
-        _effectEntries.Add(entry);
+    
+        var availableEffects = GetAvailableEffectTypes();
         
         if (SpellTypeRegistry.EffectTypes.Count > 0)
         {
             _currentData.effectTypes.Add(SpellTypeRegistry.EffectTypes[0]);
         }
+        else
+        {
+            Debug.LogError("No effect types available!");
+            return;
+        }
         
+        GameObject entryGo = Instantiate(effectEntryPrefab, effectListContainer);
+        EffectEntryUI entry = entryGo.GetComponent<EffectEntryUI>();
+        entry.Initialize(this, _effectEntries.Count, availableEffects);
+        _effectEntries.Add(entry);
+    
         UpdateManaCost();
     }
     
@@ -129,18 +189,16 @@ public class SpellCraftingUI : MonoBehaviour
         _currentData.castMethod = (CastMethod)value;
         UpdateManaCost();
         UpdateConjureLifetime();
+        RefreshAllEffectDescriptions();
     }
-
-    private void UpdateConjureLifetime()
-    {
-        conjureLifetimeText.text = $"Lifetime: {spellCraftingStation.CalculateConjureLifeTime(_currentData)}s";
-    }
+    
 
     private void OnSpellFormChanged(int value)
     {
         _currentData.spellForm = (SpellForm)value;
         UpdateUI();
         UpdateManaCost();
+        UpdateConjureLifetime();
     }
     
     private void OnMovementChanged(int value)
@@ -163,6 +221,11 @@ public class SpellCraftingUI : MonoBehaviour
         UpdateConjureLifetime();
     }
     
+    private void UpdateConjureLifetime()
+    {
+        conjureLifetimeText.text = $"Lifetime: {spellCraftingStation.CalculateConjureLifeTime(_currentData)}s";
+    }
+    
     private void UpdateUI()
     {
         conjurePanel.SetActive(_currentData.spellForm == SpellForm.Conjure);
@@ -174,6 +237,61 @@ public class SpellCraftingUI : MonoBehaviour
         manaCostText.text = $"Mana Cost: {cost}";
     }
     
+    private List<Type> GetAvailableEffectTypes()
+    {
+        return SpellTypeRegistry.EffectTypes.Where(effectType =>
+        {
+            var domains = SpellTypeRegistry.GetEffectDomains(effectType);
+            
+            if (domains.Length == 0) return true;
+        
+            return domains.Any(domain => _selectedDomains.Contains(domain));
+        }).ToList();
+    }
+    
+    private void RefreshEffectDropdowns()
+    {
+        var availableEffects = GetAvailableEffectTypes();
+    
+        for (int i = _effectEntries.Count - 1; i >= 0; i--)
+        {
+            // Check if current effect is still valid
+            var currentEffectType = _currentData.effectTypes[i];
+            if (!availableEffects.Contains(currentEffectType))
+            {
+                // Current effect no longer valid, reset to first available
+                if (availableEffects.Count > 0)
+                {
+                    _currentData.effectTypes[i] = availableEffects[0];
+                }
+            }
+        
+            _effectEntries[i].UpdateAvailableEffects(availableEffects);
+        }
+    
+        UpdateManaCost();
+    }
+    
+    private void RefreshAllEffectDescriptions()
+    {
+        foreach (var effectEntry in _effectEntries)
+        {
+            int selectedIndex = effectEntry.DropdownValue;
+            var allEffects = SpellTypeRegistry.EffectTypes;
+        
+            if (selectedIndex >= 0 && selectedIndex < allEffects.Count)
+            {
+                var effectType = allEffects[selectedIndex];
+                effectEntry.UpdateEffectDescription(effectType);
+            }
+        }
+    }
+    
+    public float GetCurrentStrengthMultiplier()
+    {
+        return spellCraftingStation.GetCastMethodStrengthMultiplier(_currentData.castMethod);
+    }
+    
     private void CreateSpell()
     {
         if (_currentData.effectTypes.Count == 0)
@@ -182,6 +300,14 @@ public class SpellCraftingUI : MonoBehaviour
             return;
         }
         
+        if (_selectedDomains.Count == 0)
+        {
+            Debug.LogWarning("Cannot create spell with no domains!");
+            return;
+        }
+        
+        _currentData.domains.Clear();
+        _currentData.domains.AddRange(_selectedDomains);
         spellCraftingStation.CreateSpell(_currentData);
     }
     
@@ -192,13 +318,24 @@ public class SpellCraftingUI : MonoBehaviour
     
     public void ResetData()
     {
-
-        
         foreach (var entry in _effectEntries)
         {
             Destroy(entry.gameObject);
         }
         _effectEntries.Clear();
+        
+
+        _selectedDomains.Clear();
+        foreach (var button in _domainButtons)
+        {
+            button?.SetSelected(false);
+        }
+        if (_domainButtons.Count > 0)
+        {
+            Domain firstDomain = _domainButtons[0].Domain;
+            _selectedDomains.Add(firstDomain);
+            _domainButtons[0].SetSelected(true);
+        }
         
         castMethodDropdown.value = 0;
         spellFormDropdown.value = 0;
@@ -209,12 +346,12 @@ public class SpellCraftingUI : MonoBehaviour
         {
             castMethod = 0,
             spellForm = 0,
-            domain = 0,
             movementType = SpellTypeRegistry.MovementTypes[0],
             collisionType = SpellTypeRegistry.CollisionTypes[0]
         };
 
         AddEffectEntry();
         UpdateUI();
+        UpdateDomainCountText();
     }
 }

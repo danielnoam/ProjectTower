@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SpellCraftingData
 {
     public CastMethod castMethod = CastMethod.Instant;
     public SpellForm spellForm = SpellForm.Invoke;
-    public Domain domain = Domain.Arcane;
+    public readonly List<Domain> domains = new();
     public readonly List<Type> effectTypes = new();
     
     public Type movementType;
@@ -37,10 +38,15 @@ public class SpellCraftingStation : MonoBehaviour
     
     [Header("Cast Method")]
     [SerializeField] private float defaultChannelRate = 0.1f;
+    [Space(5)]
     [SerializeField] private float defaultChargeRate = 1.5f;
     [SerializeField] private float instantCostMultiplier = 1f;
     [SerializeField] private float chargeCostMultiplier = 0.75f;
     [SerializeField] private float channelCostMultiplier = 1.25f;
+    [Space(5)]
+    [SerializeField] private float instantStrengthMultiplier = 1f;
+    [SerializeField] private float chargeStrengthMultiplier = 2f;
+    [SerializeField] private float channelStrengthMultiplier = 0.3f;
 
     [Header("Domain")]
     [SerializeField] private int maxDomains = 4;
@@ -91,9 +97,11 @@ public class SpellCraftingStation : MonoBehaviour
                 cost += conjureCost;
                 break;
         }
-        
-        cost *= data.effectTypes.Count;
-        
+
+        foreach (var effectType in data.effectTypes)
+        {
+            cost += SpellTypeRegistry.GetEffectManaCost(effectType);
+        }
 
         switch (data.castMethod)
         {
@@ -214,16 +222,33 @@ public class SpellCraftingStation : MonoBehaviour
 
     }
 
-    private SpellEffect[] CreateEffects(List<Type> effectTypes)
+
+    private SpellEffect[] CreateEffects(List<Type> effectTypes, float strengthMultiplier)
     {
         SpellEffect[] effects = new SpellEffect[effectTypes.Count];
-        
+    
         for (int i = 0; i < effectTypes.Count; i++)
         {
             effects[i] = SpellTypeRegistry.CreateEffect(effectTypes[i]);
+            effects[i].ApplyStrengthMultiplier(strengthMultiplier);
         }
-        
+    
         return effects;
+    }
+    
+    public float GetCastMethodStrengthMultiplier(CastMethod castMethod)
+    {
+        switch (castMethod)
+        {
+            case CastMethod.Instant:
+                return instantStrengthMultiplier;
+            case CastMethod.Charge:
+                return chargeStrengthMultiplier;
+            case CastMethod.Channel:
+                return channelStrengthMultiplier;
+            default:
+                return 1f;
+        }
     }
     
     public SOSpell CreateSpell(SpellCraftingData data)
@@ -237,7 +262,7 @@ public class SpellCraftingStation : MonoBehaviour
         spell.description = GenerateSpellDescription(data);
         spell.castMethod = data.castMethod;
         spell.spellForm = data.spellForm;
-        spell.domain = data.domain;
+        spell.domains = new List<Domain>(data.domains);
         spell.manaCost = CalculateManaCost(data);
         spell.conjureLifeTime = CalculateConjureLifeTime(data);
         
@@ -253,7 +278,8 @@ public class SpellCraftingStation : MonoBehaviour
         }
 
 
-        spell.effects = CreateEffects(data.effectTypes);
+        float strengthMultiplier = GetCastMethodStrengthMultiplier(data.castMethod);
+        spell.effects = CreateEffects(data.effectTypes, strengthMultiplier);
         
 
         if (data.spellForm == SpellForm.Conjure)

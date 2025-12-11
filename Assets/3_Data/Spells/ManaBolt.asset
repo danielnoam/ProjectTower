@@ -20,16 +20,16 @@ MonoBehaviour:
   channelRate: 0.3
   chargeTime: 0.3
   spellForm: 2
-  domain: 0
-  effects:
-  - rid: 1991720465952669784
-  - rid: 304922301587259491
   conjurePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
   conjureLifeTime: 5
   conjureMovement:
     rid: 304922306508488800
   conjureCollision:
     rid: 304922306508488801
+  domains: 00000000
+  effects:
+  - rid: 1991720465952669784
+  - rid: 304922301587259491
   references:
     version: 2
     RefIds:

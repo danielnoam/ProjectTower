@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 1052749463490198452}
   - component: {fileID: 2449813212588282745}
   - component: {fileID: 8133530460423344687}
+  - component: {fileID: 1998497277454154105}
   - component: {fileID: 2098150223748071810}
   - component: {fileID: 7147159666562249401}
   m_Layer: 7
@@ -294,6 +295,18 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &1998497277454154105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745313744153569022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26a16bfc233cad45802dcbc1f580796, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPointReset
 --- !u!114 &2098150223748071810
 MonoBehaviour:
   m_ObjectHideFlags: 0
