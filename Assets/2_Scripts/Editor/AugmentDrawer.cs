@@ -6,32 +6,32 @@ using System.Linq;
 [CustomPropertyDrawer(typeof(Augment), true)]
 public class AugmentDrawer : PropertyDrawer
 {
-    private static readonly Type[] effectTypes;
-    private static readonly string[] effectNames;
+    private static readonly Type[] augmentTypes;
+    private static readonly string[] augmentNames;
 
     static AugmentDrawer()
     {
-        effectTypes = AppDomain.CurrentDomain.GetAssemblies()
+        augmentTypes = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(assembly => assembly.GetTypes())
             .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(Augment)))
             .ToArray();
 
-        effectNames = effectTypes.Select(t => FormatName(t.Name)).ToArray();
+        augmentNames = augmentTypes.Select(t => FormatName(t.Name)).ToArray();
     }
     
     private static string FormatName(string name)
     {
-        // Remove "Augment" suffix
+        // Remove "Augment" suffix if present
         if (name.EndsWith("Augment"))
         {
-            name = name.Substring(0, name.Length - 6);
+            name = name.Substring(0, name.Length - 7);
         }
     
         // Add spaces before capital letters
         string result = "";
         for (int i = 0; i < name.Length; i++)
         {
-            if (i > 0 && char.IsUpper(name[i]))
+            if (i > 0 && char.IsUpper(name[i]) && !char.IsUpper(name[i - 1]))
             {
                 result += " ";
             }
@@ -48,42 +48,44 @@ public class AugmentDrawer : PropertyDrawer
         // Get current type
         string typeName = property.managedReferenceFullTypename;
         
-        int selectedIndex = Array.FindIndex(effectTypes, t => typeName.Contains(t.Name));
-
-        // Draw dropdown
-        Rect dropdownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
-        int newIndex = EditorGUI.Popup(dropdownRect, selectedIndex, effectNames);
-
-        if (newIndex != selectedIndex && newIndex >= 0)
+        int selectedIndex = -1;
+        if (!string.IsNullOrEmpty(typeName))
         {
-            property.managedReferenceValue = Activator.CreateInstance(effectTypes[newIndex]);
+            selectedIndex = Array.FindIndex(augmentTypes, t => typeName.Contains(t.Name));
         }
 
-        // Draw fields directly without foldout
+        // Draw dropdown with label
+        Rect dropdownRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+        
+        EditorGUI.BeginChangeCheck();
+        int newIndex = EditorGUI.Popup(dropdownRect, label.text, selectedIndex, augmentNames);
+        
+        if (EditorGUI.EndChangeCheck() && newIndex >= 0)
+        {
+            property.managedReferenceValue = Activator.CreateInstance(augmentTypes[newIndex]);
+        }
+
+        // Draw fields
         if (property.managedReferenceValue != null)
         {
             EditorGUI.indentLevel++;
             float yOffset = position.y + EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
             
-            // Get a copy and enter into children
             SerializedProperty prop = property.Copy();
             SerializedProperty endProperty = prop.GetEndProperty();
             
-            // Enter into the first child
             prop.NextVisible(true);
             
-            // Draw all children
-            do
+            while (!SerializedProperty.EqualContents(prop, endProperty))
             {
-                if (SerializedProperty.EqualContents(prop, endProperty))
-                    break;
-                    
                 float height = EditorGUI.GetPropertyHeight(prop, true);
                 Rect fieldRect = new Rect(position.x, yOffset, position.width, height);
                 EditorGUI.PropertyField(fieldRect, prop, true);
                 yOffset += height + EditorGUIUtility.standardVerticalSpacing;
+                
+                if (!prop.NextVisible(false))
+                    break;
             }
-            while (prop.NextVisible(false));
             
             EditorGUI.indentLevel--;
         }
@@ -93,27 +95,22 @@ public class AugmentDrawer : PropertyDrawer
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-
-        float height = EditorGUIUtility.singleLineHeight; // Dropdown
-        float extraSpace = 5;
-        height += extraSpace;
+        float height = EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
         
         if (property.managedReferenceValue != null)
         {
-
             SerializedProperty prop = property.Copy();
             SerializedProperty endProperty = prop.GetEndProperty();
             
             prop.NextVisible(true);
             
-            do
+            while (!SerializedProperty.EqualContents(prop, endProperty))
             {
-                if (SerializedProperty.EqualContents(prop, endProperty))
-                    break;
-                    
                 height += EditorGUI.GetPropertyHeight(prop, true) + EditorGUIUtility.standardVerticalSpacing;
+                
+                if (!prop.NextVisible(false))
+                    break;
             }
-            while (prop.NextVisible(false));
         }
         
         return height;

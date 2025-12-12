@@ -3,17 +3,17 @@ using UnityEditor;
 using System;
 using System.Linq;
 
-[CustomPropertyDrawer(typeof(ConjureCollisionBehavior), true)]
-public class ProjectileCollisionBehaviorDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(ConjureMotionBehavior), true)]
+public class ProjectileMotionBehaviorDrawer : PropertyDrawer
 {
     private static readonly Type[] behaviorTypes;
     private static readonly string[] behaviorNames;
 
-    static ProjectileCollisionBehaviorDrawer()
+    static ProjectileMotionBehaviorDrawer()
     {
         behaviorTypes = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(assembly => assembly.GetTypes())
-            .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(ConjureCollisionBehavior)))
+            .Where(t => t.IsClass && !t.IsAbstract && t.IsSubclassOf(typeof(ConjureMotionBehavior)))
             .ToArray();
 
         behaviorNames = behaviorTypes.Select(t => FormatName(t.Name)).ToArray();

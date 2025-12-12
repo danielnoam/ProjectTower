@@ -24,9 +24,10 @@ public class SpellCraftingUI : MonoBehaviour
     
     [Header("Conjure Panel")]
     [SerializeField] private GameObject conjurePanel;
-    [SerializeField] private TextMeshProUGUI conjureLifetimeText;
-    [SerializeField] private TMP_Dropdown movementDropdown;
-    [SerializeField] private TMP_Dropdown collisionDropdown;
+    [SerializeField] private TextMeshProUGUI conjureDurationText;
+    [SerializeField] private TMP_Dropdown geometricDropdown;
+    [SerializeField] private TMP_Dropdown motionDropdown;
+    [SerializeField] private TMP_Dropdown impactDropdown;
     
     [Header("Bottom Panel")]
     [SerializeField] private TextMeshProUGUI manaCostText;
@@ -48,8 +49,9 @@ public class SpellCraftingUI : MonoBehaviour
         castMethodDropdown.onValueChanged.AddListener(OnCastMethodChanged);
         spellFormDropdown.onValueChanged.AddListener(OnSpellFormChanged);
         augmentDropdown.onValueChanged.AddListener(OnAugmentChanged);
-        movementDropdown.onValueChanged.AddListener(OnMovementChanged);
-        collisionDropdown.onValueChanged.AddListener(OnCollisionChanged);
+        geometricDropdown.onValueChanged.AddListener(OnGeometricChanged);
+        motionDropdown.onValueChanged.AddListener(OnMotionChanged);
+        impactDropdown.onValueChanged.AddListener(OnImpactChanged);
         addEffectButton.onClick.AddListener(AddEffectEntry);
         createSpellButton.onClick.AddListener(CreateSpell);
         cancelButton.onClick.AddListener(Close);
@@ -76,21 +78,29 @@ public class SpellCraftingUI : MonoBehaviour
             .ToList();
         augmentDropdown.AddOptions(augmentNames);
         
-        // Movement Types
-        movementDropdown.ClearOptions();
-        var movementNames = SpellTypeRegistry.MovementTypes
-            .Select(SpellTypeRegistry.GetMovementDisplayName)
+        // Geometric Types
+        geometricDropdown.ClearOptions();
+        var geometricNames = spellCraftingStation.AvailableGeometrics
+            .Select(g => g.label)
             .ToList();
-        movementDropdown.AddOptions(movementNames);
-        movementDropdown.interactable = movementNames.Count > 1;
+        geometricDropdown.AddOptions(geometricNames);
+        geometricDropdown.interactable = geometricNames.Count > 1;
         
-        // Collision Types
-        collisionDropdown.ClearOptions();
-        var collisionNames = SpellTypeRegistry.CollisionTypes
-            .Select(SpellTypeRegistry.GetCollisionDisplayName)
+        // Motion Types (renamed from Movement)
+        motionDropdown.ClearOptions();
+        var motionNames = SpellTypeRegistry.MotionTypes
+            .Select(SpellTypeRegistry.GetMotionDisplayName)
             .ToList();
-        collisionDropdown.AddOptions(collisionNames);
-        collisionDropdown.interactable = collisionNames.Count > 1;
+        motionDropdown.AddOptions(motionNames);
+        motionDropdown.interactable = motionNames.Count > 1;
+        
+        // Impact Types (renamed from Collision)
+        impactDropdown.ClearOptions();
+        var impactNames = SpellTypeRegistry.ImpactTypes
+            .Select(SpellTypeRegistry.GetImpactDisplayName)
+            .ToList();
+        impactDropdown.AddOptions(impactNames);
+        impactDropdown.interactable = impactNames.Count > 1;
     }
     
     private void InitializeDomainButtons()
@@ -197,7 +207,7 @@ public class SpellCraftingUI : MonoBehaviour
     {
         _currentData.castMethod = (CastMethod)value;
         UpdateManaCost();
-        UpdateConjureLifetime();
+        UpdateConjureDuration();
         RefreshAllEffectDescriptions();
     }
     
@@ -207,7 +217,7 @@ public class SpellCraftingUI : MonoBehaviour
         _currentData.spellForm = (SpellForm)value;
         UpdateUI();
         UpdateManaCost();
-        UpdateConjureLifetime();
+        UpdateConjureDuration();
     }
     
     private void OnAugmentChanged(int value)
@@ -219,29 +229,39 @@ public class SpellCraftingUI : MonoBehaviour
         }
     }
     
-    private void OnMovementChanged(int value)
+    private void OnGeometricChanged(int value)
     {
-        if (value >= 0 && value < SpellTypeRegistry.MovementTypes.Count)
+        if (value >= 0 && value < spellCraftingStation.AvailableGeometrics.Count)
         {
-            _currentData.movementType = SpellTypeRegistry.MovementTypes[value];
+            _currentData.geometric = spellCraftingStation.AvailableGeometrics[value];
+            UpdateManaCost();
+            UpdateConjureDuration();
         }
-        
-        UpdateConjureLifetime();
     }
     
-    private void OnCollisionChanged(int value)
+    private void OnMotionChanged(int value)
     {
-        if (value >= 0 && value < SpellTypeRegistry.CollisionTypes.Count)
+        if (value >= 0 && value < SpellTypeRegistry.MotionTypes.Count)
         {
-            _currentData.collisionType = SpellTypeRegistry.CollisionTypes[value];
+            _currentData.movementType = SpellTypeRegistry.MotionTypes[value];
         }
         
-        UpdateConjureLifetime();
+        UpdateConjureDuration();
     }
     
-    private void UpdateConjureLifetime()
+    private void OnImpactChanged(int value)
     {
-        conjureLifetimeText.text = $"Lifetime: {spellCraftingStation.CalculateConjureLifeTime(_currentData)}s";
+        if (value >= 0 && value < SpellTypeRegistry.ImpactTypes.Count)
+        {
+            _currentData.collisionType = SpellTypeRegistry.ImpactTypes[value];
+        }
+        
+        UpdateConjureDuration();
+    }
+    
+    private void UpdateConjureDuration()
+    {
+        conjureDurationText.text = $"Duration: {spellCraftingStation.CalculateConjureDuration(_currentData):F1}s";
     }
     
     private void UpdateUI()
@@ -324,6 +344,12 @@ public class SpellCraftingUI : MonoBehaviour
             return;
         }
         
+        if (_currentData.spellForm == SpellForm.Conjure && _currentData.geometric == null)
+        {
+            Debug.LogWarning("Cannot create Conjure spell without selecting Geometric!");
+            return;
+        }
+        
         _currentData.domains.Clear();
         _currentData.domains.AddRange(_selectedDomains);
         spellCraftingStation.CreateSpell(_currentData);
@@ -358,16 +384,20 @@ public class SpellCraftingUI : MonoBehaviour
         castMethodDropdown.value = 0;
         spellFormDropdown.value = 0;
         augmentDropdown.value = 0;
-        movementDropdown.value = 0;
-        collisionDropdown.value = 0;
+        geometricDropdown.value = 0;
+        motionDropdown.value = 0;
+        impactDropdown.value = 0;
         
         _currentData = new SpellCraftingData
         {
             castMethod = 0,
             spellForm = 0,
             augmentType = SpellTypeRegistry.AugmentTypes[0],
-            movementType = SpellTypeRegistry.MovementTypes[0],
-            collisionType = SpellTypeRegistry.CollisionTypes[0]
+            movementType = SpellTypeRegistry.MotionTypes[0],
+            collisionType = SpellTypeRegistry.ImpactTypes[0],
+            geometric = spellCraftingStation.AvailableGeometrics.Count > 0 
+                ? spellCraftingStation.AvailableGeometrics[0] 
+                : null
         };
 
         AddEffectEntry();

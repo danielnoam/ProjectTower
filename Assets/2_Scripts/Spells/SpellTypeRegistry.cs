@@ -6,8 +6,8 @@ using System.Reflection;
 public static class SpellTypeRegistry
 {
     private static List<Type> effectTypes;
-    private static List<Type> movementTypes;
-    private static List<Type> collisionTypes;
+    private static List<Type> motionTypes;
+    private static List<Type> impactTypes;
     private static List<Type> augmentTypes;
     
     public static List<Type> EffectTypes
@@ -19,21 +19,21 @@ public static class SpellTypeRegistry
         }
     }
     
-    public static List<Type> MovementTypes
+    public static List<Type> MotionTypes
     {
         get
         {
-            if (movementTypes == null) CacheTypes();
-            return movementTypes;
+            if (motionTypes == null) CacheTypes();
+            return motionTypes;
         }
     }
     
-    public static List<Type> CollisionTypes
+    public static List<Type> ImpactTypes
     {
         get
         {
-            if (collisionTypes == null) CacheTypes();
-            return collisionTypes;
+            if (impactTypes == null) CacheTypes();
+            return impactTypes;
         }
     }
     
@@ -49,8 +49,8 @@ public static class SpellTypeRegistry
     private static void CacheTypes()
     {
         effectTypes = new List<Type>();
-        movementTypes = new List<Type>();
-        collisionTypes = new List<Type>();
+        motionTypes = new List<Type>();
+        impactTypes = new List<Type>();
         augmentTypes = new List<Type>();
         
         // Get all types in all assemblies
@@ -72,44 +72,39 @@ public static class SpellTypeRegistry
             {
                 if (type.IsAbstract || type.IsInterface) continue;
                 
-                // Check for effect attribute
-                if (type.GetCustomAttribute<SpellEffectAttribute>() != null && 
-                    typeof(SpellEffect).IsAssignableFrom(type))
+
+                if (type.GetCustomAttribute<SpellEffectAttribute>() != null && typeof(SpellEffect).IsAssignableFrom(type))
                 {
                     effectTypes.Add(type);
                 }
-                
-                // Check for Augment attribute
+
                 if (type.GetCustomAttribute<AugmentAttribute>() != null && typeof(Augment).IsAssignableFrom(type))
                 {
                     augmentTypes.Add(type);
                 }
 
                 
-                // Check for movement attribute
-                if (type.GetCustomAttribute<ProjectileMovementAttribute>() != null && 
-                    typeof(ConjureMovementBehavior).IsAssignableFrom(type))
+                if (type.GetCustomAttribute<ProjectileMovementAttribute>() != null && typeof(ConjureMotionBehavior).IsAssignableFrom(type))
                 {
-                    movementTypes.Add(type);
+                    motionTypes.Add(type);
                 }
                 
-                // Check for collision attribute
                 if (type.GetCustomAttribute<ProjectileCollisionAttribute>() != null && 
-                    typeof(ConjureCollisionBehavior).IsAssignableFrom(type))
+                    typeof(ConjureImpactBehavior).IsAssignableFrom(type))
                 {
-                    collisionTypes.Add(type);
+                    impactTypes.Add(type);
                 }
             }
         }
         
-        // Sort alphabetically by display name
+
         effectTypes = effectTypes.OrderBy(t => t.GetCustomAttribute<SpellEffectAttribute>().DisplayName).ToList();
         augmentTypes = augmentTypes
             .OrderBy(t => t.Name == "NoneAugment" ? 0 : 1)
             .ThenBy(t => t.GetCustomAttribute<AugmentAttribute>()?.DisplayName ?? "")
             .ToList();
-        movementTypes = movementTypes.OrderBy(t => t.GetCustomAttribute<ProjectileMovementAttribute>().DisplayName).ToList();
-        collisionTypes = collisionTypes.OrderBy(t => t.GetCustomAttribute<ProjectileCollisionAttribute>().DisplayName).ToList();
+        motionTypes = motionTypes.OrderBy(t => t.GetCustomAttribute<ProjectileMovementAttribute>().DisplayName).ToList();
+        impactTypes = impactTypes.OrderBy(t => t.GetCustomAttribute<ProjectileCollisionAttribute>().DisplayName).ToList();
     }
     
     public static string GetEffectDisplayName(Type type)
@@ -134,12 +129,12 @@ public static class SpellTypeRegistry
         return domains.Length == 0 || domains.Contains(domain);
     }
     
-    public static string GetMovementDisplayName(Type type)
+    public static string GetMotionDisplayName(Type type)
     {
         return type.GetCustomAttribute<ProjectileMovementAttribute>()?.DisplayName ?? type.Name;
     }
     
-    public static string GetCollisionDisplayName(Type type)
+    public static string GetImpactDisplayName(Type type)
     {
         return type.GetCustomAttribute<ProjectileCollisionAttribute>()?.DisplayName ?? type.Name;
     }
@@ -149,14 +144,14 @@ public static class SpellTypeRegistry
         return Activator.CreateInstance(type) as SpellEffect;
     }
     
-    public static ConjureMovementBehavior CreateMovement(Type type)
+    public static ConjureMotionBehavior CreateMotion(Type type)
     {
-        return Activator.CreateInstance(type) as ConjureMovementBehavior;
+        return Activator.CreateInstance(type) as ConjureMotionBehavior;
     }
     
-    public static ConjureCollisionBehavior CreateCollision(Type type)
+    public static ConjureImpactBehavior CreateImpact(Type type)
     {
-        return Activator.CreateInstance(type) as ConjureCollisionBehavior;
+        return Activator.CreateInstance(type) as ConjureImpactBehavior;
     }
     
     public static string GetAugmentDisplayName(Type type)

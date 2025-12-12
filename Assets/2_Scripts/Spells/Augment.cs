@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public abstract class Augment
 {
-    public abstract float ManaCost { get; }
     
     public virtual List<SpellForm> CompatibleForms => new List<SpellForm> 
     { 
@@ -58,7 +57,6 @@ public abstract class Augment
 [Augment("None", 0f)]
 public class NoneAugment : Augment
 {
-    public override float ManaCost => 0f;
     
     public override void ApplyStrengthMultiplier(float multiplier)
     {
@@ -91,7 +89,6 @@ public class ChainAugment : Augment
     [Min(0)] public float chainRange = 10f;
     [Range(0f, 1f)] public float damageReductionPerChain = 0.3f;
     
-    public override float ManaCost => 15f;
     
     public override void ApplyStrengthMultiplier(float multiplier)
     {
@@ -177,7 +174,6 @@ public class AreaOfEffectAugment : Augment
     [Min(0)] public float radius = 5f;
     [Range(0f, 1f)] public float edgeFalloff = 0.5f;
     
-    public override float ManaCost => 25f;
     
     public override void ApplyStrengthMultiplier(float multiplier)
     {

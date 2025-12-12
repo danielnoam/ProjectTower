@@ -234,10 +234,13 @@ MonoBehaviour:
   instantStrengthMultiplier: 1
   chargeStrengthMultiplier: 2
   channelStrengthMultiplier: 0.5
+  availableGeometrics:
+  - {fileID: 11400000, guid: d682b5bfdb6a694479d16650e844ab59, type: 2}
+  - {fileID: 11400000, guid: bb1ab17194605c540bf89adc8cc18985, type: 2}
+  - {fileID: 11400000, guid: e349f2f4b26309342859dad451270949, type: 2}
   maxDomains: 4
   maxEffects: 4
   interactable: {fileID: 4034071642064409910}
-  defaultConjurePrefab: {fileID: 6921347514185385476, guid: 77af9f8eec2ff4f40980378fdd29b8d6, type: 3}
 --- !u!1001 &793090601754158371
 PrefabInstance:
   m_ObjectHideFlags: 0

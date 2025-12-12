@@ -36,8 +36,8 @@ public class SOSpellEditor : UnityEditor.Editor
         if (spell.spellForm == SpellForm.Conjure)
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("conjurePrefab"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("conjureMovement"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("conjureCollision"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("conjureMotion"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("conjureImpact"));
         }
         
         EditorGUILayout.PropertyField(serializedObject.FindProperty("domains"), true);

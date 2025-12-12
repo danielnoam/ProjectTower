@@ -2,27 +2,27 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class ConjureMovementBehavior
+public abstract class ConjureMotionBehavior
 {
     protected Rigidbody projectileRb;
     protected ICombatTarget casterSource;
     
-    public virtual float Lifetime => 5f;
+    public virtual float Duration => 5f;
 
-    public abstract ConjureMovementBehavior Clone();
+    public abstract ConjureMotionBehavior Clone();
     public abstract void Initialize(Rigidbody projectileTransform, ICombatTarget source, ICombatTarget target);
     public abstract void UpdateMovement(float delta);
 }
 
 [System.Serializable]
 [ProjectileMovement("Stationary")]
-public class StationaryMovement : ConjureMovementBehavior
+public class StationaryMotion : ConjureMotionBehavior
 {
-    public override float Lifetime => 15f;
+    public override float Duration => 15f;
 
-    public override ConjureMovementBehavior Clone()
+    public override ConjureMotionBehavior Clone()
     {
-        return new StationaryMovement();
+        return new StationaryMotion();
     }
 
     public override void Initialize(Rigidbody rigidbody, ICombatTarget source, ICombatTarget target)
@@ -42,17 +42,17 @@ public class StationaryMovement : ConjureMovementBehavior
 
 [System.Serializable]
 [ProjectileMovement("Straight")]
-public class StraightMovement  : ConjureMovementBehavior
+public class StraightMotion  : ConjureMotionBehavior
 {
-    [Min(0)] public float moveSpeed = 5f;
-    public override float Lifetime => 7f;
+    [Min(0)] public float moveSpeed = 10f;
+    public override float Duration => 7f;
     
     
     private Vector3 _moveDirection;
     
-    public override ConjureMovementBehavior Clone()
+    public override ConjureMotionBehavior Clone()
     {
-        return new StraightMovement 
+        return new StraightMotion 
         { 
             moveSpeed = moveSpeed 
         };
@@ -75,18 +75,18 @@ public class StraightMovement  : ConjureMovementBehavior
 
 [System.Serializable]
 [ProjectileMovement("Homing")]
-public class HomingMovement : ConjureMovementBehavior
+public class HomingMotion : ConjureMotionBehavior
 {
-    [Min(0)] public float moveSpeed = 5f;
+    [Min(0)] public float moveSpeed = 13f;
     [Min(0)] public float turnSpeed = 5f;
-    public override float Lifetime => 5f;
+    public override float Duration => 5f;
 
     private ICombatTarget _target;
     private Vector3 _moveDirection;
 
-    public override ConjureMovementBehavior Clone()
+    public override ConjureMotionBehavior Clone()
     {
-        return new HomingMovement
+        return new HomingMotion
         {
             moveSpeed = moveSpeed,
             turnSpeed = turnSpeed
@@ -98,7 +98,6 @@ public class HomingMovement : ConjureMovementBehavior
         projectileRb = rigidbody;
         casterSource = source;
         _target = target;
-        Debug.Log(_target);
         _moveDirection = casterSource.LookDirection;
     }
 
@@ -117,20 +116,20 @@ public class HomingMovement : ConjureMovementBehavior
 
 [System.Serializable]
 [ProjectileMovement("Boomerang")]
-public class BoomerangMovement : ConjureMovementBehavior
+public class BoomerangMotion : ConjureMotionBehavior
 {
         
-    [Min(0)] public float moveSpeed = 5f;
+    [Min(0)] public float moveSpeed = 15f;
     [Min(0)] public float turnSpeed = 5f;
     [Min(0)] public float returnAfterInSeconds = 5f;
-    public override float Lifetime => returnAfterInSeconds * 2f;
+    public override float Duration => returnAfterInSeconds * 2f;
 
     private Vector3 _moveDirection;
     private float _timeSinceSpawn;
 
-    public override ConjureMovementBehavior Clone()
+    public override ConjureMotionBehavior Clone()
     {
-        return new BoomerangMovement
+        return new BoomerangMotion
         {
             moveSpeed = moveSpeed,
             turnSpeed = turnSpeed,
@@ -167,25 +166,25 @@ public class BoomerangMovement : ConjureMovementBehavior
         projectileRb.rotation = Quaternion.LookRotation(_moveDirection);
     }
     
-    [System.Serializable]
+[System.Serializable]
 [ProjectileMovement("Primed")]
-public class PrimedMovement : ConjureMovementBehavior
+public class PrimedMotion : ConjureMotionBehavior
 {
     [Min(0)] public float primeTime = 2f;
     [Min(0)] public float moveSpeed = 15f;
-    [Min(0)] public float vibrateIntensity = 0.1f;
+    [Min(0)] public float vibrateIntensity = 0.2f;
     [Min(0)] public float vibrateSpeed = 20f;
     
-    public override float Lifetime => 7f;
+    public override float Duration => 7f;
     
     private Vector3 _launchDirection;
     private Vector3 _spawnPosition;
     private float _elapsedTime;
     private bool _hasLaunched;
     
-    public override ConjureMovementBehavior Clone()
+    public override ConjureMotionBehavior Clone()
     {
-        return new PrimedMovement
+        return new PrimedMotion
         {
             primeTime = primeTime,
             moveSpeed = moveSpeed,

@@ -7,19 +7,33 @@ public class Conjure : MonoBehaviour
 {
     [SerializeField] private LayerMask collisionLayers;
     [SerializeField] private Rigidbody rigidBody;
+
     
+    private Collider[] _colliders = Array.Empty<Collider>();
     private bool _isInitialized;
     private float _currentLifeTime;
     private SOSpell _spell;
     private ICombatTarget _source;
     private List<SpellEffect> _hitEffects;
-    private ConjureMovementBehavior _conjureMovementBehavior;
-    private ConjureCollisionBehavior _conjureCollisionBehavior;
+    private ConjureMotionBehavior _conjureMotionBehavior;
+    private ConjureImpactBehavior _conjureImpactBehavior;
     private List<Domain> _domains;
     private Augment _augment;
     private bool _isStuck;
-    
-    
+
+    private void Awake()
+    {
+        if (!rigidBody)
+        {
+            rigidBody = GetComponent<Rigidbody>();
+        }
+
+        if (_colliders.Length == 0)
+        {
+            _colliders = GetComponentsInChildren<Collider>();
+        }
+    }
+
     private void Update()
     {
         if (!_isInitialized) return;
@@ -30,7 +44,7 @@ public class Conjure : MonoBehaviour
             DestroyProjectile();
         }
         
-        if (_conjureCollisionBehavior is StickBehavior stickBehavior)
+        if (_conjureImpactBehavior is StickBehavior stickBehavior)
         {
             stickBehavior.UpdateStickPosition();
         }
@@ -41,7 +55,7 @@ public class Conjure : MonoBehaviour
     {
         if (!_isInitialized || _isStuck) return;
         
-        _conjureMovementBehavior.UpdateMovement(Time.fixedDeltaTime);
+        _conjureMotionBehavior.UpdateMovement(Time.fixedDeltaTime);
     }
     
     
@@ -56,12 +70,16 @@ public class Conjure : MonoBehaviour
             {
                 Vector3 impactPoint = other.contacts[0].point;
                 _augment.Apply(_hitEffects, _domains, _source, hitTarget, impactPoint);
+                _conjureImpactBehavior?.OnCollision(this,other);
             }
         }
+        else
+        {
+            _conjureImpactBehavior?.OnCollision(this,other);
+        }
      
-        _conjureCollisionBehavior?.OnCollision(this,other);
         
-        if (_conjureCollisionBehavior is StickBehavior)
+        if (_conjureImpactBehavior is StickBehavior)
         {
             _isStuck = true;
         }
@@ -73,6 +91,15 @@ public class Conjure : MonoBehaviour
     {
         if (!_isInitialized) return;
         if (collisionLayers != (collisionLayers | (1 << other.gameObject.layer))) return;
+        
+        if (other.gameObject.TryGetComponent(out ICombatTarget hitTarget))
+        {
+            if (hitTarget != null && hitTarget != _source)
+            {
+                Vector3 impactPoint = other.ClosestPoint(transform.position);
+                _augment.Apply(_hitEffects, _domains, _source, hitTarget, impactPoint);
+            }
+        }
     }
     
     private SpellEffect[] CloneEffects(SpellEffect[] effectsToClone)
@@ -95,12 +122,12 @@ public class Conjure : MonoBehaviour
         _hitEffects = CloneEffects(spell.effects).ToList();
         _domains = new List<Domain>(spell.domains);
         _augment = spell.augment?.Clone() ?? new NoneAugment();
-        _conjureMovementBehavior = spell.conjureMovement?.Clone();
-        _conjureCollisionBehavior = spell.conjureCollision?.Clone();
+        _conjureMotionBehavior = spell.conjureMotion?.Clone();
+        _conjureImpactBehavior = spell.conjureImpact?.Clone();
         _currentLifeTime = spell.conjureLifeTime;
         
-        _conjureMovementBehavior?.Initialize(rigidBody, _source, target);
-        _conjureCollisionBehavior?.Initialize(rigidBody, _source);
+        _conjureMotionBehavior?.Initialize(rigidBody, _source, target);
+        _conjureImpactBehavior?.Initialize(rigidBody,_colliders, _source);
         _isInitialized = true;
     }
 

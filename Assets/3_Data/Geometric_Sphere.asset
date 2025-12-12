@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1737ccc1d9c29f748a3ed7eafc5c00f4, type: 3}
+  m_Name: Geometric_Sphere
+  m_EditorClassIdentifier: Assembly-CSharp::SOConjureGeometric
+  label: Sphere
+  icon: {fileID: 0}
+  costMultiplier: 1
+  prefab: {fileID: 2260793320980255616, guid: feac61e62ca3e794fb77ea2f47d235c7, type: 3}

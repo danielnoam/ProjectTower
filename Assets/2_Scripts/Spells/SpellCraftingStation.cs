@@ -13,6 +13,7 @@ public class SpellCraftingData
     public Type augmentType;
     public Type movementType;
     public Type collisionType;
+    public SOConjureGeometric geometric; // NEW
     
     public SpellCraftingData()
     {
@@ -22,17 +23,18 @@ public class SpellCraftingData
             augmentType = SpellTypeRegistry.AugmentTypes[0];
         }
         
-        if (SpellTypeRegistry.MovementTypes.Count > 0)
+        if (SpellTypeRegistry.MotionTypes.Count > 0)
         {
-            movementType = SpellTypeRegistry.MovementTypes[0];
+            movementType = SpellTypeRegistry.MotionTypes[0];
         }
         
-        if (SpellTypeRegistry.CollisionTypes.Count > 0)
+        if (SpellTypeRegistry.ImpactTypes.Count > 0)
         {
-            collisionType = SpellTypeRegistry.CollisionTypes[0];
+            collisionType = SpellTypeRegistry.ImpactTypes[0];
         }
+        
+        // Geometric will be set from SpellCraftingStation's default
     }
-    
 }
 
 
@@ -55,6 +57,9 @@ public class SpellCraftingStation : MonoBehaviour
     [SerializeField] private float chargeStrengthMultiplier = 2f;
     [SerializeField] private float channelStrengthMultiplier = 0.3f;
 
+    [Header("Geometric")]
+    [SerializeField] private List<SOConjureGeometric> availableGeometrics;
+    
     [Header("Domain")]
     [SerializeField] private int maxDomains = 4;
 
@@ -63,11 +68,11 @@ public class SpellCraftingStation : MonoBehaviour
     
     [Header("References")]
     [SerializeField] private Interactable interactable;
-    [SerializeField] private Conjure defaultConjurePrefab;
 
     
     public int MaxEffects => maxEffects;
     public int MaxDomains => maxDomains;
+    public List<SOConjureGeometric> AvailableGeometrics => availableGeometrics;
     
     public event Action Opened;
     public event Action<SOSpell> SpellCrafted;
@@ -102,6 +107,7 @@ public class SpellCraftingStation : MonoBehaviour
                 break;
             case SpellForm.Conjure:
                 cost += conjureCost;
+                if (data.geometric) cost *= data.geometric.costMultiplier;
                 break;
         }
 
@@ -110,8 +116,8 @@ public class SpellCraftingStation : MonoBehaviour
             cost += SpellTypeRegistry.GetEffectManaCost(effectType);
         }
         
-        float augmentCost = SpellTypeRegistry.GetAugmentManaCost(data.augmentType);
-        cost += augmentCost;
+        cost += SpellTypeRegistry.GetAugmentManaCost(data.augmentType);
+        
 
         switch (data.castMethod)
         {
@@ -125,21 +131,21 @@ public class SpellCraftingStation : MonoBehaviour
                 cost *= channelCostMultiplier;
                 break;
         }
-
+        
         return cost;
     }
 
-    public float CalculateConjureLifeTime(SpellCraftingData data)
+    public float CalculateConjureDuration(SpellCraftingData data)
     {
-        var lifeTime = 0f;
+        var duration = 0f;
         
-        var movement = SpellTypeRegistry.CreateMovement(data.movementType);
+        var movement = SpellTypeRegistry.CreateMotion(data.movementType);
         if (movement != null)
         {
-            lifeTime += movement.Lifetime;
+            duration += movement.Duration;
         }
     
-        return lifeTime;
+        return duration;
     }
     
     private string GenerateSpellName(SpellCraftingData data)
@@ -274,7 +280,7 @@ public class SpellCraftingStation : MonoBehaviour
         spell.spellForm = data.spellForm;
         spell.domains = new List<Domain>(data.domains);
         spell.manaCost = CalculateManaCost(data);
-        spell.conjureLifeTime = CalculateConjureLifeTime(data);
+        spell.conjureLifeTime = CalculateConjureDuration(data);
         
 
         switch (data.castMethod)
@@ -295,20 +301,18 @@ public class SpellCraftingStation : MonoBehaviour
 
         if (data.spellForm == SpellForm.Conjure)
         {
-            if (!defaultConjurePrefab)
+            if (!data.geometric || !data.geometric.prefab)
             {
-                Debug.LogError("No default projectile prefab assigned!");
+                Debug.LogError("No geometric selected or geometric has no prefab!");
+                return null;
             }
             
-            spell.conjurePrefab = defaultConjurePrefab;
-            spell.conjureMovement = SpellTypeRegistry.CreateMovement(data.movementType);
-            spell.conjureCollision = SpellTypeRegistry.CreateCollision(data.collisionType);
+            spell.conjurePrefab = data.geometric.prefab;
+            spell.conjureMotion = SpellTypeRegistry.CreateMotion(data.movementType);
+            spell.conjureImpact = SpellTypeRegistry.CreateImpact(data.collisionType);
         }
         
         SpellCrafted?.Invoke(spell);
         return spell;
     }
-    
-
-    
 }

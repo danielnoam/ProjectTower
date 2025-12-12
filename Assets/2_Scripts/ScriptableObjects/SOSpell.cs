@@ -21,8 +21,8 @@ public class SOSpell : ScriptableObject
     [SerializeReference] public Augment augment = new NoneAugment();
     public Conjure conjurePrefab;
     public float conjureLifeTime = 5f;
-    [SerializeReference] public ConjureMovementBehavior conjureMovement = new StraightMovement();
-    [SerializeReference] public ConjureCollisionBehavior conjureCollision = new DestroyBehavior();
+    [SerializeReference] public ConjureMotionBehavior conjureMotion = new StraightMotion();
+    [SerializeReference] public ConjureImpactBehavior conjureImpact = new DestroyBehavior();
     public List<Domain> domains = new List<Domain>();
     [SerializeReference] public SpellEffect[] effects = Array.Empty<SpellEffect>();
 
