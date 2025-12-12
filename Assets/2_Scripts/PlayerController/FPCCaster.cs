@@ -26,6 +26,9 @@ public class FPCCaster : MonoBehaviour
 
     public SOSpell CurrentSpell => currentSpell;
     public event Action<SOSpell> SpellChanged;
+    public event Action<float, float> SpellCastingProgressChanged;
+    
+    
 
     private void OnValidate()
     {
@@ -96,7 +99,10 @@ public class FPCCaster : MonoBehaviour
                 castingTime = currentSpell.chargeTime;
                 finishedCasting = true;
             }
+            
+            SpellCastingProgressChanged?.Invoke(castingTime, currentSpell.chargeTime);
         }
+        
         // Channel spell
         if (currentSpell.castMethod == CastMethod.Channel)
         {
@@ -114,6 +120,8 @@ public class FPCCaster : MonoBehaviour
                 ICombatTarget target = GetTarget();
                 spellCasterComponent.CastSpell(currentSpell, target);
             }
+            
+            SpellCastingProgressChanged?.Invoke(castingTime, currentSpell.channelRate);
         }
 
     }
@@ -168,6 +176,7 @@ public class FPCCaster : MonoBehaviour
         isCasting = false;
         finishedCasting = false;
         castingTime = 0f;
+        SpellCastingProgressChanged?.Invoke(castingTime, 0);
     }
     
     

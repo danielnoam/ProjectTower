@@ -1,11 +1,13 @@
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI statsText;
     [SerializeField] private TextMeshProUGUI inventoryText;
+    [SerializeField] private Image reticleImage;
     [SerializeField] private FPCManager fpcManager;
 
     private readonly StringBuilder _sb = new StringBuilder();
@@ -13,6 +15,8 @@ public class PlayerHUD : MonoBehaviour
     private string _manaText;
     private string _spellText;
 
+    
+    
     private void OnEnable()
     {
         if (!fpcManager) return;
@@ -21,10 +25,12 @@ public class PlayerHUD : MonoBehaviour
         fpcManager.SpellCasterComponent.ManaChanged += UpdateMana;
         fpcManager.InventoryComponent.InventoryUpdated += UpdateInventory;
         fpcManager.FpcCaster.SpellChanged += UpdateSpell;
+        fpcManager.FpcCaster.SpellCastingProgressChanged += UpdateReticle;
         
         UpdateHealth(new HealthChangeData());
         UpdateMana(0);
         UpdateSpell(fpcManager.FpcCaster.CurrentSpell);
+        UpdateReticle(0,0);
         UpdateInventory();
     }
 
@@ -36,6 +42,19 @@ public class PlayerHUD : MonoBehaviour
         fpcManager.SpellCasterComponent.ManaChanged -= UpdateMana;
         fpcManager.InventoryComponent.InventoryUpdated -= UpdateInventory;
         fpcManager.FpcCaster.SpellChanged -= UpdateSpell;
+        fpcManager.FpcCaster.SpellCastingProgressChanged -= UpdateReticle;
+    }
+
+    private void UpdateReticle(float current, float max)
+    {
+        if (max == 0)
+        {
+            reticleImage.fillAmount = 0;
+        }
+        else
+        {
+            reticleImage.fillAmount = current / max;
+        }
     }
 
     private void UpdateHealth(HealthChangeData healthChangeData)

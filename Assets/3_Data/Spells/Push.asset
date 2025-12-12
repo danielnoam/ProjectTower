@@ -20,15 +20,17 @@ MonoBehaviour:
   channelRate: 0.3
   chargeTime: 0.3
   spellForm: 0
-  domain: 0
-  effects:
-  - rid: 304922306508488705
+  augment:
+    rid: 304922346597122048
   conjurePrefab: {fileID: 0}
   conjureLifeTime: 5
-  conjureMovement:
-    rid: 304922306508488802
-  conjureCollision:
-    rid: 304922306508488803
+  conjureMotion:
+    rid: 304922346597122055
+  conjureImpact:
+    rid: 304922346597122050
+  domains: 00000000
+  effects:
+  - rid: 304922306508488705
   references:
     version: 2
     RefIds:
@@ -36,10 +38,13 @@ MonoBehaviour:
       type: {class: PushEffect, ns: , asm: Assembly-CSharp}
       data:
         force: 125
-    - rid: 304922306508488802
-      type: {class: StraightMovement, ns: , asm: Assembly-CSharp}
-      data:
-        moveSpeed: 5
-    - rid: 304922306508488803
+    - rid: 304922346597122048
+      type: {class: NoneAugment, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 304922346597122050
       type: {class: DestroyBehavior, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 304922346597122055
+      type: {class: StraightMotion, ns: , asm: Assembly-CSharp}
+      data:
+        moveSpeed: 10
