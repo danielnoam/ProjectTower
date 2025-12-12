@@ -59,6 +59,14 @@ public class FPCCaster : MonoBehaviour
 
     private void Update()
     {
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            var target = GetTarget();
+            Debug.Log(target);
+        }
+        
+        
         // Change spell
         if (Input.mouseScrollDelta.y > 0)
         {
@@ -185,7 +193,11 @@ public class FPCCaster : MonoBehaviour
         if (_cam && Physics.Raycast(_cam.transform.position, _cam.transform.forward, out RaycastHit hit, maxTargetRange))
         {
             var target = hit.collider.GetComponent<ICombatTarget>();
-            if (target != fpcManager as ICombatTarget) return target;
+            if (target != fpcManager as ICombatTarget)
+            {
+                Debug.Log(target);
+            }
+
         }
         
         return null;

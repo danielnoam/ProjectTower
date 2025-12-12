@@ -9,11 +9,13 @@ public class Interactable : MonoBehaviour
 {
     [Header("Interaction Settings")]
     [SerializeField] private bool canInteract = true;
-    [SerializeField] private float outlineWidthOnHighlight = 5f;
-    [SerializeField] private float outlineWidthOnUnHighlight;
     
     [Header("References")]
     [SerializeField] private Outline outline;
+    
+    private Color _outlineColor = Color.mediumPurple;
+    private float _outlineWidthOnHighlight = 7f;
+    private float _outlineWidthOnUnHighlight;
     
     private bool _isHighlighted;
     private Sequence _highlightSequence;
@@ -29,7 +31,8 @@ public class Interactable : MonoBehaviour
     {
         if (outline)
         {
-            outline.OutlineWidth = outlineWidthOnUnHighlight;
+            outline.OutlineWidth = _outlineWidthOnUnHighlight;
+            outline.OutlineColor = _outlineColor;
         }
     }
     
@@ -46,7 +49,7 @@ public class Interactable : MonoBehaviour
             _highlightSequence = Sequence.Create()
                 .Group(Tween.Custom(
                     startValue: outline.OutlineWidth,
-                    endValue: outlineWidthOnHighlight,
+                    endValue: _outlineWidthOnHighlight,
                     duration: 0.3f,
                     onValueChange: value => outline.OutlineWidth = value
                     ));
@@ -65,7 +68,7 @@ public class Interactable : MonoBehaviour
             _highlightSequence = Sequence.Create()
                 .Group(Tween.Custom(
                     startValue: outline.OutlineWidth,
-                    endValue: outlineWidthOnUnHighlight,
+                    endValue: _outlineWidthOnUnHighlight,
                     duration: 0.2f,
                     onValueChange: value => outline.OutlineWidth = value
                 ));

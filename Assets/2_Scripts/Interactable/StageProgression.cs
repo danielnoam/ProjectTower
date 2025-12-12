@@ -9,29 +9,26 @@ using UnityEngine.Events;
 public class ItemRequirement
 {
     public SOItem item;
-    public int amount = 1;
+    [Min(1)] public int amount = 1;
 }
 
 [Serializable]
-public class UpgradeLevel
+public class ProgressionStage
 {
-    [SerializeField] private string label = "Upgrade";
+    [SerializeField] private string stageName = "Stage";
     [SerializeField] private string description;
     [SerializeField] private List<ItemRequirement> requiredItems = new List<ItemRequirement>();
-    [SerializeField] private UnityEvent onUpgrade;
+    [SerializeField] private UnityEvent onStageReached;
     
-    public string Label => label;
+    public string StageName => stageName;
     public string Description => description;
     public List<ItemRequirement> RequiredItems => requiredItems;
-    public UnityEvent OnUpgrade => onUpgrade;
+    public UnityEvent OnStageReached => onStageReached;
     
     public bool HasRequiredItems(InventoryComponent inventory)
     {
         if (requiredItems.Count == 0) return true;
-        
-        return requiredItems.All(req => 
-            inventory.GetItemAmount(req.item) >= req.amount
-        );
+        return requiredItems.All(req => inventory.GetItemAmount(req.item) >= req.amount);
     }
     
     public void ConsumeItems(InventoryComponent inventory)
@@ -44,7 +41,7 @@ public class UpgradeLevel
     
     public string GetRequirementsText(InventoryComponent inventory)
     {
-        if (requiredItems.Count == 0) return string.Empty;
+        if (requiredItems.Count == 0) return "No requirements";
         
         var requirements = requiredItems.Select(req =>
         {
@@ -60,24 +57,25 @@ public class UpgradeLevel
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(Interactable))]
-public class UpgradableObject : MonoBehaviour
+public class StageProgression : MonoBehaviour
 {
-    [Header("Upgrade Settings")]
-    [SerializeField, Min(0)] private int startLevel;
-    [SerializeField] private List<UpgradeLevel> upgradeLevels = new List<UpgradeLevel>();
-    [SerializeField] private SOAudioEvent upgradeSuccessSfx;
-    [SerializeField] private SOAudioEvent upgradeFailedSfx;
+    [Header("Stage Settings")]
+    [SerializeField, Min(0)] private int startingStage;
+    [SerializeField] private List<ProgressionStage> stages = new List<ProgressionStage>();
+
     
     [Header("References")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private Interactable interactable;
     [SerializeField] private InteractableTooltip tooltip;
+    [SerializeField] private SOAudioEvent stageSuccessSfx;
+    [SerializeField] private SOAudioEvent stageFailedSfx;
     
     [Separator]
-    [SerializeField, ReadOnly] private int currentLevel;
+    [SerializeField, ReadOnly] private int currentStageIndex;
     
-    private bool IsMaxLevel => currentLevel >= upgradeLevels.Count;
-    
+    private bool IsMaxStage => currentStageIndex >= stages.Count - 1;
+    private int NextStageIndex => currentStageIndex + 1;
     
     private void OnValidate()
     {
@@ -88,8 +86,13 @@ public class UpgradableObject : MonoBehaviour
 
     private void Start()
     {
-        currentLevel = Mathf.Clamp(startLevel, 0, upgradeLevels.Count);
-        upgradeLevels[currentLevel]?.OnUpgrade?.Invoke();
+        currentStageIndex = Mathf.Clamp(startingStage, 0, stages.Count - 1);
+        
+        // Apply all stages up to current
+        for (int i = 0; i <= currentStageIndex; i++)
+        {
+            stages[i].OnStageReached?.Invoke();
+        }
     }
 
     private void OnEnable()
@@ -111,24 +114,24 @@ public class UpgradableObject : MonoBehaviour
     
     private void OnInteract(FPCInteraction interactor)
     {
-        if (IsMaxLevel) return;
+        if (IsMaxStage) return;
         
         var inventory = interactor.GetComponent<InventoryComponent>();
         if (!inventory) return;
         
-        var currentUpgrade = upgradeLevels[currentLevel];
+        var nextStage = stages[NextStageIndex];
         
-        if (currentUpgrade.HasRequiredItems(inventory))
+        if (nextStage.HasRequiredItems(inventory))
         {
-            currentUpgrade.ConsumeItems(inventory);
-            currentUpgrade.OnUpgrade?.Invoke();
-            upgradeSuccessSfx?.Play(audioSource);
-            currentLevel++;
+            nextStage.ConsumeItems(inventory);
+            nextStage.OnStageReached?.Invoke();
+            currentStageIndex++;
+            stageSuccessSfx?.Play(audioSource);
             UpdateTooltip(interactor);
         }
         else
         {
-            upgradeFailedSfx?.Play(audioSource);
+            stageFailedSfx?.Play(audioSource);
             tooltip?.Punch(Color.red);
         }
     }
@@ -140,21 +143,20 @@ public class UpgradableObject : MonoBehaviour
         var inventory = interactor.GetComponent<InventoryComponent>();
         if (!inventory) return;
         
-        if (IsMaxLevel)
+        if (IsMaxStage)
         {
-            tooltip.SetText("Max Level", "Fully Upgraded");
+            var currentStage = stages[currentStageIndex];
+            tooltip.SetText($"{currentStage.StageName} (Max)", "Fully Complete");
             return;
         }
         
-        var upgrade = upgradeLevels[currentLevel];
-        string action = $"{upgrade.Label}";
+        var current = stages[currentStageIndex];
+        var next = stages[NextStageIndex];
         
-        string requirements = upgrade.GetRequirementsText(inventory);
-        string description = string.IsNullOrEmpty(requirements) 
-            ? upgrade.Description 
-            : $"{upgrade.Description}\n\n{requirements}";
+        string header = $"{current.StageName} → {next.StageName}";
+        string requirements = next.GetRequirementsText(inventory);
+        string description = $"{next.Description}\n\n{requirements}";
         
-        tooltip.SetText(action, description);
+        tooltip.SetText(header, description);
     }
-    
 }

@@ -97,7 +97,7 @@ public class PlayerHUD : MonoBehaviour
         {
             foreach (var kvp in items)
             {
-                _sb.AppendLine($"{kvp.Key.name} x{kvp.Value}");
+                _sb.AppendLine($"{kvp.Key.Label} x{kvp.Value}");
             }
         }
         
