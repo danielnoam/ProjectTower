@@ -199,7 +199,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6264756547195818766}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -288,8 +288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   canInteract: 1
-  outlineWidthOnHighlight: 5
-  outlineWidthOnUnHighlight: 0
   outline: {fileID: 3943796911023103631}
 --- !u!114 &1125147034241106142
 MonoBehaviour:

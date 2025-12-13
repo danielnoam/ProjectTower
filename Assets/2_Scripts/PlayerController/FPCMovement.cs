@@ -169,9 +169,9 @@ public class FPCMovement : MonoBehaviour
     }
 
 
-    public void ApplyForce(Vector3 force)
+    public void ApplyForce(Vector3 direction, float force)
     {
-        _externalForce += force;
+        _externalForce += direction * force;
     }
 
 

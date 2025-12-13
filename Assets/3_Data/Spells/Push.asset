@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e54bd609f87a481e9283e152da17280f, type: 3}
   m_Name: Push
   m_EditorClassIdentifier: Assembly-CSharp::SOSpell
-  label: Mana Bolt
+  label: Push
   icon: {fileID: 0}
   description: A very basic spell
   castMethod: 0
-  manaCost: 5
+  manaCost: 0
   channelRate: 0.3
   chargeTime: 0.3
-  spellForm: 0
+  spellForm: 1
   augment:
     rid: 304922346597122048
   conjurePrefab: {fileID: 0}
@@ -37,7 +37,8 @@ MonoBehaviour:
     - rid: 304922306508488705
       type: {class: PushEffect, ns: , asm: Assembly-CSharp}
       data:
-        force: 125
+        force: 25
+        verticalInfluence: 0.3
     - rid: 304922346597122048
       type: {class: NoneAugment, ns: , asm: Assembly-CSharp}
       data: 

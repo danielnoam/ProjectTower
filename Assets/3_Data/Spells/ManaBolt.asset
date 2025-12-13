@@ -22,12 +22,12 @@ MonoBehaviour:
   spellForm: 2
   augment:
     rid: 304922342802587753
-  conjurePrefab: {fileID: 2260793320980255616, guid: feac61e62ca3e794fb77ea2f47d235c7, type: 3}
+  conjurePrefab: {fileID: 6639933010593803685, guid: d578f89ccfdd7254bbb4308208901a4f, type: 3}
   conjureLifeTime: 5
   conjureMotion:
     rid: 304922342802587763
   conjureImpact:
-    rid: 304922342802587757
+    rid: 304922367524077649
   domains: 00000000
   effects:
   - rid: 1991720465952669784
@@ -39,16 +39,17 @@ MonoBehaviour:
       type: {class: PushEffect, ns: , asm: Assembly-CSharp}
       data:
         force: 15
+        verticalInfluence: 0.3
     - rid: 304922342802587753
       type: {class: NoneAugment, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 304922342802587757
-      type: {class: PierceBehavior, ns: , asm: Assembly-CSharp}
       data: 
     - rid: 304922342802587763
       type: {class: StraightMotion, ns: , asm: Assembly-CSharp}
       data:
         moveSpeed: 10
+    - rid: 304922367524077649
+      type: {class: StickBehavior, ns: , asm: Assembly-CSharp}
+      data: 
     - rid: 1991720465952669784
       type: {class: DamageHealthEffect, ns: , asm: Assembly-CSharp}
       data:

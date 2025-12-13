@@ -69,8 +69,8 @@ public static class DomainProperties
         if (domain == Domain.Air)
         {
             Vector3 direction = (target.Transform.position - source.Transform.position).normalized;
-            Vector3 force = direction * 150f;
-            target.ApplyForce(force);
+            float force = 5f;
+            target.ApplyForce(direction, force);
         }
     }
 }

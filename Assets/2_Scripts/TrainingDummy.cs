@@ -26,7 +26,7 @@ public class TrainingDummy : MonoBehaviour, ICombatTarget
 
     }
 
-    public void ApplyForce(Vector3 force)
+    public void ApplyForce(Vector3 direction, float force)
     {
 
     }

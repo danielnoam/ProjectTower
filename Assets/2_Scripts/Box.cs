@@ -33,14 +33,14 @@ public class Box : MonoBehaviour, ICombatTarget
         _healthComponent.Heal(amount);
     }
 
-    public void ApplyForce(Vector3 force)
+    public void ApplyForce(Vector3 direction, float force)
     {
-        _rigidbody.AddForce(force, ForceMode.Impulse);
+        force = Mathf.Clamp(force, 0, 35);
+        _rigidbody.AddForce(direction * force, ForceMode.Impulse);
     }
 
     public void ApplyStatus(StatusEffect status)
     {
-        
         _statusEffectComponent.ApplyStatus(status);
     }
 

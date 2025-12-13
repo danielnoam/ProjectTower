@@ -124,7 +124,11 @@ public abstract class FPCCameraBase : MonoBehaviour
 
     public Vector3 GetAimDirection()
     {
-        return Quaternion.Euler(_currentTiltAngle, _currentPanAngle, 0) * Vector3.forward;
+        if (playerHead)
+        {
+            return playerHead.forward;
+        }
+        return transform.forward;
     }
     
     protected abstract void UpdateFovInEditor();

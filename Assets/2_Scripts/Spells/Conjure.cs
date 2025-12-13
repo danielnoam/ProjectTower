@@ -63,19 +63,21 @@ public class Conjure : MonoBehaviour
     {
         if (!_isInitialized) return;
         if (collisionLayers != (collisionLayers | (1 << other.gameObject.layer))) return;
-    
+        
         if (other.gameObject.TryGetComponent(out ICombatTarget hitTarget))
         {
-            if (hitTarget != null && hitTarget != _source)
+            if (hitTarget == _source)
             {
-                Vector3 impactPoint = other.contacts[0].point;
-                _augment.Apply(_hitEffects, _domains, _source, hitTarget, impactPoint);
-                _conjureImpactBehavior?.OnCollision(this,other);
+                return; 
             }
+            
+            Vector3 impactPoint = other.contacts[0].point;
+            _augment.Apply(_hitEffects, _domains, _source, hitTarget, impactPoint);
+            _conjureImpactBehavior?.OnCollision(this, other);
         }
         else
         {
-            _conjureImpactBehavior?.OnCollision(this,other);
+            _conjureImpactBehavior?.OnCollision(this, other);
         }
      
         
@@ -94,11 +96,13 @@ public class Conjure : MonoBehaviour
         
         if (other.gameObject.TryGetComponent(out ICombatTarget hitTarget))
         {
-            if (hitTarget != null && hitTarget != _source)
+            if (hitTarget == _source)
             {
-                Vector3 impactPoint = other.ClosestPoint(transform.position);
-                _augment.Apply(_hitEffects, _domains, _source, hitTarget, impactPoint);
+                return;
             }
+            
+            Vector3 impactPoint = other.ClosestPoint(transform.position);
+            _augment.Apply(_hitEffects, _domains, _source, hitTarget, impactPoint);
         }
     }
     
@@ -128,8 +132,11 @@ public class Conjure : MonoBehaviour
         
         _conjureMotionBehavior?.Initialize(rigidBody, _source, target);
         _conjureImpactBehavior?.Initialize(rigidBody,_colliders, _source);
+        
         _isInitialized = true;
     }
+    
+
 
     public void DestroyProjectile()
     {

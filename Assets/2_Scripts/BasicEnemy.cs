@@ -117,10 +117,11 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
         healthComponent.Heal(amount);
     }
 
-    public void ApplyForce(Vector3 force)
+    public void ApplyForce(Vector3 direction, float force)
     {
         agent.enabled = false;
-        rigidBody.AddForce(force, ForceMode.Impulse);
+        rigidBody.AddForce(direction * force, ForceMode.Impulse);
+        agent.enabled = true;
     }
 
     public void ApplyStatus(StatusEffect status)

@@ -75,9 +75,9 @@ public class FPCManager : MonoBehaviour, ICombatTarget
         healthComponent.Heal(amount);
     }
 
-    public void ApplyForce(Vector3 force)
+    public void ApplyForce(Vector3 direction, float force)
     {
-        fpcMovement.ApplyForce(force);
+        fpcMovement.ApplyForce(direction, force);
     }
 
     public void ApplyStatus(StatusEffect status)

@@ -67,12 +67,12 @@ public class HealHealthEffect : SpellEffect
     }
 }
 
-
 [System.Serializable]
 [SpellEffect("Push", manaCost: 25f, AvailableDomains = new[] { Domain.Arcane })]
 public class PushEffect : SpellEffect
 {
-    [Min(0)] public float force = 100f;
+    [Min(0)] public float force = 25f;
+    [Range(0f, 1f)] public float verticalInfluence = 0.3f; // How much vertical angle affects the push
     
     public override void ApplyStrengthMultiplier(float multiplier)
     {
@@ -84,22 +84,43 @@ public class PushEffect : SpellEffect
         return $"Pushes {force:F0} units";
     }
     
-    
     public override List<Domain> AvailableForDomains => new List<Domain> { Domain.Arcane};
     
     public override SpellEffect Clone()
     {
-        return new PushEffect { force = force};
+        return new PushEffect { force = force, verticalInfluence = verticalInfluence };
     }
+    
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
-        var direction = source == target
-            ? source.LookDirection
-            : (target.Transform.position - source.Transform.position).normalized;
-
-        Vector3 forceVector = direction * force;
-        target.ApplyForce(forceVector);
-    
+        Vector3 direction;
+        
+        if (source == target)
+        {
+            direction = source.LookDirection;
+        }
+        else
+        {
+            Vector3 sourcePos = source.Transform.position;
+            Vector3 targetPos = target.Transform.position;
+            
+            Vector3 horizontalDir = new Vector3(
+                targetPos.x - sourcePos.x,
+                0,
+                targetPos.z - sourcePos.z
+            ).normalized;
+            
+            Vector3 lookDir = source.LookDirection;
+            float verticalComponent = lookDir.y * verticalInfluence;
+            
+            direction = new Vector3(
+                horizontalDir.x,
+                verticalComponent,
+                horizontalDir.z
+            ).normalized;
+        }
+        
+        target.ApplyForce(direction, force);
     }
 }
 
@@ -107,7 +128,8 @@ public class PushEffect : SpellEffect
 [SpellEffect("Pull", manaCost: 20f, AvailableDomains = new[] { Domain.Arcane })]
 public class PullEffect : SpellEffect
 {
-    [Min(0)] public float force = 100f;
+    [Min(0)] public float force = 25f;
+    [Range(0f, 1f)] public float verticalInfluence = 0.3f;
     
     public override string GetDescription()
     {
@@ -123,16 +145,40 @@ public class PullEffect : SpellEffect
     
     public override SpellEffect Clone()
     {
-        return new PullEffect { force = force };
+        return new PullEffect { force = force, verticalInfluence = verticalInfluence };
     }
+    
     public override void Apply(ICombatTarget source, ICombatTarget target)
     {
-        var direction = source == target
-            ? -source.LookDirection
-            : (source.Transform.position - target.Transform.position).normalized;
+        Vector3 direction;
+        
+        if (source == target)
+        {
+            direction = -source.LookDirection;
+        }
+        else
+        {
 
-        Vector3 forceVector = direction * force;
-        target.ApplyForce(forceVector);
+            Vector3 sourcePos = source.Transform.position;
+            Vector3 targetPos = target.Transform.position;
+            
+            Vector3 horizontalDir = new Vector3(
+                sourcePos.x - targetPos.x,
+                0,
+                sourcePos.z - targetPos.z
+            ).normalized;
+
+            Vector3 lookDir = source.LookDirection;
+            float verticalComponent = Mathf.Abs(lookDir.y * verticalInfluence);
+            
+            direction = new Vector3(
+                horizontalDir.x,
+                verticalComponent,
+                horizontalDir.z
+            ).normalized;
+        }
+        
+        target.ApplyForce(direction, force);
     }
 }
 

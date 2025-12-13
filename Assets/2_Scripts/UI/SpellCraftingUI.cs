@@ -86,7 +86,7 @@ public class SpellCraftingUI : MonoBehaviour
         geometricDropdown.AddOptions(geometricNames);
         geometricDropdown.interactable = geometricNames.Count > 1;
         
-        // Motion Types (renamed from Movement)
+        // Motion Types
         motionDropdown.ClearOptions();
         var motionNames = SpellTypeRegistry.MotionTypes
             .Select(SpellTypeRegistry.GetMotionDisplayName)
@@ -94,7 +94,7 @@ public class SpellCraftingUI : MonoBehaviour
         motionDropdown.AddOptions(motionNames);
         motionDropdown.interactable = motionNames.Count > 1;
         
-        // Impact Types (renamed from Collision)
+        // Impact Types
         impactDropdown.ClearOptions();
         var impactNames = SpellTypeRegistry.ImpactTypes
             .Select(SpellTypeRegistry.GetImpactDisplayName)
