@@ -10,42 +10,47 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e54bd609f87a481e9283e152da17280f, type: 3}
-  m_Name: Push
+  m_Name: EnemyBolt
   m_EditorClassIdentifier: Assembly-CSharp::SOSpell
-  label: Push
+  label: Mana Bolt
   icon: {fileID: 0}
   description: A very basic spell
   castMethod: 0
-  manaCost: 0
+  manaCost: 5
   channelRate: 0.3
   chargeTime: 0.3
-  spellForm: 1
+  spellForm: 2
   augment:
-    rid: 304922346597122048
-  conjurePrefab: {fileID: 0}
+    rid: 304922342802587753
+  conjurePrefab: {fileID: 2260793320980255616, guid: feac61e62ca3e794fb77ea2f47d235c7, type: 3}
   conjureLifeTime: 5
   conjureMotion:
-    rid: 304922346597122055
+    rid: 304922392774312242
   conjureImpact:
-    rid: 304922346597122050
+    rid: 304922392774312243
   domains: 00000000
   effects:
-  - rid: 304922306508488705
+  - rid: 1991720465952669784
+  - rid: 304922301587259491
   references:
     version: 2
     RefIds:
-    - rid: 304922306508488705
+    - rid: 304922301587259491
       type: {class: PushEffect, ns: , asm: Assembly-CSharp}
       data:
-        force: 25
+        force: 15
         verticalInfluence: 0.3
-    - rid: 304922346597122048
+    - rid: 304922342802587753
       type: {class: NoneAugment, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 304922346597122050
-      type: {class: DestroyBehavior, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 304922346597122055
+    - rid: 304922392774312242
       type: {class: StraightMotion, ns: , asm: Assembly-CSharp}
       data:
-        moveSpeed: 10
+        moveSpeed: 15
+    - rid: 304922392774312243
+      type: {class: DestroyBehavior, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1991720465952669784
+      type: {class: DamageHealthEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damage: 15

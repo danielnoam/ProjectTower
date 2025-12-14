@@ -8,11 +8,17 @@ using UnityEngine.AI;
 public class BasicEnemy : MonoBehaviour, ICombatTarget
 {
 
-    [Header("Behavior")]
+    [Header("AI")]
     [SerializeField] private AIBehavior aiBehavior = AIBehavior.Chase;
+    
+    [Header("Movement")]
     [SerializeField] private float wanderRadius = 10f;
     [SerializeField] private float wanderInterval = 3f;
+    
+    [Header("Combat")]
     [SerializeField] private float attackInterval = 3f;
+    [SerializeField] private float playerCheckRadius = 10f;
+    [SerializeField] private float playerCheckInterval = 5f;
     [SerializeField] private SOSpell attackSpell;
     
     [Header("References")]
@@ -27,7 +33,7 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
     private ICombatTarget _currentTarget;
     private float _nextWanderTime;
     private float _nextAttackTime;
-    
+    private float _playerCheckTime;
     
     
     
@@ -48,6 +54,7 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
             
             case AIBehavior.Idle:
 
+                CheckForPlayer();
                 break;
                 
             case AIBehavior.Wander:
@@ -59,12 +66,13 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
                     agent.SetDestination(randomDir);
                     _nextWanderTime = Time.time + wanderInterval;
                 }
+                CheckForPlayer();
                 break;
                 
             case AIBehavior.Chase:
                 if (_currentTarget != null)
                 {
-                    if (Vector3.Distance(agent.destination, _currentTarget.Transform.position) > 0.5f)
+                    if (Vector3.Distance(agent.destination, _currentTarget.Transform.position) > 1f)
                     {
                        if (agent.isOnNavMesh) agent.SetDestination(_currentTarget.Transform.position);
                     }
@@ -79,26 +87,31 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
                 break;
         }
     }
+
+    private void CheckForPlayer()
+    {
+        if (Time.time > _playerCheckTime)
+        {
+            _playerCheckTime = Time.time + playerCheckInterval;
+
+            var colliders = Physics.OverlapSphere(transform.position, playerCheckRadius);
+
+            foreach (var col in colliders)
+            {
+                if (col.TryGetComponent(out FPCManager player))
+                {
+                    _currentTarget = player;
+                    aiBehavior = AIBehavior.Chase;
+                }
+            }
+        }
+    }
     
     private void Attack(ICombatTarget target)
     {
         if (target == null) return;
         
         spellCasterComponent.CastSpell(attackSpell, target);
-    }
-
-    private void OnDrawGizmos()
-    {
-        #if UNITY_EDITOR
-
-        var info = "";
-        
-        info += $"Behavior: {aiBehavior}\n";
-        info += $"Attack Spell: {attackSpell}\n";
-        if (_currentTarget != null) info += $"Target: {_currentTarget.Transform.name}\n";
-        
-        Handles.Label(transform.position + Vector3.up * 2f, info);
-        #endif
     }
     
     public void TakeDamage(float damage, ICombatTarget damageDealer)
@@ -131,6 +144,21 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
 
     public Transform Transform => transform;
     public Vector3 LookDirection => transform.forward;
+    
+    
+    private void OnDrawGizmos()
+    {
+#if UNITY_EDITOR
+
+        var info = "";
+        
+        info += $"Behavior: {aiBehavior}\n";
+        info += $"Attack Spell: {attackSpell}\n";
+        if (_currentTarget != null) info += $"Target: {_currentTarget.Transform.name}\n";
+        
+        Handles.Label(transform.position + Vector3.up * 2f, info);
+#endif
+    }
 }
 
 

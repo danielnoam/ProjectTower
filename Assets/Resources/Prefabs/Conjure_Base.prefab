@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 3969
+    m_Bits: 2945
   rigidBody: {fileID: 711494175010799481}
 --- !u!54 &711494175010799481
 Rigidbody:

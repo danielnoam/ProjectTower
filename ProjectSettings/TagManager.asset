@@ -12,10 +12,10 @@ TagManager:
   - Water
   - UI
   - Conjure
-  - Collectable
+  - Interactable
   - Entity
-  - Pickable
-  - Upgradable
+  - 
+  - Trigger
   - Player
   - 
   - 

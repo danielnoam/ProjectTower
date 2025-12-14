@@ -17,6 +17,11 @@ public class FPCMovement : MonoBehaviour
     [SerializeField] private float gravity = -15f;
     [SerializeField] private ControllerRumbleEffectSettings landingRumbleSettings = new ControllerRumbleEffectSettings(0.5f, 0.7f, 0.2f);
     
+    [Header("Platform Movement")]
+    [SerializeField] private LayerMask platformLayer;
+    [SerializeField] private float platformCheckDistance = 1.2f;
+
+    
     [Header("Jump")]
     [SerializeField] private float jumpForce = 1.5f;
     [SerializeField] private float jumpBufferTime = 0.1f;
@@ -25,10 +30,10 @@ public class FPCMovement : MonoBehaviour
     
     [Header("References")] 
     [SerializeField] private FPCManager manager;
-
-
     
     
+    private Rigidbody _currentPlatform;
+    private Vector3 _lastPlatformPosition;
     private Vector3 _velocity;
     private Vector3 _externalForce;
     private Vector3 _dashDirection;
@@ -96,10 +101,18 @@ public class FPCMovement : MonoBehaviour
     
     private void ApplyMovement()
     {
+        if (_currentPlatform)
+        {
+            Vector3 platformDelta = _currentPlatform.position - _lastPlatformPosition;
+            manager.CharacterController.Move(platformDelta);
+            _lastPlatformPosition = _currentPlatform.position;
+        }
+    
         Vector3 finalMovement = (_velocity + _externalForce) * Time.deltaTime;
         manager.CharacterController.Move(finalMovement);
-        
+    
         _externalForce = Vector3.Lerp(_externalForce, Vector3.zero, 5f * Time.deltaTime);
+        
     }
     private void HandleMovement()
     {
@@ -136,36 +149,63 @@ public class FPCMovement : MonoBehaviour
         _velocity.y += gravity * Time.deltaTime;
         IsJumping = _velocity.y > 0;
     }
-
+    
+    
     private void CheckGrounded()
     {
-        _wasGrounded  = IsGrounded; 
-        
+        _wasGrounded = IsGrounded;
         IsGrounded = manager.CharacterController.isGrounded;
         IsFalling = _velocity.y < 0;
-        
+    
         if (IsGrounded && !_wasGrounded)
         {
             manager.ControllerRumbleSource?.Rumble(landingRumbleSettings);
         }
-        
+    
+
         if (IsGrounded)
         {
+            if (Physics.Raycast(transform.position, Vector3.down, out var hit, platformCheckDistance, platformLayer))
+            {
+                Rigidbody rb = hit.collider.attachedRigidbody;
+            
+                if (rb && !rb.isKinematic)
+                {
+                    if (_currentPlatform != rb)
+                    {
+                        _currentPlatform = rb;
+                        _lastPlatformPosition = rb.position;
+                    }
+                }
+                else
+                {
+                    _currentPlatform = null;
+                }
+            }
+            else
+            {
+                _currentPlatform = null;
+            }
+        
             if (_velocity.y < 0)
             {
                 _velocity.y = -2f;
             }
-            _coyoteTimeCounter = coyoteTime; 
-        }
-        else if (_wasGrounded)
-        {
             _coyoteTimeCounter = coyoteTime;
         }
         else
         {
-            _coyoteTimeCounter -= Time.deltaTime;
+            _currentPlatform = null;
+        
+            if (_wasGrounded)
+            {
+                _coyoteTimeCounter = coyoteTime;
+            }
+            else
+            {
+                _coyoteTimeCounter -= Time.deltaTime;
+            }
         }
-
     }
 
 
@@ -175,6 +215,13 @@ public class FPCMovement : MonoBehaviour
     }
 
 
-
-
+    private void OnDrawGizmos()
+    {
+        // check distance of platform
+        if (IsGrounded)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawRay(transform.position, Vector3.down * platformCheckDistance);
+        }
+    }
 }

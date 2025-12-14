@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   maxHealth: 50
   isDead: 0
-  currentHealth: 100
+  currentHealth: 50
 --- !u!114 &3540873844461248937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,11 +172,14 @@ MonoBehaviour:
   wanderRadius: 10
   wanderInterval: 3
   attackInterval: 3
-  attackSpell: {fileID: 11400000, guid: 0eb2e83e11497464090b5825ffa95915, type: 2}
+  playerCheckRadius: 10
+  playerCheckInterval: 5
+  attackSpell: {fileID: 11400000, guid: 6922ae38ddb2a15439a3904e131c0d39, type: 2}
   rigidBody: {fileID: 8188607844566110787}
   agent: {fileID: 246763778455497518}
   healthComponent: {fileID: 6434158156538150048}
   spellCasterComponent: {fileID: 8579415739113236779}
+  statusEffectComponent: {fileID: 0}
 --- !u!1 &6333687915222115528
 GameObject:
   m_ObjectHideFlags: 0

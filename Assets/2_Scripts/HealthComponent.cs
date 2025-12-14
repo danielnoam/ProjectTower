@@ -27,8 +27,15 @@ public class HealthComponent : MonoBehaviour
     
     public event Action Died;
     public event Action<HealthChangeData> HealthChanged;
-    
-    
+
+    private void OnValidate()
+    {
+        if (!Application.isPlaying)
+        {
+            currentHealth = maxHealth;
+        }
+    }
+
     private void Awake()
     {
         Reset();

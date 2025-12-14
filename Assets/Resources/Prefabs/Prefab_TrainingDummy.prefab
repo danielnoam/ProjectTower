@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5216063684046786490}
   - component: {fileID: 8803239954650314729}
-  - component: {fileID: 3473776013763480578}
   - component: {fileID: 5749341996235057825}
+  - component: {fileID: 3473776013763480578}
   m_Layer: 8
   m_Name: Prefab_TrainingDummy
   m_TagString: Untagged
@@ -62,18 +62,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3473776013763480578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3613487379312599485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e51b15060b41d047b977f5c5e3e1927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrainingDummy
 --- !u!65 &5749341996235057825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -95,6 +83,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7, y: 1.83, z: 0.7}
   m_Center: {x: 0, y: 0.96, z: 0}
+--- !u!114 &3473776013763480578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613487379312599485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e51b15060b41d047b977f5c5e3e1927, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TrainingDummy
 --- !u!1001 &8165893027641703647
 PrefabInstance:
   m_ObjectHideFlags: 0

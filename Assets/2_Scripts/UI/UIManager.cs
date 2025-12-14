@@ -8,11 +8,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlayerHUD hud;
     [SerializeField] private SpellCraftingUI spellCraftingUI;
     [SerializeField] private SpellCraftingStation spellCraftingStation;
+    [SerializeField] private GameObject gameFinishedUI;
 
 
     private void Awake()
     {
         spellCraftingUI.gameObject.SetActive(false);
+        hud.gameObject.SetActive(true);
+        gameFinishedUI.SetActive(false);
     }
 
     private void OnEnable()
@@ -39,6 +42,13 @@ public class UIManager : MonoBehaviour
         hud.gameObject.SetActive(false);
         spellCraftingUI.gameObject.SetActive(true);
         spellCraftingUI.ResetData();
+        InputManager.Instance?.EnableUIInput();
+    }
+    
+    public void ShowGameFinishedUI()
+    {
+        hud.gameObject.SetActive(false);
+        gameFinishedUI.SetActive(true);
         InputManager.Instance?.EnableUIInput();
     }
 }

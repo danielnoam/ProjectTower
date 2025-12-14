@@ -7,13 +7,13 @@ public class PlayerHUD : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI statsText;
     [SerializeField] private TextMeshProUGUI inventoryText;
+    [SerializeField] private TextMeshProUGUI spellsText;
     [SerializeField] private Image reticleImage;
     [SerializeField] private FPCManager fpcManager;
 
     private readonly StringBuilder _sb = new StringBuilder();
     private string _healthText;
     private string _manaText;
-    private string _spellText;
 
     
     
@@ -24,12 +24,13 @@ public class PlayerHUD : MonoBehaviour
         fpcManager.HealthComponent.HealthChanged += UpdateHealth;
         fpcManager.SpellCasterComponent.ManaChanged += UpdateMana;
         fpcManager.InventoryComponent.InventoryUpdated += UpdateInventory;
-        fpcManager.FpcCaster.SpellChanged += UpdateSpell;
+        fpcManager.FpcCaster.SpellChanged += UpdateSpells;
+        fpcManager.FpcCaster.SpellAdded += UpdateSpells;
         fpcManager.FpcCaster.SpellCastingProgressChanged += UpdateReticle;
         
         UpdateHealth(new HealthChangeData());
         UpdateMana(0);
-        UpdateSpell(fpcManager.FpcCaster.CurrentSpell);
+        UpdateSpells(fpcManager.FpcCaster.CurrentSpell);
         UpdateReticle(0,0);
         UpdateInventory();
     }
@@ -41,7 +42,8 @@ public class PlayerHUD : MonoBehaviour
         fpcManager.HealthComponent.HealthChanged -= UpdateHealth;
         fpcManager.SpellCasterComponent.ManaChanged -= UpdateMana;
         fpcManager.InventoryComponent.InventoryUpdated -= UpdateInventory;
-        fpcManager.FpcCaster.SpellChanged -= UpdateSpell;
+        fpcManager.FpcCaster.SpellChanged -= UpdateSpells;
+        fpcManager.FpcCaster.SpellAdded -= UpdateSpells;
         fpcManager.FpcCaster.SpellCastingProgressChanged -= UpdateReticle;
     }
 
@@ -71,15 +73,39 @@ public class PlayerHUD : MonoBehaviour
         RefreshStatsText();
     }
 
-    private void UpdateSpell(SOSpell spell)
+    private void UpdateSpells(SOSpell _)
     {
-        _spellText = $"Active Spell: {(spell ? spell.name : "None")}";
-        RefreshStatsText();
+        var spells = fpcManager.FpcCaster.SpellsList;
+        var currentSpell = fpcManager.FpcCaster.CurrentSpell;
+        
+        _sb.Clear();
+        _sb.AppendLine("Spells:");
+        
+        if (spells.Count == 0)
+        {
+            _sb.Append("None");
+        }
+        else
+        {
+            foreach (var spell in spells)
+            {
+                if (spell == currentSpell)
+                {
+                    _sb.AppendLine($"[{spell.name}]");
+                }
+                else
+                {
+                    _sb.AppendLine(spell.name);
+                }
+            }
+        }
+        
+        spellsText.text = _sb.ToString();
     }
 
     private void RefreshStatsText()
     {
-        statsText.text = $"{_healthText}\n{_manaText}\n{_spellText}";
+        statsText.text = $"{_healthText}\n{_manaText}";
     }
 
     private void UpdateInventory()

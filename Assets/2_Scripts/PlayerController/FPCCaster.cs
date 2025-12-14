@@ -30,7 +30,10 @@ public class FPCCaster : MonoBehaviour
     private Camera _cam;
 
     public SOSpell CurrentSpell => currentSpell;
+    public IReadOnlyList<SOSpell> SpellsList => spellsList;
+    
     public event Action<SOSpell> SpellChanged;
+    public event Action<SOSpell> SpellAdded;
     public event Action<float, float> SpellCastingProgressChanged;
     
     
