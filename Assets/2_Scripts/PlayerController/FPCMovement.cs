@@ -31,25 +31,33 @@ public class FPCMovement : MonoBehaviour
     [Header("References")] 
     [SerializeField] private FPCManager manager;
     
-    
-    private Rigidbody _currentPlatform;
-    private Vector3 _lastPlatformPosition;
-    private Vector3 _velocity;
+    [Separator]
+    [SerializeField, ReadOnly] private Vector3 velocity;
+    [SerializeField, ReadOnly] private Vector3 lastPlatformPosition;
+    [SerializeField, ReadOnly] private float fallTime;
+
+
     private Vector3 _externalForce;
-    private Vector3 _dashDirection;
     private Vector2 _moveInput;
+    private bool _wasGrounded;
+    private bool _runInput;
     private float _dashTimeRemaining;
     private float _dashCooldownRemaining;
     private float _jumpBufferCounter;
     private float _coyoteTimeCounter;
-    private bool _runInput;
-    private bool _wasGrounded;
-    
+    private Rigidbody _currentPlatform;
 
+
+    public Vector2 MoveInput => _moveInput;
+    public Vector3 Velocity => velocity;
     public bool IsGrounded { get; private set; }
     public bool IsRunning { get; private set; }
     public bool IsJumping { get; private set; }
     public bool IsFalling { get; private set; }
+    
+    
+    public event Action OnJump;
+    public event Action<float> OnLand;
 
 
     private void OnValidate()
@@ -103,12 +111,12 @@ public class FPCMovement : MonoBehaviour
     {
         if (_currentPlatform)
         {
-            Vector3 platformDelta = _currentPlatform.position - _lastPlatformPosition;
+            Vector3 platformDelta = _currentPlatform.position - lastPlatformPosition;
             manager.CharacterController.Move(platformDelta);
-            _lastPlatformPosition = _currentPlatform.position;
+            lastPlatformPosition = _currentPlatform.position;
         }
     
-        Vector3 finalMovement = (_velocity + _externalForce) * Time.deltaTime;
+        Vector3 finalMovement = (velocity + _externalForce) * Time.deltaTime;
         manager.CharacterController.Move(finalMovement);
     
         _externalForce = Vector3.Lerp(_externalForce, Vector3.zero, 5f * Time.deltaTime);
@@ -127,8 +135,8 @@ public class FPCMovement : MonoBehaviour
             targetMoveSpeed /= manager.FpcInteraction.HeldObject.ObjectWeight;
         }
         
-        _velocity.x = moveDir.x * targetMoveSpeed;
-        _velocity.z = moveDir.z * targetMoveSpeed;
+        velocity.x = moveDir.x * targetMoveSpeed;
+        velocity.z = moveDir.z * targetMoveSpeed;
     }
     
     private void HandleJump()
@@ -141,13 +149,14 @@ public class FPCMovement : MonoBehaviour
         
         if (_jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || IsGrounded))
         {
-            _velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+            velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
             _jumpBufferCounter = 0f;
             _coyoteTimeCounter = 0f;  
+            OnJump?.Invoke();
         }
         
-        _velocity.y += gravity * Time.deltaTime;
-        IsJumping = _velocity.y > 0;
+        velocity.y += gravity * Time.deltaTime;
+        IsJumping = velocity.y > 0;
     }
     
     
@@ -155,11 +164,13 @@ public class FPCMovement : MonoBehaviour
     {
         _wasGrounded = IsGrounded;
         IsGrounded = manager.CharacterController.isGrounded;
-        IsFalling = _velocity.y < 0;
+        IsFalling = velocity.y < 0;
     
         if (IsGrounded && !_wasGrounded)
         {
             manager.ControllerRumbleSource?.Rumble(landingRumbleSettings);
+            OnLand?.Invoke(fallTime);
+            fallTime = 0;
         }
     
 
@@ -174,28 +185,32 @@ public class FPCMovement : MonoBehaviour
                     if (_currentPlatform != rb)
                     {
                         _currentPlatform = rb;
-                        _lastPlatformPosition = rb.position;
+                        lastPlatformPosition = rb.position;
                     }
                 }
                 else
                 {
                     _currentPlatform = null;
+                    lastPlatformPosition = Vector3.zero;
                 }
             }
             else
             {
                 _currentPlatform = null;
+                lastPlatformPosition = Vector3.zero;
             }
         
-            if (_velocity.y < 0)
+            if (velocity.y < 0)
             {
-                _velocity.y = -2f;
+                velocity.y = -2f;
             }
             _coyoteTimeCounter = coyoteTime;
         }
         else
         {
             _currentPlatform = null;
+            lastPlatformPosition = Vector3.zero;
+            if (IsFalling) fallTime += Time.deltaTime;
         
             if (_wasGrounded)
             {
@@ -217,7 +232,7 @@ public class FPCMovement : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        // check distance of platform
+
         if (IsGrounded)
         {
             Gizmos.color = Color.yellow;

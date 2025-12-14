@@ -20,7 +20,7 @@ public class FPCManager : MonoBehaviour, ICombatTarget
     [Header("References")]
     [SerializeField] private FPCMovement fpcMovement;
     [SerializeField] private FPCInteraction fpcInteraction;
-    [SerializeField] private FPCCameraBase fpcCamera;
+    [SerializeField] private FPCCamera fpcCamera;
     [SerializeField] private FPCInput fpcInput;
     [SerializeField] private FPCRigidBodyPush fpcRigidBodyPush;
     [SerializeField] private FPCCaster fpcCaster;
@@ -34,7 +34,7 @@ public class FPCManager : MonoBehaviour, ICombatTarget
     
     public FPCMovement FpcMovement => fpcMovement;
     public FPCInteraction FpcInteraction => fpcInteraction;
-    public FPCCameraBase FpcCamera => fpcCamera;
+    public FPCCamera FpcCamera => fpcCamera;
     public FPCInput FpcInput => fpcInput;
     public FPCRigidBodyPush FpcRigidBodyPush => fpcRigidBodyPush;
     public FPCCaster FpcCaster => fpcCaster;

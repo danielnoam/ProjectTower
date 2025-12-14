@@ -226,6 +226,8 @@ public class FPCCaster : MonoBehaviour
 
         if (!spellsList.Contains(spell)) spellsList.Add(spell);
         
+        SpellAdded?.Invoke(spell);
+        
         if (!currentSpell) SetSpell(spell);
     }
     
