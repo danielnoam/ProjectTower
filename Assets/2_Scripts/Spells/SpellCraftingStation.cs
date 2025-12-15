@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// Data structure for creating spells - no cast method, that's decided at cast time
 public class SpellCraftingData
 {
-    public CastMethod castMethod = CastMethod.Instant;
     public SpellForm spellForm = SpellForm.Invoke;
     public readonly List<Domain> domains = new();
     public readonly List<Type> effectTypes = new();
@@ -13,7 +13,7 @@ public class SpellCraftingData
     public Type augmentType;
     public Type movementType;
     public Type collisionType;
-    public SOConjureGeometric geometric; // NEW
+    public SOConjureGeometric geometric;
     
     public SpellCraftingData()
     {
@@ -32,8 +32,6 @@ public class SpellCraftingData
         {
             collisionType = SpellTypeRegistry.ImpactTypes[0];
         }
-        
-        // Geometric will be set from SpellCraftingStation's default
     }
 }
 
@@ -45,18 +43,6 @@ public class SpellCraftingStation : MonoBehaviour
     [SerializeField] private float invokeCost = 7f;
     [SerializeField] private float conjureCost = 9f;
     
-    [Header("Cast Method")]
-    [SerializeField] private float defaultChannelRate = 0.1f;
-    [Space(5)]
-    [SerializeField] private float defaultChargeRate = 1.5f;
-    [SerializeField] private float instantCostMultiplier = 1f;
-    [SerializeField] private float chargeCostMultiplier = 0.75f;
-    [SerializeField] private float channelCostMultiplier = 1.25f;
-    [Space(5)]
-    [SerializeField] private float instantStrengthMultiplier = 1f;
-    [SerializeField] private float chargeStrengthMultiplier = 2f;
-    [SerializeField] private float channelStrengthMultiplier = 0.3f;
-
     [Header("Geometric")]
     [SerializeField] private List<SOConjureGeometric> availableGeometrics;
     
@@ -69,14 +55,12 @@ public class SpellCraftingStation : MonoBehaviour
     [Header("References")]
     [SerializeField] private Interactable interactable;
 
-    
     public int MaxEffects => maxEffects;
     public int MaxDomains => maxDomains;
     public List<SOConjureGeometric> AvailableGeometrics => availableGeometrics;
     
     public event Action Opened;
     public event Action<SOSpell> SpellCrafted;
-    
 
     private void OnEnable()
     {
@@ -93,6 +77,7 @@ public class SpellCraftingStation : MonoBehaviour
         Opened?.Invoke();
     }
     
+    // Calculate BASE mana cost - no cast method multipliers
     public float CalculateManaCost(SpellCraftingData data)
     {
         float cost = 0;
@@ -118,20 +103,6 @@ public class SpellCraftingStation : MonoBehaviour
         
         cost += SpellTypeRegistry.GetAugmentManaCost(data.augmentType);
         
-
-        switch (data.castMethod)
-        {
-            case CastMethod.Instant:
-                cost *= instantCostMultiplier;
-                break;
-            case CastMethod.Charge:
-                cost *= chargeCostMultiplier;
-                break;
-            case CastMethod.Channel:
-                cost *= channelCostMultiplier;
-                break;
-        }
-        
         return cost;
     }
 
@@ -151,19 +122,6 @@ public class SpellCraftingStation : MonoBehaviour
     private string GenerateSpellName(SpellCraftingData data)
     {
         string spellName = "";
-
-        switch (data.castMethod)
-        {
-            case CastMethod.Instant:
-                spellName += "Instant ";
-                break;
-            case CastMethod.Charge:
-                spellName += "Charged ";
-                break;
-            case CastMethod.Channel:
-                spellName += "Channeled ";
-                break;
-        }
         
         switch (data.spellForm)
         {
@@ -184,37 +142,20 @@ public class SpellCraftingStation : MonoBehaviour
                 spellName += "Empty Spell";
                 break;
             case 1:
-                
                 string effectName = SpellTypeRegistry.GetEffectDisplayName(data.effectTypes[0]);
                 spellName += $"{effectName} Spell";
                 break;
-            
             default:
                 spellName += $"Multi-Effect Spell ({data.effectTypes.Count})";
                 break;
         }
 
-
         return spellName;
-
     }
     
     private string GenerateSpellDescription(SpellCraftingData data)
     {
         string description = "";
-
-        switch (data.castMethod)
-        {
-            case CastMethod.Instant:
-                description += "Instant ";
-                break;
-            case CastMethod.Charge:
-                description += "Charged ";
-                break;
-            case CastMethod.Channel:
-                description += "Channeled ";
-                break;
-        }
         
         switch (data.spellForm)
         {
@@ -235,68 +176,36 @@ public class SpellCraftingStation : MonoBehaviour
         }
         
         return description;
-
     }
 
-
-    private SpellEffect[] CreateEffects(List<Type> effectTypes, float strengthMultiplier)
+    // Create effects at base strength - no cast method multipliers
+    private SpellEffect[] CreateEffects(List<Type> effectTypes)
     {
         SpellEffect[] effects = new SpellEffect[effectTypes.Count];
     
         for (int i = 0; i < effectTypes.Count; i++)
         {
             effects[i] = SpellTypeRegistry.CreateEffect(effectTypes[i]);
-            effects[i].ApplyStrengthMultiplier(strengthMultiplier);
         }
     
         return effects;
-    }
-    
-    public float GetCastMethodStrengthMultiplier(CastMethod castMethod)
-    {
-        switch (castMethod)
-        {
-            case CastMethod.Instant:
-                return instantStrengthMultiplier;
-            case CastMethod.Charge:
-                return chargeStrengthMultiplier;
-            case CastMethod.Channel:
-                return channelStrengthMultiplier;
-            default:
-                return 1f;
-        }
     }
     
     public SOSpell CreateSpell(SpellCraftingData data)
     {
         SOSpell spell = ScriptableObject.CreateInstance<SOSpell>();
         
-
         var spellName = GenerateSpellName(data);
         spell.name = spellName;
         spell.label = spellName;
         spell.description = GenerateSpellDescription(data);
-        spell.castMethod = data.castMethod;
-        spell.spellForm = data.spellForm;
+        spell.form = data.spellForm;
         spell.domains = new List<Domain>(data.domains);
-        spell.manaCost = CalculateManaCost(data);
+        spell.baseCost = CalculateManaCost(data); 
         spell.conjureLifeTime = CalculateConjureDuration(data);
         
-
-        switch (data.castMethod)
-        {
-            case CastMethod.Channel:
-                spell.channelRate = defaultChannelRate;
-                break;
-            case CastMethod.Charge:
-                spell.chargeTime = defaultChargeRate;
-                break;
-        }
-
-
-        float strengthMultiplier = GetCastMethodStrengthMultiplier(data.castMethod);
-        spell.effects = CreateEffects(data.effectTypes, strengthMultiplier);
-        
+        // Create effects at base strength
+        spell.effects = CreateEffects(data.effectTypes);
         spell.augment = SpellTypeRegistry.CreateAugment(data.augmentType);
 
         if (data.spellForm == SpellForm.Conjure)

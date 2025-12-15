@@ -3,11 +3,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-
 [RequireComponent(typeof(Rigidbody))]
 public class BasicEnemy : MonoBehaviour, ICombatTarget
 {
-
     [Header("AI")]
     [SerializeField] private AIBehavior aiBehavior = AIBehavior.Chase;
     
@@ -20,6 +18,7 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
     [SerializeField] private float playerCheckRadius = 10f;
     [SerializeField] private float playerCheckInterval = 5f;
     [SerializeField] private SOSpell attackSpell;
+    [SerializeField] private CastMethod attackCastMethod = CastMethod.Instant;
     
     [Header("References")]
     [SerializeField] private Rigidbody rigidBody;
@@ -28,14 +27,11 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
     [SerializeField] private SpellCasterComponent spellCasterComponent;
     [SerializeField] private StatusEffectComponent statusEffectComponent;
 
-
     private enum AIBehavior { Idle, Wander, Chase }
     private ICombatTarget _currentTarget;
     private float _nextWanderTime;
     private float _nextAttackTime;
     private float _playerCheckTime;
-    
-    
     
     private void Awake()
     {
@@ -46,19 +42,18 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
     {
         Destroy(gameObject);
     }
-    
 
-    private void Update() {
-        
-        switch(aiBehavior) {
-            
+    private void Update()
+    {
+        switch(aiBehavior)
+        {
             case AIBehavior.Idle:
-
                 CheckForPlayer();
                 break;
                 
             case AIBehavior.Wander:
-                if (Time.time > _nextWanderTime) {
+                if (Time.time > _nextWanderTime)
+                {
                     Vector3 randomDir = UnityEngine.Random.insideUnitSphere * wanderRadius;
                     randomDir += transform.position;
                     randomDir.y = transform.position.y;
@@ -77,13 +72,12 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
                        if (agent.isOnNavMesh) agent.SetDestination(_currentTarget.Transform.position);
                     }
         
-                    if (Time.time > _nextAttackTime) {
+                    if (Time.time > _nextAttackTime)
+                    {
                         _nextAttackTime = Time.time + attackInterval;
                         Attack(_currentTarget);
                     }
                 }
-                
-                
                 break;
         }
     }
@@ -109,9 +103,18 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
     
     private void Attack(ICombatTarget target)
     {
-        if (target == null) return;
+        if (target == null || !attackSpell) return;
         
-        spellCasterComponent.CastSpell(attackSpell, target);
+        if (!spellCasterComponent.CanCastWithMethod(attackSpell, attackCastMethod))
+        {
+            if (spellCasterComponent.CanCastWithMethod(attackSpell, CastMethod.Instant))
+            {
+                spellCasterComponent.CastInstant(attackSpell, target);
+            }
+            return;
+        }
+        
+        spellCasterComponent.CastWithMethod(attackSpell, target, attackCastMethod);
     }
     
     public void TakeDamage(float damage, ICombatTarget damageDealer)
@@ -146,19 +149,19 @@ public class BasicEnemy : MonoBehaviour, ICombatTarget
     public Vector3 LookDirection => transform.forward;
     
     
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-#if UNITY_EDITOR
 
         var info = "";
         
         info += $"Behavior: {aiBehavior}\n";
-        info += $"Attack Spell: {attackSpell}\n";
+        info += $"Attack Spell: {attackSpell?.label ?? "None"}\n";
+        info += $"Cast Method: {attackCastMethod}\n";
         if (_currentTarget != null) info += $"Target: {_currentTarget.Transform.name}\n";
         
         Handles.Label(transform.position + Vector3.up * 2f, info);
-#endif
+
     }
+#endif
 }
-
-

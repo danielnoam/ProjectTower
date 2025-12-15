@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class UITooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Tooltip Content")]
-    [SerializeField, Multiline(6)] private string tooltipText = "Text";
+    [Multiline(6)] public string tooltipText = "Text";
     
     [Header("References")]
     [SerializeField] private UITooltip tooltip;

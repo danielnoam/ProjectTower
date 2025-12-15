@@ -81,7 +81,29 @@ public class UITooltip : MonoBehaviour
             out Vector2 localPoint
         );
 
-        _tooltipRect.anchoredPosition = localPoint + tooltipOffset;
+        Vector2 desiredPosition = localPoint + tooltipOffset;
+        
+        // Get canvas rect in local space
+        RectTransform canvasRect = _rootCanvas.transform as RectTransform;
+        if (canvasRect)
+        {
+            Vector2 canvasSize = canvasRect.rect.size;
+        
+            // Get tooltip size
+            Vector2 tooltipSize = _tooltipRect.rect.size;
+        
+            // Calculate bounds (accounting for pivot at 0,0)
+            float minX = -canvasSize.x * 0.5f;
+            float maxX = canvasSize.x * 0.5f - tooltipSize.x;
+            float minY = -canvasSize.y * 0.5f;
+            float maxY = canvasSize.y * 0.5f - tooltipSize.y;
+        
+            // Clamp position to keep tooltip on screen
+            desiredPosition.x = Mathf.Clamp(desiredPosition.x, minX, maxX);
+            desiredPosition.y = Mathf.Clamp(desiredPosition.y, minY, maxY);
+        }
+
+        _tooltipRect.anchoredPosition = desiredPosition;
     }
 
     private void SetText(string text)

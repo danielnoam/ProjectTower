@@ -17,23 +17,12 @@ public class SOSpellEditor : UnityEditor.Editor
         
         // Casting
         EditorGUILayout.Space();
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("castMethod"));
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("manaCost"));
-        
-        if (spell.castMethod == CastMethod.Channel)
-        {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("channelRate"));
-        }
-        if (spell.castMethod == CastMethod.Charge)
-        {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("chargeTime"));
-        }
-        
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("spellForm"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("baseCost"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("form"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("augment"));
         
         // Conjure
-        if (spell.spellForm == SpellForm.Conjure)
+        if (spell.form == SpellForm.Conjure)
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("conjurePrefab"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("conjureMotion"));

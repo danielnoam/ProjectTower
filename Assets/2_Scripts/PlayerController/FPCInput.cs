@@ -10,6 +10,7 @@ public class FPCInput : InputReaderBase
         private InputActionMap _playerActionMap;
         private InputAction _moveAction;
         private InputAction _attackAction;
+        private InputAction _attack2Action;
         private InputAction _lookAction;
         private InputAction _jumpAction;
         private InputAction _runAction;
@@ -20,6 +21,7 @@ public class FPCInput : InputReaderBase
         
         public event Action<InputAction.CallbackContext> OnMoveAction;
         public event Action<InputAction.CallbackContext> OnAttackAction;
+        public event Action<InputAction.CallbackContext> OnAttack2Action;
         public event Action<InputAction.CallbackContext> OnLookAction;
         public event Action<InputAction.CallbackContext> OnJumpAction;
         public event Action<InputAction.CallbackContext> OnRunAction;
@@ -46,10 +48,12 @@ public class FPCInput : InputReaderBase
             _interactAction = _playerActionMap.FindAction("Interact");
             _throwAction = _playerActionMap.FindAction("Throw");
             _attackAction = _playerActionMap.FindAction("Attack");
+            _attack2Action = _playerActionMap.FindAction("Attack2");
             _toggleMenu = _playerActionMap.FindAction("ToggleMenu");
             
             if (_moveAction == null) Debug.LogError("Move action not found in Player Action Map.");
             if (_attackAction == null) Debug.LogError("Attack action not found in Player Action Map.");
+            if (_attack2Action == null) Debug.LogError("Attack action not found in Player Action Map.");
             if (_lookAction == null) Debug.LogError("Look action not found in Player Action Map.");
             if (_jumpAction == null) Debug.LogError("Jump action not found in Player Action Map.");
             if (_runAction == null) Debug.LogError("Run action not found in Player Action Map.");
@@ -66,6 +70,7 @@ public class FPCInput : InputReaderBase
         {
             SubscribeToAction(_moveAction, OnMove);
             SubscribeToAction(_attackAction, OnAttack);
+            SubscribeToAction(_attack2Action, OnAttack2);
             SubscribeToAction(_lookAction, OnLook);
             SubscribeToAction(_jumpAction, OnJump);
             SubscribeToAction(_runAction, OnRun);
@@ -80,6 +85,7 @@ public class FPCInput : InputReaderBase
         {
             UnsubscribeFromAction(_moveAction, OnMove);
             UnsubscribeFromAction(_attackAction, OnAttack);
+            UnsubscribeFromAction(_attack2Action, OnAttack2);
             UnsubscribeFromAction(_lookAction, OnLook);
             UnsubscribeFromAction(_jumpAction, OnJump);
             UnsubscribeFromAction(_runAction, OnRun);
@@ -92,6 +98,11 @@ public class FPCInput : InputReaderBase
         private void OnAttack(InputAction.CallbackContext context)
         {
             OnAttackAction?.Invoke(context);
+        }
+        
+        private void OnAttack2(InputAction.CallbackContext context)
+        {
+            OnAttack2Action?.Invoke(context);
         }
 
         private void OnMove(InputAction.CallbackContext context)

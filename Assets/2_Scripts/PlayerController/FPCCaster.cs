@@ -8,7 +8,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(FPCManager), typeof(SpellCasterComponent))]
 public class FPCCaster : MonoBehaviour
 {
-    [Header("Settings")]
+    [Header("Cast Method Settings")]
+    [SerializeField] private float chargeTime = 1.5f; 
+    [SerializeField] private float channelTickRate = 0.1f;
+    
+    [Header("Targeting")]
     [SerializeField] private float maxTargetRange = 50f;
     [SerializeField] private LayerMask targetingLayers = ~0;
     
@@ -22,21 +26,22 @@ public class FPCCaster : MonoBehaviour
     
     [Separator]
     [SerializeField] private SOSpell currentSpell;
-    [SerializeField, ReadOnly] private bool isCasting;
-    [SerializeField, ReadOnly] private bool finishedCasting;
-    [SerializeField, ReadOnly] private float castingTime;
+    [SerializeField, ReadOnly] private CastMethod currentCastMethod;
+    [SerializeField, ReadOnly] private bool isCharging;
+    [SerializeField, ReadOnly] private bool isChanneling;
+    [SerializeField, ReadOnly] private float castHoldTime;
     [SerializeField, ReadOnly] private List<SOSpell> spellsList;
+    
     private ICombatTarget _lockedTarget;
     private Camera _cam;
+    private float _channelTickTimer;
 
     public SOSpell CurrentSpell => currentSpell;
     public IReadOnlyList<SOSpell> SpellsList => spellsList;
     
     public event Action<SOSpell> SpellChanged;
     public event Action<SOSpell> SpellAdded;
-    public event Action<float, float> SpellCastingProgressChanged;
-    
-    
+    public event Action<CastMethod, float, float> CastingProgressChanged;
 
     private void OnValidate()
     {
@@ -51,60 +56,60 @@ public class FPCCaster : MonoBehaviour
         if (currentSpell) AddSpell(currentSpell);
     }
 
-
     private void OnEnable()
     {
-        fpcManager.FpcInput.OnAttackAction += TryCastSpell;
+        fpcManager.FpcInput.OnAttackAction += HandlePrimaryAttackInput; 
+        fpcManager.FpcInput.OnAttack2Action += HandleSecondaryAttackInput; 
         spellCraftingStation.SpellCrafted += AddSpell;
     }
 
     private void OnDisable()
     {
-        fpcManager.FpcInput.OnAttackAction -= TryCastSpell;
+        fpcManager.FpcInput.OnAttackAction -= HandlePrimaryAttackInput;
+        fpcManager.FpcInput.OnAttack2Action -= HandleSecondaryAttackInput;
         spellCraftingStation.SpellCrafted -= AddSpell;
     }
 
     private void Update()
     {
-        // Change spell
         HandleSpellSwitch();
         
-        if (!currentSpell || !isCasting) return;
+        if (!currentSpell) return;
         
-        // Charge spell
-        if (currentSpell.castMethod == CastMethod.Charge)
+        // Update charging progress and display state
+        if (isCharging)
         {
-            HandleChargeSpell();
+            castHoldTime += Time.deltaTime;
+            
+            // Update visual cast method based on hold time
+            if (castHoldTime < 0.1f)
+            {
+                currentCastMethod = CastMethod.Instant;
+            }
+            else
+            {
+                currentCastMethod = CastMethod.Charge;
+            }
+            
+            CastingProgressChanged?.Invoke(CastMethod.Charge, castHoldTime, chargeTime);
         }
         
-        // Channel spell
-        if (currentSpell.castMethod == CastMethod.Channel)
+        // Update channeling and cast on tick
+        if (isChanneling)
         {
-            HandleChannelSpell();
+            castHoldTime += Time.deltaTime;
+            _channelTickTimer += Time.deltaTime;
+            currentCastMethod = CastMethod.Channel;
+            
+            if (_channelTickTimer >= channelTickRate)
+            {
+                spellCasterComponent.CastChanneled(currentSpell, _lockedTarget);
+                _channelTickTimer = 0f;
+            }
+            
+            CastingProgressChanged?.Invoke(CastMethod.Channel, _channelTickTimer, channelTickRate);
         }
     }
-
-
-
-    private ICombatTarget GetTargetAtCrosshair()
-    {
-        if (!_cam)
-        {
-            return null;
-        }
-
-        Vector3 rayOrigin = _cam.transform.position;
-        Vector3 rayDirection = _cam.transform.forward;
-    
-        if (!Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, maxTargetRange, targetingLayers))
-        {
-            return null;
-        }
-    
-        return hit.collider.GetComponent<ICombatTarget>();
-    }
-    
-    
 
     private void HandleSpellSwitch()
     {
@@ -124,100 +129,67 @@ public class FPCCaster : MonoBehaviour
             SetSpell(spellsList[nextIndex]);
         }
     }
-
-    private void HandleChargeSpell()
-    {
-        if (!spellCasterComponent.CanCast(currentSpell))
-        {
-            StopCasting();
-            return;
-        }
-
-        if (castingTime < currentSpell.chargeTime)
-        {
-            castingTime += Time.deltaTime;
-        } 
-        
-        if (!finishedCasting && castingTime >= currentSpell.chargeTime)
-        {
-            castingTime = currentSpell.chargeTime;
-            finishedCasting = true;
-        }
-        
-        SpellCastingProgressChanged?.Invoke(castingTime, currentSpell.chargeTime);
-    }
-
-    private void HandleChannelSpell()
-    {
-        castingTime += Time.deltaTime;
-
-        if (castingTime >= currentSpell.channelRate)
-        {
-            castingTime = 0f; 
-            
-            if (!isCasting || !spellCasterComponent.CanCast(currentSpell))
-            {
-                StopCasting();
-                return;
-            }
     
-            spellCasterComponent.CastSpell(currentSpell, _lockedTarget);
+    private void HandlePrimaryAttackInput(InputAction.CallbackContext context)
+    {
+        if (!currentSpell) return;
+        
+        if (context.started)
+        {
+            _lockedTarget = GetTargetAtCrosshair();
+            isCharging = true;
+            castHoldTime = 0f;
+            currentCastMethod = CastMethod.Instant;
         }
         
-        SpellCastingProgressChanged?.Invoke(castingTime, currentSpell.channelRate);
+        if (context.canceled && isCharging)
+        {
+            if (castHoldTime < 0.1f)
+            {
+                spellCasterComponent.CastInstant(currentSpell, _lockedTarget);
+            }
+            else if (castHoldTime >= chargeTime)
+            {
+                spellCasterComponent.CastCharged(currentSpell, _lockedTarget);
+            }
+            else
+            {
+                // Released early - still instant
+                spellCasterComponent.CastInstant(currentSpell, _lockedTarget);
+            }
+            
+            StopCasting();
+        }
     }
-
-    private void TryCastSpell(InputAction.CallbackContext context)
+    
+    private void HandleSecondaryAttackInput(InputAction.CallbackContext context)
     {
-        if (!currentSpell || !spellCasterComponent.CanCast(currentSpell)) return;
+        if (!currentSpell) return;
         
-        // Start casting
-        if (context.started && !isCasting)
+        if (context.started)
         {
-            // Lock target when casting starts
             _lockedTarget = GetTargetAtCrosshair();
-            
-            switch (currentSpell.castMethod)
-            {
-                case CastMethod.Instant:
-                    spellCasterComponent.CastSpell(currentSpell, _lockedTarget);
-                    _lockedTarget = null; // Clear immediately for instant casts
-                    break;
-                    
-                case CastMethod.Channel:
-                    isCasting = true;
-                    castingTime = 0f;
-                    break;
-                    
-                case CastMethod.Charge:
-                    isCasting = true;
-                    finishedCasting = false;
-                    castingTime = 0f;
-                    break;
-            }
-            
-            return;
-        } 
-
-        if (context.canceled && isCasting)
+            isChanneling = true;
+            castHoldTime = 0f;
+            _channelTickTimer = 0f;
+            currentCastMethod = CastMethod.Channel;
+        }
+        
+        if (context.canceled && isChanneling)
         {
-            // Cast charge
-            if (currentSpell.castMethod == CastMethod.Charge && castingTime >= currentSpell.chargeTime)
-            {
-                spellCasterComponent.CastSpell(currentSpell, _lockedTarget);
-            }
-            
             StopCasting();
         }
     }
     
     private void StopCasting()
     {
-        isCasting = false;
-        finishedCasting = false;
-        castingTime = 0f;
-        _lockedTarget = null; 
-        SpellCastingProgressChanged?.Invoke(castingTime, 0);
+        isCharging = false;
+        isChanneling = false;
+        castHoldTime = 0f;
+        _channelTickTimer = 0f;
+        _lockedTarget = null;
+        currentCastMethod = CastMethod.Instant;
+        CastingProgressChanged?.Invoke(CastMethod.Instant, 0, 0);
     }
     
     private void AddSpell(SOSpell spell)
@@ -240,6 +212,21 @@ public class FPCCaster : MonoBehaviour
         StopCasting();
     }
     
+    private ICombatTarget GetTargetAtCrosshair()
+    {
+        if (!_cam) return null;
+
+        Vector3 rayOrigin = _cam.transform.position;
+        Vector3 rayDirection = _cam.transform.forward;
+    
+        if (!Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, maxTargetRange, targetingLayers))
+        {
+            return null;
+        }
+    
+        return hit.collider.GetComponent<ICombatTarget>();
+    }
+    
     private void OnDrawGizmos()
     {
         if (!showTargetingRay || !_cam) return;
@@ -250,26 +237,12 @@ public class FPCCaster : MonoBehaviour
         if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hit, maxTargetRange, targetingLayers))
         {
             var target = hit.collider.GetComponent<ICombatTarget>();
-        
-            // Choose color based on what we hit
-            if (target != null)
-            {
-                Gizmos.color = Color.green; // Valid target
-            }
-            else
-            {
-                Gizmos.color = Color.cyan; // Hit something without ICombatTarget
-            }
-        
-            // Draw line to hit point
+            Gizmos.color = target != null ? Color.green : Color.cyan;
             Gizmos.DrawLine(rayOrigin, hit.point);
-        
-            // Draw sphere at hit point
             Gizmos.DrawWireSphere(hit.point, 0.1f);
         }
         else
         {
-            // No hit - draw red line to max range
             Gizmos.color = Color.red;
             Gizmos.DrawLine(rayOrigin, rayOrigin + rayDirection * maxTargetRange);
         }

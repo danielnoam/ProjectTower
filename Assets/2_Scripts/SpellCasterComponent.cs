@@ -3,12 +3,22 @@ using System.Collections;
 using DNExtensions;
 using UnityEngine;
 
+
 public class SpellCasterComponent : MonoBehaviour
 {
     [Header("Mana Settings")]
     [SerializeField] private float maxMana = 100f;
     [SerializeField] private float manaRegenPerSecond = 15f;
     [SerializeField] private float cooldownBeforeRegen = 1;
+    
+    [Header("Cast Method Multipliers")]
+    [SerializeField] private float instantStrengthMultiplier = 1f;
+    [SerializeField] private float chargeStrengthMultiplier = 2f;
+    [SerializeField] private float channelStrengthMultiplier = 0.3f;
+    [Space(5)]
+    [SerializeField] private float instantCostMultiplier = 1f;
+    [SerializeField] private float chargeCostMultiplier = 0.75f;
+    [SerializeField] private float channelCostMultiplier = 1.25f;
     
     [Header("References")]
     [SerializeField] private Transform castPoint;
@@ -17,7 +27,6 @@ public class SpellCasterComponent : MonoBehaviour
     [SerializeField, ReadOnly] private float currentMana;
     [SerializeField, ReadOnly] private float regenCooldownTimer;
     [SerializeField, ReadOnly] private bool isRegenerating;
-    
     
     private ICombatTarget _combatTarget;
     private Coroutine _manaRegenCoroutine;
@@ -31,15 +40,12 @@ public class SpellCasterComponent : MonoBehaviour
     public event Action ManaEmpty;
     public event Action ManaFull;
 
-    
-    
-    
     private void Awake()
     {
         _combatTarget = GetComponent<ICombatTarget>();
         if (_combatTarget == null)
         {
-            Debug.Log("SpellCasterComponent requires an ICombatTarget component.");
+            Debug.LogError("SpellCasterComponent requires an ICombatTarget component.");
             enabled = false;
             return;
         }
@@ -108,24 +114,65 @@ public class SpellCasterComponent : MonoBehaviour
         _manaRegenCoroutine = null;
     }
     
-    public void CastSpell(SOSpell spell, ICombatTarget target)
+
+    
+    public bool CastWithMethod(SOSpell spell, ICombatTarget target, CastMethod method)
     {
-        if (!CanCast(spell))
+        if (!spell) return false;
+        
+        float costMultiplier = method switch
         {
-            return;
+            CastMethod.Instant => instantCostMultiplier,
+            CastMethod.Charge => chargeCostMultiplier,
+            CastMethod.Channel => channelCostMultiplier,
+            _ => 1f
+        };
+        
+        float strengthMultiplier = method switch
+        {
+            CastMethod.Instant => instantStrengthMultiplier,
+            CastMethod.Charge => chargeStrengthMultiplier,
+            CastMethod.Channel => channelStrengthMultiplier,
+            _ => 1f
+        };
+        
+        float actualCost = spell.baseCost * costMultiplier;
+        
+        if (!CanCast(actualCost))
+        {
+            return false;
         }
         
-        spell.Cast(_combatTarget, target, castPoint ? castPoint : transform);
+        spell.Cast(_combatTarget, target, castPoint ? castPoint : transform, strengthMultiplier);
         
-        if (TryConsume(spell.manaCost))
+        if (TryConsume(actualCost))
         {
             ResetManaRegenTimer();
+            return true;
         }
+        
+        return false;
     }
     
-    public bool CanCast(SOSpell spell)
+
+    public float GetCostForMethod(SOSpell spell, CastMethod method)
     {
-        return CurrentMana >= spell.manaCost;
+        if (!spell) return 0f;
+        
+        float costMultiplier = method switch
+        {
+            CastMethod.Instant => instantCostMultiplier,
+            CastMethod.Charge => chargeCostMultiplier,
+            CastMethod.Channel => channelCostMultiplier,
+            _ => 1f
+        };
+        
+        return spell.baseCost * costMultiplier;
+    }
+    
+    public bool CanCast(float cost)
+    {
+        return CurrentMana >= cost;
     }
     
     public bool TryConsume(float amount)
@@ -141,5 +188,26 @@ public class SpellCasterComponent : MonoBehaviour
         }
         return true;
     }
+    
+    public bool CanCastWithMethod(SOSpell spell, CastMethod method)
+    {
+        return CanCast(GetCostForMethod(spell, method));
+    }
+    
+    public bool CastInstant(SOSpell spell, ICombatTarget target)
+    {
+        return CastWithMethod(spell, target, CastMethod.Instant);
+    }
+    
+    public bool CastCharged(SOSpell spell, ICombatTarget target)
+    {
+        return CastWithMethod(spell, target, CastMethod.Charge);
+    }
+    
+    public bool CastChanneled(SOSpell spell, ICombatTarget target)
+    {
+        return CastWithMethod(spell, target, CastMethod.Channel);
+    }
+
     
 }

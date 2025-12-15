@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -26,12 +27,12 @@ public class PlayerHUD : MonoBehaviour
         fpcManager.InventoryComponent.InventoryUpdated += UpdateInventory;
         fpcManager.FpcCaster.SpellChanged += UpdateSpells;
         fpcManager.FpcCaster.SpellAdded += UpdateSpells;
-        fpcManager.FpcCaster.SpellCastingProgressChanged += UpdateReticle;
+        fpcManager.FpcCaster.CastingProgressChanged += UpdateReticle;
         
         UpdateHealth(new HealthChangeData());
         UpdateMana(0);
         UpdateSpells(fpcManager.FpcCaster.CurrentSpell);
-        UpdateReticle(0,0);
+        UpdateReticle(CastMethod.Instant,0,0);
         UpdateInventory();
     }
 
@@ -44,11 +45,19 @@ public class PlayerHUD : MonoBehaviour
         fpcManager.InventoryComponent.InventoryUpdated -= UpdateInventory;
         fpcManager.FpcCaster.SpellChanged -= UpdateSpells;
         fpcManager.FpcCaster.SpellAdded -= UpdateSpells;
-        fpcManager.FpcCaster.SpellCastingProgressChanged -= UpdateReticle;
+        fpcManager.FpcCaster.CastingProgressChanged -= UpdateReticle;
     }
 
-    private void UpdateReticle(float current, float max)
+    private void UpdateReticle(CastMethod method, float current, float max)
     {
+        switch (method)
+        {
+            case CastMethod.Instant:
+            case CastMethod.Channel:
+                reticleImage.fillAmount = 0;
+                return;
+        }
+        
         if (max == 0)
         {
             reticleImage.fillAmount = 0;

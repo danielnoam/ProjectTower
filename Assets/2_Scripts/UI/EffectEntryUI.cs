@@ -1,123 +1,83 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EffectEntryUI : MonoBehaviour
 {
-    [SerializeField] private TMP_Dropdown effectDropdown;
-    [SerializeField] private Button removeButton;
-    [SerializeField] private TextMeshProUGUI effectDescriptionText;
+    [SerializeField] private Button button;
+    [SerializeField] private TextMeshProUGUI labelText;
+    [SerializeField] private Image backgroundImage;
+    [SerializeField] private UITooltipTrigger tooltipTrigger;
     
-    private SpellCraftingUI _craftingUI;
-    private int _index;
-    private int _lastValidIndex;
-    private List<Type> _availableEffects; 
+    [Header("Visual States")]
+    [SerializeField] private Color normalColor = Color.white;
+    [SerializeField] private Color selectedColor = Color.grey;
+    [SerializeField] private Color unavailableColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+    [SerializeField] private Vector3 normalScale = Vector3.one;
+    [SerializeField] private Vector3 selectedScale = new Vector3(0.9f, 0.9f, 0.9f);
     
-    public int DropdownValue => effectDropdown.value;
+    private Type _effectType;
+    private bool _isSelected;
+    private bool _isAvailable;
     
-    public void Initialize(SpellCraftingUI craftingUI, int index, List<Type> availableEffects)
+    public event Action<Type, bool> StateChanged;
+    
+    public Type EffectType => _effectType;
+    public bool IsSelected => _isSelected;
+    public bool IsAvailable => _isAvailable;
+    
+    private void Awake()
     {
-        _craftingUI = craftingUI;
-        _index = index;
-        _availableEffects = availableEffects;
-        
-        PopulateDropdown();
-        
-        effectDropdown.onValueChanged.AddListener(OnEffectChanged);
-        removeButton.onClick.AddListener(OnRemoveClicked);
-        
-        effectDropdown.value = 0;
-        OnEffectChanged(0);
+        button.onClick.AddListener(ToggleSelection);
     }
     
-    private void PopulateDropdown()
+    public void Initialize(Type effectType)
     {
-        effectDropdown.ClearOptions();
+        _effectType = effectType;
+        labelText.text = SpellTypeRegistry.GetEffectDisplayName(effectType);
+        SetSelected(false);
+        SetAvailable(true);
+    }
     
-        var allEffects = SpellTypeRegistry.EffectTypes;
-        var effectNames = allEffects.Select(effectType =>
+    public void SetSelected(bool selected)
+    {
+        _isSelected = selected;
+        UpdateVisuals();
+    }
+    
+    public void SetAvailable(bool available)
+    {
+        _isAvailable = available;
+        button.interactable = available;
+        UpdateVisuals();
+    }
+    
+    public void UpdateTooltip(string description)
+    {
+        if (tooltipTrigger)
         {
-            string name = SpellTypeRegistry.GetEffectDisplayName(effectType);
-            bool isAvailable = _availableEffects.Contains(effectType);
-            
-            return isAvailable ? name : $"<color=red>{name}</color>";
-        }).ToList();
-    
-        effectDropdown.AddOptions(effectNames);
-    }
-    
-    public void UpdateEffectDescription(Type effectType)
-    {
-        var effect = SpellTypeRegistry.CreateEffect(effectType);
-    
-        float strengthMultiplier = _craftingUI.GetCurrentStrengthMultiplier();
-        effect.ApplyStrengthMultiplier(strengthMultiplier);
-    
-        effectDescriptionText.text = effect.GetDescription();
-    }
-    
-    public void UpdateAvailableEffects(List<Type> availableEffects)
-    {
-        _availableEffects = availableEffects;
-    
-        // Get the currently selected effect from SpellTypeRegistry, not from availableEffects
-        var allEffects = SpellTypeRegistry.EffectTypes;
-        Type currentEffectType = null;
-    
-        if (effectDropdown.value >= 0 && effectDropdown.value < allEffects.Count)
-        {
-            currentEffectType = allEffects[effectDropdown.value];
+            tooltipTrigger.tooltipText = description;
         }
+    }
     
-        PopulateDropdown();
+    private void ToggleSelection()
+    {
+        if (!_isAvailable) return;
+        StateChanged?.Invoke(_effectType, !_isSelected);
+    }
     
-        // Check if current effect is still available
-        if (currentEffectType != null && availableEffects.Contains(currentEffectType))
+    private void UpdateVisuals()
+    {
+        if (!_isAvailable)
         {
-            // Keep the same effect selected (index might change but effect stays the same)
-            int indexInAll = allEffects.IndexOf(currentEffectType);
-            effectDropdown.value = indexInAll;
+            backgroundImage.color = unavailableColor;
+            transform.localScale = normalScale;
         }
         else
         {
-            // Current effect not available, select first available
-            effectDropdown.value = 0;
-            OnEffectChanged(0);
+            backgroundImage.color = _isSelected ? selectedColor : normalColor;
+            transform.localScale = _isSelected ? selectedScale : normalScale;
         }
-    }
-    
-    public void SetIndex(int newIndex)
-    {
-        _index = newIndex;
-    }
-    
-    
-    private void OnEffectChanged(int value)
-    {
-        var allEffects = SpellTypeRegistry.EffectTypes;
-
-        if (value >= 0 && value < allEffects.Count)
-        {
-            var selectedEffectType = allEffects[value];
-        
-            if (!_availableEffects.Contains(selectedEffectType))
-            {
-                effectDropdown.value = _lastValidIndex;
-                return;
-            }
-    
-            _lastValidIndex = value;
-            _craftingUI.OnEffectChanged(_index, value);
-        
-            UpdateEffectDescription(selectedEffectType);
-        }
-    }
-    
-    private void OnRemoveClicked()
-    {
-        _craftingUI.RemoveEffectEntry(_index);
     }
 }

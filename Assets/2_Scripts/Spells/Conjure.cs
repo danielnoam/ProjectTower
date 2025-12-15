@@ -8,7 +8,6 @@ public class Conjure : MonoBehaviour
     [SerializeField] private LayerMask collisionLayers;
     [SerializeField] private Rigidbody rigidBody;
 
-    
     private Collider[] _colliders = Array.Empty<Collider>();
     private bool _isInitialized;
     private float _currentLifeTime;
@@ -48,7 +47,6 @@ public class Conjure : MonoBehaviour
         {
             stickBehavior.UpdateStickPosition();
         }
-
     }
 
     private void FixedUpdate()
@@ -57,7 +55,6 @@ public class Conjure : MonoBehaviour
         
         _conjureMotionBehavior.UpdateMovement(Time.fixedDeltaTime);
     }
-    
     
     private void OnCollisionEnter(Collision other)
     {
@@ -79,15 +76,12 @@ public class Conjure : MonoBehaviour
         {
             _conjureImpactBehavior?.OnCollision(this, other);
         }
-     
         
         if (_conjureImpactBehavior is StickBehavior)
         {
             _isStuck = true;
         }
     }
-    
-    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -118,25 +112,34 @@ public class Conjure : MonoBehaviour
         return clones;
     }
 
-    public void Initialize(SOSpell spell, ICombatTarget source, ICombatTarget target = null)
+    // Initialize with strength multiplier applied
+    public void Initialize(SOSpell spell, ICombatTarget source, ICombatTarget target, float strengthMultiplier)
     {
         _spell = spell;
         _source = source;
         
+        // Clone effects and apply strength multiplier
         _hitEffects = CloneEffects(spell.effects).ToList();
+        foreach (var effect in _hitEffects)
+        {
+            effect.ApplyStrengthMultiplier(strengthMultiplier);
+        }
+        
         _domains = new List<Domain>(spell.domains);
+        
+        // Clone augment and apply strength multiplier
         _augment = spell.augment?.Clone() ?? new NoneAugment();
+        _augment.ApplyStrengthMultiplier(strengthMultiplier);
+        
         _conjureMotionBehavior = spell.conjureMotion?.Clone();
         _conjureImpactBehavior = spell.conjureImpact?.Clone();
         _currentLifeTime = spell.conjureLifeTime;
         
         _conjureMotionBehavior?.Initialize(rigidBody, _source, target);
-        _conjureImpactBehavior?.Initialize(rigidBody,_colliders, _source);
+        _conjureImpactBehavior?.Initialize(rigidBody, _colliders, _source);
         
         _isInitialized = true;
     }
-    
-
 
     public void DestroyProjectile()
     {
