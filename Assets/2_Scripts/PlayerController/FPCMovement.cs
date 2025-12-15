@@ -1,4 +1,3 @@
-
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,19 +16,18 @@ public class FPCMovement : MonoBehaviour
     [SerializeField] private float gravity = -15f;
     [SerializeField] private ControllerRumbleEffectSettings landingRumbleSettings = new ControllerRumbleEffectSettings(0.5f, 0.7f, 0.2f);
     
-    [Header("Platform Movement")]
-    [SerializeField] private LayerMask platformLayer;
-    [SerializeField] private float platformCheckDistance = 1.2f;
-
-    
     [Header("Jump")]
     [SerializeField] private float jumpForce = 1.5f;
     [SerializeField] private float jumpBufferTime = 0.1f;
     [SerializeField] private float coyoteTime = 0.1f;
     
+    [Header("Platform Movement")]
+    [SerializeField] private LayerMask platformLayer;
+    [SerializeField] private float platformCheckDistance = 1.2f;
     
     [Header("References")] 
     [SerializeField] private FPCManager manager;
+    [SerializeField] private FPCMantle mantle;
     
     [Separator]
     [SerializeField, ReadOnly] private Vector3 velocity;
@@ -41,8 +39,6 @@ public class FPCMovement : MonoBehaviour
     private Vector2 _moveInput;
     private bool _wasGrounded;
     private bool _runInput;
-    private float _dashTimeRemaining;
-    private float _dashCooldownRemaining;
     private float _jumpBufferCounter;
     private float _coyoteTimeCounter;
     private Rigidbody _currentPlatform;
@@ -64,6 +60,7 @@ public class FPCMovement : MonoBehaviour
     private void OnValidate()
     {
         if (!manager) manager = GetComponent<FPCManager>();
+        if (!mantle) mantle = GetComponent<FPCMantle>();
     }
 
     private void OnEnable()
@@ -104,12 +101,17 @@ public class FPCMovement : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            _jumpBufferCounter = jumpBufferTime;
+            if (IsGrounded || _coyoteTimeCounter > 0f)
+            {
+                _jumpBufferCounter = jumpBufferTime;
+            }
         }
     }
     
     private void ApplyMovement()
     {
+        if (mantle && mantle.IsMantling) return;
+        
         if (_currentPlatform)
         {
             Vector3 platformDelta = _currentPlatform.position - lastPlatformPosition;
@@ -121,8 +123,8 @@ public class FPCMovement : MonoBehaviour
         manager.CharacterController.Move(finalMovement);
     
         _externalForce = Vector3.Lerp(_externalForce, Vector3.zero, 5f * Time.deltaTime);
-        
     }
+    
     private void HandleMovement()
     {
         Vector3 cameraForward = manager.FpcCamera.GetMovementDirection();
@@ -142,7 +144,6 @@ public class FPCMovement : MonoBehaviour
     
     private void HandleJump()
     {
-        
         if (_jumpBufferCounter > 0f)
         {
             _jumpBufferCounter -= Time.deltaTime;
@@ -224,16 +225,25 @@ public class FPCMovement : MonoBehaviour
         }
     }
 
+    public void CancelJumpBuffer()
+    {
+        _jumpBufferCounter = 0f;
+    }
 
     public void ApplyForce(Vector3 direction, float force)
     {
         _externalForce += direction * force;
     }
+    
+    public void ForceStop()
+    {
+        _externalForce  = Vector3.zero;
+        velocity = Vector3.zero;
+    }
 
 
     private void OnDrawGizmos()
     {
-
         if (IsGrounded)
         {
             Gizmos.color = Color.yellow;
