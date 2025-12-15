@@ -45,6 +45,8 @@ public class FPCCamera : MonoBehaviour
     private float _movementTilt;
     private float _movementPan;
     
+    public Vector2 LookInput => _lookInput;
+    
 
     private void OnValidate()
     {

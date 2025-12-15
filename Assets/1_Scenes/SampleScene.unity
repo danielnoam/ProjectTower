@@ -4051,10 +4051,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b6f2c7ca37cf04f8fd7cbef6748dd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FPCAnimator
-  enableMovementTilt: 1
-  horizontalTiltAmount: 6
-  forwardPanAmount: 5
-  tiltSmoothing: 6
+  enableMovementTilt: 0
+  movementTiltAmount: 5
+  movementTiltSmoothing: 5
+  enableLookTilt: 1
+  lookTiltAmount: -0.1
+  lookPanAmount: -0.1
+  lookTiltSmoothing: 5
   manager: {fileID: 229965593}
   wandPivot: {fileID: 1366685477}
 --- !u!1001 &231652692
@@ -5674,7 +5677,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 335, y: -106.94995}
+  m_AnchoredPosition: {x: 335, y: -106.95004}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &333362241
@@ -6587,7 +6590,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1135, y: -106.94995}
+  m_AnchoredPosition: {x: 1135, y: -106.95004}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &379472176
@@ -24718,7 +24721,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1535, y: -106.94995}
+  m_AnchoredPosition: {x: 1535, y: -106.95004}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1645160789
@@ -27163,7 +27166,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 735, y: -106.94995}
+  m_AnchoredPosition: {x: 735, y: -106.95004}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1821012642

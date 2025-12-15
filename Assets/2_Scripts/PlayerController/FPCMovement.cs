@@ -50,6 +50,7 @@ public class FPCMovement : MonoBehaviour
 
     public Vector2 MoveInput => _moveInput;
     public Vector3 Velocity => velocity;
+    
     public bool IsGrounded { get; private set; }
     public bool IsRunning { get; private set; }
     public bool IsJumping { get; private set; }
