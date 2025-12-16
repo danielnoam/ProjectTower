@@ -14,25 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: TinyGiantStudio.DevTools.DevTrails::TinyGiantStudio.DevTools.DevTrails.UserStats_Project
   currentSessionIDCache: 0
   probablyCrashes: 0
-  totalUseTime: 30956
-  activeUseTime: 15884
-  focusedUseTime: 16869
-  _enteredPlayMode: 144
-  _playModeUseTime: 13847
-  _sceneSaved: 316
+  totalUseTime: 32572
+  activeUseTime: 16190
+  focusedUseTime: 17348
+  _enteredPlayMode: 145
+  _playModeUseTime: 13862
+  _sceneSaved: 318
   _sceneOpened: 1
-  _sceneClosed: 296
-  _undoRedoCounter: 127
-  _compileCounter: 74
+  _sceneClosed: 299
+  _undoRedoCounter: 131
+  _compileCounter: 75
   _totalTimeSpentCompiling: 0
-  _timeSpentCompiling: 74.85534
+  _timeSpentCompiling: 88.904655
   _totalTimeSpentInDomainReload: 0
-  _timeSpentInDomainReload: 221.2377
+  _timeSpentInDomainReload: 230.81519
   _logCounter_editor: 12
-  _logCounter_playMode: 4088
-  _warningLogCounter_editor: 287
+  _logCounter_playMode: 4089
+  _warningLogCounter_editor: 290
   _warningLogCounter_playMode: 55
-  _errorLogCounter_editor: 139
+  _errorLogCounter_editor: 153
   _errorLogCounter_playMode: 639
   _exceptionLogCounter_editor: 14
   _exceptionLogCounter_playMode: 150

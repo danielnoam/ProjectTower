@@ -35,13 +35,16 @@ public class FPCCaster : MonoBehaviour
     private ICombatTarget _lockedTarget;
     private Camera _cam;
     private float _channelTickTimer;
+    private bool _hasTransitionedToCharge;
 
     public SOSpell CurrentSpell => currentSpell;
     public IReadOnlyList<SOSpell> SpellsList => spellsList;
-    
+
+    public event Action<CastMethod> StartedSpellCast;
     public event Action<SOSpell> SpellChanged;
     public event Action<SOSpell> SpellAdded;
     public event Action<CastMethod, float, float> CastingProgressChanged;
+    
 
     private void OnValidate()
     {
@@ -81,7 +84,6 @@ public class FPCCaster : MonoBehaviour
         {
             castHoldTime += Time.deltaTime;
             
-            // Update visual cast method based on hold time
             if (castHoldTime < 0.1f)
             {
                 currentCastMethod = CastMethod.Instant;
@@ -89,6 +91,12 @@ public class FPCCaster : MonoBehaviour
             else
             {
                 currentCastMethod = CastMethod.Charge;
+                
+                if (!_hasTransitionedToCharge)
+                {
+                    _hasTransitionedToCharge = true;
+                    StartedSpellCast?.Invoke(currentCastMethod);
+                }
             }
             
             CastingProgressChanged?.Invoke(CastMethod.Charge, castHoldTime, chargeTime);
@@ -140,6 +148,7 @@ public class FPCCaster : MonoBehaviour
             isCharging = true;
             castHoldTime = 0f;
             currentCastMethod = CastMethod.Instant;
+            StartedSpellCast?.Invoke(currentCastMethod);
         }
         
         if (context.canceled && isCharging)
@@ -173,6 +182,7 @@ public class FPCCaster : MonoBehaviour
             castHoldTime = 0f;
             _channelTickTimer = 0f;
             currentCastMethod = CastMethod.Channel;
+            StartedSpellCast?.Invoke(currentCastMethod);
         }
         
         if (context.canceled && isChanneling)
@@ -188,6 +198,7 @@ public class FPCCaster : MonoBehaviour
         castHoldTime = 0f;
         _channelTickTimer = 0f;
         _lockedTarget = null;
+        _hasTransitionedToCharge = false;
         currentCastMethod = CastMethod.Instant;
         CastingProgressChanged?.Invoke(CastMethod.Instant, 0, 0);
     }

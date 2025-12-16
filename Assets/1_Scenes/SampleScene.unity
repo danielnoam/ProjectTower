@@ -3406,6 +3406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229965591}
   - component: {fileID: 229965594}
+  - component: {fileID: 229965612}
   - component: {fileID: 229965609}
   - component: {fileID: 229965603}
   - component: {fileID: 229965593}
@@ -3422,7 +3423,6 @@ GameObject:
   - component: {fileID: 229965604}
   - component: {fileID: 229965608}
   - component: {fileID: 229965605}
-  - component: {fileID: 229965612}
   m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
@@ -3929,6 +3929,8 @@ MonoBehaviour:
   lookPanAmount: -0.1
   lookTiltSmoothing: 5
   manager: {fileID: 229965593}
+  caster: {fileID: 229965600}
+  animator: {fileID: 229965612}
   wandPivot: {fileID: 1366685477}
 --- !u!114 &229965611
 MonoBehaviour:
@@ -30243,7 +30245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2059759169
 RectTransform:
   m_ObjectHideFlags: 0

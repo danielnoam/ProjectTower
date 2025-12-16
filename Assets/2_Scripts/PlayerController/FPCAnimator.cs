@@ -1,33 +1,73 @@
+using System;
 using UnityEngine;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(FPCManager))]
 public class FPCAnimator : MonoBehaviour
 {
+
+
     [Header("Movement Tilt")]
     [SerializeField] private bool enableMovementTilt = true;
-    [SerializeField] private float movementTiltAmount = 2f;
+    [SerializeField] private float movementTiltAmount = 5f;
     [SerializeField] private float movementTiltSmoothing = 5f;
     
     [Header("Look Tilt")]
     [SerializeField] private bool enableLookTilt = true;
-    [SerializeField] private float lookTiltAmount = 2f;
-    [SerializeField] private float lookPanAmount = 1f;
+    [SerializeField] private float lookTiltAmount = -0.1f;
+    [SerializeField] private float lookPanAmount = -0.1f;
     [SerializeField] private float lookTiltSmoothing = 5f;
     
     [Header("References")]
     [SerializeField] private FPCManager manager;
+    [SerializeField] private FPCCaster caster;
+    [SerializeField] private Animator animator;
     [SerializeField] private Transform wandPivot;
 
+    
+    private static readonly int startedInstant = Animator.StringToHash("StartedInstant");
+    private static readonly int startedChannel = Animator.StringToHash("StartedChannel");
+    private static readonly int startedCharge = Animator.StringToHash("StartedCharge");
+    
     private float _movementTilt;
     private float _lookTilt;
     private float _lookPan;
     private Quaternion _baseRotation;
+    
 
     private void OnValidate()
     {
         if (!manager) manager = GetComponent<FPCManager>();
+        if (!animator) animator = GetComponent<Animator>();
+        if (!caster) caster = GetComponent<FPCCaster>();
     }
+
+    private void OnEnable()
+    {
+        caster.StartedSpellCast += OnStartedSpellCast;
+    }
+    
+    private void OnDisable()
+    {
+        caster.StartedSpellCast -= OnStartedSpellCast;
+    }
+    
+    private void OnStartedSpellCast(CastMethod castMethod)
+    {
+        switch (castMethod)
+        {
+            case CastMethod.Instant:
+                animator.SetTrigger(startedInstant);
+                break;
+            case CastMethod.Channel:
+                animator.SetTrigger(startedChannel);
+                break;
+            case CastMethod.Charge:
+                animator.SetTrigger(startedCharge);
+                break;
+        }
+    }
+
 
     private void Awake()
     {
@@ -36,6 +76,7 @@ public class FPCAnimator : MonoBehaviour
             _baseRotation = wandPivot.localRotation;
         }
     }
+
 
     private void Update()
     {
